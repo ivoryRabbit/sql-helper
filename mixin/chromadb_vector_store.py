@@ -38,25 +38,21 @@ class ChromaDBVectorStore(VannaBase, ABC):
             config = {}
 
         self.embedding_function = config.get("embedding_function", default_ef)
-        curr_client = config.get("client", "persistent")
         collection_metadata = config.get("collection_metadata", None)
-        self.n_results_sql = config.get("n_results_sql", config.get("n_results", 10))
-        self.n_results_documentation = config.get("n_results_documentation", config.get("n_results", 10))
-        self.n_results_ddl = config.get("n_results_ddl", config.get("n_results", 10))
 
-        if curr_client == "persistent":
-            self.chroma_client = chromadb.PersistentClient(
-                path=path, settings=Settings(anonymized_telemetry=False)
-            )
-        elif curr_client == "in-memory":
+        n_results = config.get("n_results", 10)
+        self.n_results_sql = config.get("n_results_sql", n_results)
+        self.n_results_documentation = config.get("n_results_documentation", n_results)
+        self.n_results_ddl = config.get("n_results_ddl", n_results)
+
+        if path is None:
             self.chroma_client = chromadb.EphemeralClient(
-                settings=Settings(anonymized_telemetry=False)
+                settings=Settings(anonymized_telemetry=False),
             )
-        elif isinstance(curr_client, chromadb.ClientAPI):
-            # allow providing client directly
-            self.chroma_client = curr_client
         else:
-            raise ValueError(f"Unsupported client was set in config: {curr_client}")
+            self.chroma_client = chromadb.PersistentClient(
+                path=path, settings=Settings(anonymized_telemetry=False),
+            )
 
         self.documentation_collection = self.chroma_client.get_or_create_collection(
             name="documentation",

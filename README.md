@@ -13,7 +13,7 @@ RAG:
 - database:
   - postgres pgvector
   - duckdb vss extension ?
-  - chormadb using duckdb on the backend ?
+  - chromadb using sqlite or duckdb on the backend ?
   - GraphRAG ?
 - model:
   - sentence transformers:

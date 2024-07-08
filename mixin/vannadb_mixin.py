@@ -6,7 +6,6 @@ from typing import Optional
 
 import pandas as pd
 import requests
-
 from vanna.base import VannaBase
 from vanna.types import (
   DataFrameJSON,

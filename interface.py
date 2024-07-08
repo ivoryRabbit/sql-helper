@@ -1,6 +1,7 @@
-from mixin.chromadb_vector_store import ChromaDBVectorStore
-from mixin.vannadb_vector_store import VannaDBVectorStore
-from mixin.openai_chat import OpenAIChat
+from mixin.chromadb_mixin import ChromaDBVectorStore
+from mixin.vannadb_mixin import VannaDBVectorStore
+from mixin.openai_mixin import OpenAIChat
+from mixin.pgvector_mixin import PGVector
 
 
 class ChromaDB(ChromaDBVectorStore, OpenAIChat):
@@ -17,3 +18,7 @@ class VannaDB(VannaDBVectorStore, OpenAIChat):
     ):
         VannaDBVectorStore.__init__(self, api_key=vanna_api_key, model_name=vanna_model_name, config=config)
         OpenAIChat.__init__(self, api_key=openai_api_key, model_name=openai_model_name, config=config)
+
+
+class PGVectorDB(PGVector, OpenAIChat):
+    pass

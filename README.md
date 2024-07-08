@@ -2,7 +2,7 @@
 SQL helper using LLM
 
 
-Plans for development
+## Plans for development
 
 LLM:
 - model:
@@ -30,3 +30,6 @@ Framework
   - mesop ?
 - API:
   - fastapi
+
+## TODO
+- [ ] Set docker environment

@@ -4,6 +4,9 @@ sqlparse==0.5.0
 pydantic==2.7.4
 pydantic-settings==2.3.4
 
+# python data handler
+pandas
+
 # ML
 torch==2.2.2
 transformers==4.42.3

@@ -1,10 +1,9 @@
-from src.server.agent.sql_agent import SQLAgent
-from src.server.service.vector_store.chromadb_mixin import ChromaDBVectorStore
-from src.server.service.vector_store.openai_mixin import OpenAIChat
+from src.agent.sql_agent import SQLAgent
+from src.core.chat.openai import OpenAIChat
+from src.core.interface.vector_store import VectorStore
 
 
-class OpenAISQLAgent(ChromaDBVectorStore, OpenAIChat, SQLAgent):
-    def __init__(self, path=None, openai_api_key=None, openai_model_name=None, config=None):
-        SQLAgent.__init__(self, config=config)
-        ChromaDBVectorStore.__init__(self, path=path, config=config)
-        OpenAIChat.__init__(self, api_key=openai_api_key, model_name=openai_model_name, config=config)
+class OpenAISQLAgent(OpenAIChat, SQLAgent):
+    def __init__(self, vector_store: VectorStore, openai_api_key=None, openai_model=None, config=None):
+        SQLAgent.__init__(self, vector_store=vector_store, config=config)
+        OpenAIChat.__init__(self, api_key=openai_api_key, model=openai_model, config=config)

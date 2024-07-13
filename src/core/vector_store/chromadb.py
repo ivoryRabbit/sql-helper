@@ -13,15 +13,15 @@ from src.core.interface.vector_store import VectorStore
 
 
 class ChromaDBVectorStore(VectorStore):
-    _DEFAULT_EF = embedding_functions.SentenceTransformerEmbeddingFunction("all-MiniLM-L6-v2")
-    _DEFAULT_VSS = {"hnsw:space": "cosine"}
-
     def __init__(self, path: str, config=None):
         if config is None:
             config = {}
 
-        self.embedding_function = config.get("embedding_function", self._DEFAULT_EF)
-        self.collection_metadata = config.get("collection_metadata", self._DEFAULT_VSS)
+        _DEFAULT_EF = embedding_functions.SentenceTransformerEmbeddingFunction("all-MiniLM-L6-v2")
+        _DEFAULT_VSS = {"hnsw:space": "cosine"}
+
+        self.embedding_function = config.get("embedding_function", _DEFAULT_EF)
+        self.collection_metadata = config.get("collection_metadata", _DEFAULT_VSS)
 
         n_results = config.get("n_results", 10)
 

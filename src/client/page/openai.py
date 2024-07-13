@@ -42,6 +42,8 @@ def render_page() -> None:
             with st.chat_message("assistant"):
                 if is_sql_valid_cached(sql=sql):
                     st.code(sql, language="sql", line_numbers=True)
+                else:
+                    st.markdown(sql)
         else:
             assistant_message_error = st.chat_message("assistant")
             assistant_message_error.error("I wasn't able to generate SQL for that question")

@@ -1,19 +1,19 @@
 import streamlit as st
 
-from src.agent.openai_sql_agent import OpenAISQLAgent
+from src.agent.sql_agent import SQLAgent
+from src.core.chat.openai import OpenAIChat
 from src.core.vector_store.chromadb import ChromaDBVectorStore
 
 
 @st.cache_resource(ttl=3600)
 def setup_agent():
-    vector_store = ChromaDBVectorStore(path="../../.chromadb")
-
-    agent = OpenAISQLAgent(
-        vector_store,
-        openai_api_key=st.secrets.get("OPENAI_API_KEY"),
-        openai_model=st.secrets.get("OPENAI_MODEL_NAME"),
+    chat = OpenAIChat(
+        api_key=st.secrets.get("OPENAI_API_KEY"),
+        model=st.secrets.get("OPENAI_MODEL_NAME"),
     )
-    return agent
+    vector_store = ChromaDBVectorStore(path="/tmp/.chromadb")
+
+    return SQLAgent(chat, vector_store)
 
 
 @st.cache_data(show_spinner="Generating sample questions ...")

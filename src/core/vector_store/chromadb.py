@@ -198,8 +198,7 @@ class ChromaDBVectorStore(VectorStore):
         else:
             return False
 
-    @staticmethod
-    def _extract_documents(query_results: Union[pd.DataFrame, QueryResult]) -> list:
+    def _extract_documents(self, query_results: Union[pd.DataFrame, QueryResult]) -> list:
         if query_results is None:
             return []
 
@@ -215,7 +214,7 @@ class ChromaDBVectorStore(VectorStore):
             return documents
 
     def get_related_ddl(self, question: str, **kwargs) -> list:
-        return ChromaDBVectorStore._extract_documents(
+        return self._extract_documents(
             self.ddl_collection.query(
                 query_texts=[question],
                 n_results=self.n_results_ddl,
@@ -223,7 +222,7 @@ class ChromaDBVectorStore(VectorStore):
         )
 
     def get_related_doc(self, question: str, **kwargs) -> list:
-        return ChromaDBVectorStore._extract_documents(
+        return self._extract_documents(
             self.doc_collection.query(
                 query_texts=[question],
                 n_results=self.n_results_doc,
@@ -231,7 +230,7 @@ class ChromaDBVectorStore(VectorStore):
         )
 
     def get_similar_question_sql(self, question: str, **kwargs) -> list:
-        return ChromaDBVectorStore._extract_documents(
+        return self._extract_documents(
             self.sql_collection.query(
                 query_texts=[question],
                 n_results=self.n_results_sql,

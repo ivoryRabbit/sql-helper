@@ -27,7 +27,7 @@ class OpenAIChat(Chat):
 
     def submit_prompts(self, prompts: List[Dict[str, str]], **kwargs) -> str:
         if not prompts:
-            raise Exception("Prompt is empty")
+            raise ValueError("Prompt is empty")
 
         num_tokens = 0
         for prompt in prompts:

@@ -1,13 +1,10 @@
 import dataclasses
 import json
 from io import StringIO
-from abc import ABC
 from typing import Optional
 
 import pandas as pd
 import requests
-from vanna.base import VannaBase
-from vanna.remote import VannaDefault
 from vanna.types import (
   DataFrameJSON,
   NewOrganization,
@@ -21,11 +18,11 @@ from vanna.types import (
 )
 from vanna.utils import sanitize_model_name
 
+from src.core.interface.vector_store import VectorStore
 
-VannaDefault
-class VannaDBVectorStore(VannaBase, ABC):
+
+class VannaDBVectorStore(VectorStore):
     def __init__(self, api_key: str, model_name: str, config=None):
-        VannaBase.__init__(self, config=config)
 
         self._api_key = api_key
         self._model = model_name
@@ -70,19 +67,6 @@ class VannaDBVectorStore(VannaBase, ABC):
         return dataclasses.asdict(obj)
 
     def create_model(self, model: str, **kwargs) -> bool:
-        """
-        **Example:**
-        ```python
-        success = vn.create_model("my_model")
-        ```
-        Create a new model.
-
-        Args:
-            model (str): The name of the model to create.
-
-        Returns:
-            bool: True if the model was created, False otherwise.
-        """
         model = sanitize_model_name(model)
         params = [NewOrganization(org_name=model, db_type="")]
 
@@ -96,17 +80,6 @@ class VannaDBVectorStore(VannaBase, ABC):
         return status.success
 
     def get_models(self) -> list:
-        """
-        **Example:**
-        ```python
-        models = vn.get_models()
-        ```
-
-        List the models that belong to the user.
-
-        Returns:
-            List[str]: A list of model names.
-        """
         d = self._rpc_call(method="list_my_models", params=[])
 
         if "result" not in d:
@@ -119,6 +92,30 @@ class VannaDBVectorStore(VannaBase, ABC):
     def generate_embedding(self, data: str, **kwargs) -> list[float]:
         # This is done server-side
         pass
+
+    def add_ddl(self, ddl: str, **kwargs) -> str:
+        params = [StringData(data=ddl)]
+
+        d = self._rpc_call(method="add_ddl", params=params)
+
+        if "result" not in d:
+            raise Exception("Error adding DDL", d)
+
+        status = StatusWithId(**d["result"])
+
+        return status.id
+
+    def add_doc(self, documentation: str, **kwargs) -> str:
+        params = [StringData(data=documentation)]
+
+        d = self._rpc_call(method="add_documentation", params=params)
+
+        if "result" not in d:
+            raise Exception("Error adding documentation", d)
+
+        status = StatusWithId(**d["result"])
+
+        return status.id
 
     def add_question_sql(self, question: str, sql: str, **kwargs) -> str:
         if "tag" in kwargs:
@@ -137,31 +134,7 @@ class VannaDBVectorStore(VannaBase, ABC):
 
         return status.id
 
-    def add_ddl(self, ddl: str, **kwargs) -> str:
-        params = [StringData(data=ddl)]
-
-        d = self._rpc_call(method="add_ddl", params=params)
-
-        if "result" not in d:
-            raise Exception("Error adding DDL", d)
-
-        status = StatusWithId(**d["result"])
-
-        return status.id
-
-    def add_documentation(self, documentation: str, **kwargs) -> str:
-        params = [StringData(data=documentation)]
-
-        d = self._rpc_call(method="add_documentation", params=params)
-
-        if "result" not in d:
-            raise Exception("Error adding documentation", d)
-
-        status = StatusWithId(**d["result"])
-
-        return status.id
-
-    def get_training_data(self, **kwargs) -> Optional[pd.DataFrame]:
+    def get_all_data(self, **kwargs) -> Optional[pd.DataFrame]:
         params = []
 
         d = self._rpc_call(method="get_training_data", params=params)
@@ -206,15 +179,6 @@ class VannaDBVectorStore(VannaBase, ABC):
 
         return training_data
 
-    def get_similar_question_sql(self, question: str, **kwargs) -> list:
-        if question in self.related_training_data:
-            training_data = self.related_training_data[question]
-        else:
-            training_data = self.get_related_training_data_cached(question)
-
-        print("similar questions", training_data.questions)
-        return training_data.questions
-
     def get_related_ddl(self, question: str, **kwargs) -> list:
         if question in self.related_training_data:
             training_data = self.related_training_data[question]
@@ -223,10 +187,19 @@ class VannaDBVectorStore(VannaBase, ABC):
 
         return training_data.ddl
 
-    def get_related_documentation(self, question: str, **kwargs) -> list:
+    def get_related_doc(self, question: str, **kwargs) -> list:
         if question in self.related_training_data:
             training_data = self.related_training_data[question]
         else:
             training_data = self.get_related_training_data_cached(question)
 
         return training_data.documentation
+
+    def get_similar_question_sql(self, question: str, **kwargs) -> list:
+        if question in self.related_training_data:
+            training_data = self.related_training_data[question]
+        else:
+            training_data = self.get_related_training_data_cached(question)
+
+        print("similar questions", training_data.questions)
+        return training_data.questions

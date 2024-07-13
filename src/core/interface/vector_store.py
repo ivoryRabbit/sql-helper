@@ -33,17 +33,9 @@ class VectorStore(ABC):
         pass
 
     @abstractmethod
-    def get_training_data(self, id: str, **kwargs) -> pd.DataFrame:
-        pass
-
-    @abstractmethod
     def get_all_data(self, **kwargs) -> pd.DataFrame:
         pass
 
     @abstractmethod
     def remove_training_data(self, id: str, **kwargs) -> None:
         pass
-
-    # @abstractmethod
-    # def remove_all_data(self, **kwargs) -> None:
-    #     pass

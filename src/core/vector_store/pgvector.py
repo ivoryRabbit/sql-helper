@@ -1,8 +1,6 @@
-from abc import ABC
-
 import pandas as pd
 
-from src.server.interface.vector_store import VectorStore
+from src.core.interface.vector_store import VectorStore
 
 
 class PGVectorStore(VectorStore):
@@ -24,7 +22,7 @@ class PGVectorStore(VectorStore):
     def get_similar_question_sql(self, question: str, **kwargs) -> list:
         pass
 
-    def get_training_data(self, **kwargs) -> pd.DataFrame:
+    def get_all_data(self, **kwargs) -> pd.DataFrame:
         pass
 
     def remove_training_data(self, id: str, **kwargs) -> bool:

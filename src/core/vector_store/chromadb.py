@@ -9,7 +9,7 @@ from chromadb import QueryResult
 from chromadb.config import Settings
 from chromadb.utils import embedding_functions
 
-from src.server.interface.vector_store import VectorStore
+from src.core.interface.vector_store import VectorStore
 
 
 class ChromaDBVectorStore(VectorStore):

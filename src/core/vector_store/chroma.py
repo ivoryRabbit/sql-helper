@@ -1,7 +1,6 @@
 import hashlib
 import json
 import uuid
-from abc import ABC
 from typing import Union, Sequence
 
 import chromadb
@@ -10,71 +9,51 @@ from chromadb import QueryResult
 from chromadb.config import Settings
 from chromadb.utils import embedding_functions
 
-from vanna.base import VannaBase
-
-default_ef = embedding_functions.DefaultEmbeddingFunction()
+from src.server.interface.vector_store import VectorStore
 
 
-def deterministic_uuid(content: Union[str, bytes]) -> str:
-    if isinstance(content, str):
-        content_bytes = content.encode("utf-8")
-    elif isinstance(content, bytes):
-        content_bytes = content
-    else:
-        raise ValueError(f"Content type {type(content)} not supported !")
+class ChromaDBVectorStore(VectorStore):
+    _DEFAULT_EF = embedding_functions.SentenceTransformerEmbeddingFunction("all-MiniLM-L6-v2")
+    _DEFAULT_VSS = {"hnsw:space": "cosine"}
 
-    hash_object = hashlib.sha256(content_bytes)
-    hash_hex = hash_object.hexdigest()
-    namespace = uuid.UUID("00000000-0000-0000-0000-000000000000")
-    content_uuid = str(uuid.uuid5(namespace, hash_hex))
-
-    return content_uuid
-
-
-class ChromaDBVectorStore(VannaBase, ABC):
-    def __init__(self, path: Union[str, None] = None, config=None):
-        VannaBase.__init__(self, config=config)
+    def __init__(self, path: str, config=None):
         if config is None:
             config = {}
 
-        self.embedding_function = config.get("embedding_function", default_ef)
-        collection_metadata = config.get("collection_metadata", None)
+        self.embedding_function = config.get("embedding_function", self._DEFAULT_EF)
+        self.collection_metadata = config.get("collection_metadata", self._DEFAULT_VSS)
 
         n_results = config.get("n_results", 10)
+
         self.n_results_sql = config.get("n_results_sql", n_results)
-        self.n_results_documentation = config.get("n_results_documentation", n_results)
+        self.n_results_doc = config.get("n_results_doc", n_results)
         self.n_results_ddl = config.get("n_results_ddl", n_results)
 
-        if path is None:
-            self.chroma_client = chromadb.EphemeralClient(
-                settings=Settings(anonymized_telemetry=False),
-            )
-        else:
-            self.chroma_client = chromadb.PersistentClient(
-                path=path, settings=Settings(anonymized_telemetry=False),
-            )
-
-        self.documentation_collection = self.chroma_client.get_or_create_collection(
-            name="documentation",
-            embedding_function=self.embedding_function,
-            metadata=collection_metadata,
+        self.chroma_client = chromadb.PersistentClient(
+            path=path, settings=Settings(anonymized_telemetry=False),
         )
+
         self.ddl_collection = self.chroma_client.get_or_create_collection(
             name="ddl",
             embedding_function=self.embedding_function,
-            metadata=collection_metadata,
+            metadata=self.collection_metadata,
         )
+
+        self.doc_collection = self.chroma_client.get_or_create_collection(
+            name="doc",
+            embedding_function=self.embedding_function,
+            metadata=self.collection_metadata,
+        )
+
         self.sql_collection = self.chroma_client.get_or_create_collection(
             name="sql",
             embedding_function=self.embedding_function,
-            metadata=collection_metadata,
+            metadata=self.collection_metadata,
         )
 
-    def generate_embedding(self, data: str, **kwargs) -> Union[list[Sequence[float]], Sequence[float]]:
-        embedding = self.embedding_function([data])
-        if len(embedding) == 1:
-            return embedding[0]
-        return embedding
+    def generate_embedding(self, text: str, **kwargs) -> Sequence[float]:
+        embedding = self.embedding_function([text])
+        return embedding[0]
 
     def add_question_sql(self, question: str, sql: str, **kwargs) -> str:
         question_sql_json = json.dumps(
@@ -84,7 +63,7 @@ class ChromaDBVectorStore(VannaBase, ABC):
             },
             ensure_ascii=False,
         )
-        id = deterministic_uuid(question_sql_json) + "-sql"
+        id = self._generate_uuid(question_sql_json) + "-sql"
         self.sql_collection.add(
             documents=question_sql_json,
             embeddings=self.generate_embedding(question_sql_json),
@@ -93,7 +72,7 @@ class ChromaDBVectorStore(VannaBase, ABC):
         return id
 
     def add_ddl(self, ddl: str, **kwargs) -> str:
-        id = deterministic_uuid(ddl) + "-ddl"
+        id = self._generate_uuid(ddl) + "-ddl"
         self.ddl_collection.add(
             documents=ddl,
             embeddings=self.generate_embedding(ddl),
@@ -101,16 +80,49 @@ class ChromaDBVectorStore(VannaBase, ABC):
         )
         return id
 
-    def add_documentation(self, documentation: str, **kwargs) -> str:
-        id = deterministic_uuid(documentation) + "-doc"
-        self.documentation_collection.add(
+    def add_doc(self, documentation: str, **kwargs) -> str:
+        id = self._generate_uuid(documentation) + "-doc"
+        self.doc_collection.add(
             documents=documentation,
             embeddings=self.generate_embedding(documentation),
             ids=id,
         )
         return id
 
-    def get_training_data(self, **kwargs) -> pd.DataFrame:
+    def get_training_data(self, id: str, **kwargs) -> pd.DataFrame:
+        if id.endswith("-ddl"):
+            data = self.ddl_collection.get(ids=[id])
+        elif id.endswith("-doc"):
+            data = self.doc_collection.get(ids=[id])
+        elif id.endswith("-sql"):
+            data = self.sql_collection.get(ids=[id])
+        else:
+            raise ValueError("Id is invalid")
+
+        rows = []
+        for id, doc in zip(data["ids"], data["documents"]):
+            row = {
+                "id": id,
+                "question": None,
+                "content": doc
+            }
+            rows.append(row)
+
+        df = pd.DataFrame(rows)
+
+        return df
+
+    def remove_training_data(self, id: str, **kwargs) -> None:
+        if id.endswith("-ddl"):
+            return self.ddl_collection.delete(ids=[id])
+        elif id.endswith("-doc"):
+            return self.doc_collection.delete(ids=[id])
+        elif id.endswith("-sql"):
+            return self.sql_collection.delete(ids=[id])
+        else:
+            raise ValueError("Id is invalid")
+
+    def get_all_data(self, **kwargs) -> pd.DataFrame:
         sql_data = self.sql_collection.get()
 
         df = pd.DataFrame()
@@ -153,7 +165,7 @@ class ChromaDBVectorStore(VannaBase, ABC):
 
             df = pd.concat([df, df_ddl])
 
-        doc_data = self.documentation_collection.get()
+        doc_data = self.doc_collection.get()
 
         if doc_data is not None:
             # Extract the documents and ids
@@ -175,19 +187,6 @@ class ChromaDBVectorStore(VannaBase, ABC):
 
         return df
 
-    def remove_training_data(self, id: str, **kwargs) -> bool:
-        if id.endswith("-sql"):
-            self.sql_collection.delete(ids=[id])
-            return True
-        elif id.endswith("-ddl"):
-            self.ddl_collection.delete(ids=[id])
-            return True
-        elif id.endswith("-doc"):
-            self.documentation_collection.delete(ids=[id])
-            return True
-        else:
-            return False
-
     def remove_collection(self, collection_name: str) -> bool:
         if collection_name in ("sql", "ddl", "documentation"):
             try:
@@ -201,16 +200,6 @@ class ChromaDBVectorStore(VannaBase, ABC):
 
     @staticmethod
     def _extract_documents(query_results: Union[pd.DataFrame, QueryResult]) -> list:
-        """
-        Static method to extract the documents from the results of a query.
-
-        Args:
-            query_results (pd.DataFrame): The dataframe to use.
-
-        Returns:
-            List[str] or None: The extracted documents, or an empty list or
-            single document if an error occurred.
-        """
         if query_results is None:
             return []
 
@@ -225,14 +214,6 @@ class ChromaDBVectorStore(VannaBase, ABC):
 
             return documents
 
-    def get_similar_question_sql(self, question: str, **kwargs) -> list:
-        return ChromaDBVectorStore._extract_documents(
-            self.sql_collection.query(
-                query_texts=[question],
-                n_results=self.n_results_sql,
-            )
-        )
-
     def get_related_ddl(self, question: str, **kwargs) -> list:
         return ChromaDBVectorStore._extract_documents(
             self.ddl_collection.query(
@@ -241,10 +222,33 @@ class ChromaDBVectorStore(VannaBase, ABC):
             )
         )
 
-    def get_related_documentation(self, question: str, **kwargs) -> list:
+    def get_related_doc(self, question: str, **kwargs) -> list:
         return ChromaDBVectorStore._extract_documents(
-            self.documentation_collection.query(
+            self.doc_collection.query(
                 query_texts=[question],
-                n_results=self.n_results_documentation,
+                n_results=self.n_results_doc,
             )
         )
+
+    def get_similar_question_sql(self, question: str, **kwargs) -> list:
+        return ChromaDBVectorStore._extract_documents(
+            self.sql_collection.query(
+                query_texts=[question],
+                n_results=self.n_results_sql,
+            )
+        )
+
+    def _generate_uuid(self, content: Union[str, bytes]) -> str:
+        if isinstance(content, str):
+            content_bytes = content.encode("utf-8")
+        elif isinstance(content, bytes):
+            content_bytes = content
+        else:
+            raise ValueError(f"Content type {type(content)} not supported !")
+
+        hash_object = hashlib.sha256(content_bytes)
+        hash_hex = hash_object.hexdigest()
+        namespace = uuid.UUID("00000000-0000-0000-0000-000000000000")
+        content_uuid = str(uuid.uuid5(namespace, hash_hex))
+
+        return content_uuid

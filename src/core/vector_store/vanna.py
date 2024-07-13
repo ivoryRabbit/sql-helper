@@ -7,6 +7,7 @@ from typing import Optional
 import pandas as pd
 import requests
 from vanna.base import VannaBase
+from vanna.remote import VannaDefault
 from vanna.types import (
   DataFrameJSON,
   NewOrganization,
@@ -21,6 +22,7 @@ from vanna.types import (
 from vanna.utils import sanitize_model_name
 
 
+VannaDefault
 class VannaDBVectorStore(VannaBase, ABC):
     def __init__(self, api_key: str, model_name: str, config=None):
         VannaBase.__init__(self, config=config)

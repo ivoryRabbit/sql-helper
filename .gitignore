@@ -163,5 +163,4 @@ cython_debug/
 
 # Project
 .streamlit/secrets.toml
-.chromadb/*
 resource/sql/*

@@ -5,10 +5,12 @@ SQL helper using LLM and RAG
 ## Plans for development
 
 LLM:
-- model:
-  - OpenAI ChatGPT ?
-  - Meta Llama 3
+- platform:
+  - OpenAI ChatGPT
+  - Meta Llama 3 ?
   - Cohere Command R+ ?
+- self serve
+  - vLLM ?
 
 PEFT
   - Not Applicable

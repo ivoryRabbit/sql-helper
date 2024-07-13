@@ -1,5 +1,5 @@
 # sql-helper
-SQL helper using LLM
+SQL helper using LLM and RAG
 
 
 ## Plans for development
@@ -37,9 +37,12 @@ Framework
   - fastapi
 
 ## TODO
-- [ ] Set docker environment
+- [ ] Set a docker environment
+- [ ] Implement a vector store for PGVector
+- [ ] Implement a server using FastAPI
+- [ ] Implement an admin to handle prompt setting
 
-## 고찰
+## Discussion
 - Hallucination이 생각보다 자주 발생 (없는 컬럼을 만들어서 답변)
   - temperature을 줄여야할듯
   - assistant에 최대한 document를 꼼꼼하게 작성하여 넘겨야할듯

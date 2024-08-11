@@ -1,7 +1,7 @@
 import hashlib
 import json
 import uuid
-from typing import Union, Sequence
+from typing import List, Union, Sequence
 
 import chromadb
 import pandas as pd
@@ -22,12 +22,6 @@ class ChromaDBVectorStore(VectorStore):
 
         self.embedding_function = config.get("embedding_function", _DEFAULT_EF)
         self.collection_metadata = config.get("collection_metadata", _DEFAULT_VSS)
-
-        n_results = config.get("n_results", 10)
-
-        self.n_results_sql = config.get("n_results_sql", n_results)
-        self.n_results_doc = config.get("n_results_doc", n_results)
-        self.n_results_ddl = config.get("n_results_ddl", n_results)
 
         self.chroma_client = chromadb.PersistentClient(
             path=path, settings=Settings(anonymized_telemetry=False),
@@ -55,22 +49,6 @@ class ChromaDBVectorStore(VectorStore):
         embedding = self.embedding_function([text])
         return embedding[0]
 
-    def add_question_sql(self, question: str, sql: str, **kwargs) -> str:
-        question_sql_json = json.dumps(
-            {
-                "question": question,
-                "sql": sql,
-            },
-            ensure_ascii=False,
-        )
-        id = self._generate_uuid(question_sql_json) + "-sql"
-        self.sql_collection.add(
-            documents=question_sql_json,
-            embeddings=self.generate_embedding(question_sql_json),
-            ids=id,
-        )
-        return id
-
     def add_ddl(self, ddl: str, **kwargs) -> str:
         id = self._generate_uuid(ddl) + "-ddl"
         self.ddl_collection.add(
@@ -89,7 +67,23 @@ class ChromaDBVectorStore(VectorStore):
         )
         return id
 
-    def get_training_data(self, id: str, **kwargs) -> pd.DataFrame:
+    def add_question_sql(self, question: str, sql: str, **kwargs) -> str:
+        question_sql_json = json.dumps(
+            {
+                "question": question,
+                "sql": sql,
+            },
+            ensure_ascii=False,
+        )
+        id = self._generate_uuid(question_sql_json) + "-sql"
+        self.sql_collection.add(
+            documents=question_sql_json,
+            embeddings=self.generate_embedding(question_sql_json),
+            ids=id,
+        )
+        return id
+
+    def get_training_data(self, id: str) -> pd.DataFrame:
         if id.endswith("-ddl"):
             data = self.ddl_collection.get(ids=[id])
         elif id.endswith("-doc"):
@@ -126,24 +120,6 @@ class ChromaDBVectorStore(VectorStore):
         sql_data = self.sql_collection.get()
 
         df = pd.DataFrame()
-
-        if sql_data is not None:
-            # Extract the documents and ids
-            documents = [json.loads(doc) for doc in sql_data["documents"]]
-            ids = sql_data["ids"]
-
-            # Create a DataFrame
-            df_sql = pd.DataFrame(
-                {
-                    "id": ids,
-                    "question": [doc["question"] for doc in documents],
-                    "content": [doc["sql"] for doc in documents],
-                }
-            )
-
-            df_sql["training_data_type"] = "sql"
-
-            df = pd.concat([df, df_sql])
 
         ddl_data = self.ddl_collection.get()
 
@@ -185,10 +161,28 @@ class ChromaDBVectorStore(VectorStore):
 
             df = pd.concat([df, df_doc])
 
+        if sql_data is not None:
+            # Extract the documents and ids
+            documents = [json.loads(doc) for doc in sql_data["documents"]]
+            ids = sql_data["ids"]
+
+            # Create a DataFrame
+            df_sql = pd.DataFrame(
+                {
+                    "id": ids,
+                    "question": [doc["question"] for doc in documents],
+                    "content": [doc["sql"] for doc in documents],
+                }
+            )
+
+            df_sql["training_data_type"] = "sql"
+
+            df = pd.concat([df, df_sql])
+
         return df
 
     def remove_collection(self, collection_name: str) -> bool:
-        if collection_name in ("sql", "ddl", "documentation"):
+        if collection_name in ("sql", "ddl", "doc"):
             try:
                 self.chroma_client.delete_collection(name=collection_name)
             except ValueError:
@@ -198,44 +192,37 @@ class ChromaDBVectorStore(VectorStore):
         else:
             return False
 
-    def _extract_documents(self, query_results: Union[pd.DataFrame, QueryResult]) -> list:
-        if query_results is None:
-            return []
-
+    def _extract_documents(self, query_results: QueryResult) -> List[str]:
         if "documents" in query_results:
-            documents = query_results["documents"]
+            return query_results["documents"][0]
 
-            if len(documents) == 1 and isinstance(documents[0], list):
-                try:
-                    documents = [json.loads(doc) for doc in documents[0]]
-                except Exception as e:
-                    return documents[0]
+        return list()
 
-            return documents
-
-    def get_related_ddl(self, question: str, **kwargs) -> list:
+    def get_related_ddl(self, question: str, n_results: int = 5) -> list:
         return self._extract_documents(
             self.ddl_collection.query(
                 query_texts=[question],
-                n_results=self.n_results_ddl,
+                n_results=n_results,
             )
         )
 
-    def get_related_doc(self, question: str, **kwargs) -> list:
+    def get_related_doc(self, question: str, n_results: int = 5) -> list:
         return self._extract_documents(
             self.doc_collection.query(
                 query_texts=[question],
-                n_results=self.n_results_doc,
+                n_results=n_results,
             )
         )
 
-    def get_similar_question_sql(self, question: str, **kwargs) -> list:
-        return self._extract_documents(
+    def get_similar_question_sql(self, question: str, n_results: int = 5) -> list:
+        documents =  self._extract_documents(
             self.sql_collection.query(
                 query_texts=[question],
-                n_results=self.n_results_sql,
+                n_results=n_results,
             )
         )
+
+        return [json.loads(doc) for doc in documents]
 
     def _generate_uuid(self, content: Union[str, bytes]) -> str:
         if isinstance(content, str):

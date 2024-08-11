@@ -34,17 +34,41 @@ class SQLAgent:
 
         return f"Respond in the {self.language} language."
 
-    def generate_sql(self, question: str, **kwargs) -> str:
-        ddl_list = self.vector_store.get_related_ddl(question, **kwargs)
-        doc_list = self.vector_store.get_related_doc(question, **kwargs)
-        question_sql_list = self.vector_store.get_similar_question_sql(question, **kwargs)
+    def generate_suggestions(self, n_results: int = 5) -> List[str]:
+        question_sql = self.vector_store.get_similar_question_sql(question="", n_results=n_results)
+        return [q["question"] for q in question_sql]
 
-        prompts = self.get_sql_prompt(
-            question=question,
-            ddl_list=ddl_list,
-            doc_list=doc_list,
-            question_sql_list=question_sql_list,
+    def generate_sql(self, question: str, **kwargs) -> str:
+        ddl_list = self.vector_store.get_related_ddl(question, n_results=5)
+        doc_list = self.vector_store.get_related_doc(question, n_results=5)
+        question_sql_list = self.vector_store.get_similar_question_sql(question, n_results=5)
+
+        initial_prompt = (
+            f"You are a {self.dialect} expert. "
+            f"Please help to generate a SQL query to answer the question. "
+            f"Your response should ONLY be based on the given context and follow the response guidelines and format instructions. "
         )
+
+        initial_prompt = self.add_ddl_to_prompt(initial_prompt, ddl_list)
+        initial_prompt = self.add_doc_to_prompt(initial_prompt, doc_list)
+
+        initial_prompt += (
+            "===Response Guidelines \n"
+            "1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n"
+            "2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n"
+            "3. If the provided context is insufficient, please explain why it can't be generated. \n"
+            "4. Please use the most relevant table(s) and columns from those tables. \n"
+            "5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"
+        )
+
+        prompts = [self.chat.generate_system_message(initial_prompt)]
+
+        for example in question_sql_list:
+            prompts.append(self.chat.generate_user_message(example["question"]))
+            prompts.append(self.chat.generate_assistant_message(example["sql"]))
+
+        prompts.append(self.chat.generate_user_message(question))
+
         self._log(title="SQL Prompt", message=prompts)
 
         llm_response = self.chat.submit_prompts(prompts, **kwargs)
@@ -93,12 +117,12 @@ class SQLAgent:
         return False
 
     def generate_followup_questions(
-        self, question: str, sql: str, df: pd.DataFrame, n_questions: int = 5, **kwargs
+        self, question: str, sql: str, n_questions: int = 5, **kwargs
     ) -> list:
-        message_log = [
+        prompts = [
             self.chat.generate_system_message(
                 f"You are a helpful data assistant. "
-                f"The user asked the question: '{question}'\n\nThe SQL query for this question was: {sql}\n\nThe following is a pandas DataFrame with the results of the query: \n{df.to_markdown()}\n\n"
+                f"The user asked the question: '{question}'\n\nThe SQL query for this question was: {sql}\n\n"
             ),
             self.chat.generate_user_message(
                 f"Generate a list of {n_questions} followup questions that the user might ask about this data. "
@@ -113,31 +137,10 @@ class SQLAgent:
             ),
         ]
 
-        llm_response = self.chat.submit_prompts(message_log, **kwargs)
+        llm_response = self.chat.submit_prompts(prompts, **kwargs)
 
         numbers_removed = re.sub(r"^\d+\.\s*", "", llm_response, flags=re.MULTILINE)
         return numbers_removed.split("\n")
-
-    def generate_questions(self, **kwargs) -> List[str]:
-        question_sql = self.vector_store.get_similar_question_sql(question="", **kwargs)
-        return [q["question"] for q in question_sql]
-
-    def generate_summary(self, question: str, df: pd.DataFrame, **kwargs) -> str:
-        message_log = [
-            self.chat.generate_system_message(
-                f"You are a helpful data assistant. "
-                f"The user asked the question: '{question}'\n\nThe following is a pandas DataFrame with the results of the query: \n{df.to_markdown()}\n\n"
-            ),
-            self.chat.generate_user_message(
-                "Briefly summarize the data based on the question that was asked. "
-                "Do not respond with any additional explanation beyond the summary." +
-                self._response_language()
-            ),
-        ]
-
-        summary = self.chat.submit_prompts(message_log, **kwargs)
-
-        return summary
 
     def _approx_count_tokens(self, string: str) -> float:
         return len(string) / 4
@@ -183,46 +186,6 @@ class SQLAgent:
                 initial_prompt += f"{question['question']}\n{question['sql']}\n\n"
 
         return initial_prompt
-
-    def get_sql_prompt(
-        self,
-        question: str,
-        ddl_list: list,
-        doc_list: list,
-        question_sql_list: list,
-    ):
-        initial_prompt = (
-            f"You are a {self.dialect} expert. "
-            f"Please help to generate a SQL query to answer the question. "
-            f"Your response should ONLY be based on the given context and follow the response guidelines and format instructions. "
-        )
-
-        initial_prompt = self.add_ddl_to_prompt(initial_prompt, ddl_list)
-        initial_prompt = self.add_doc_to_prompt(initial_prompt, doc_list)
-
-        initial_prompt += (
-            "===Response Guidelines \n"
-            "1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n"
-            "2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n"
-            "3. If the provided context is insufficient, please explain why it can't be generated. \n"
-            "4. Please use the most relevant table(s). \n"
-            "5. Please use only existing columns in the relevant tables. \n"
-            "6. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"
-        )
-
-        message_log = [self.chat.generate_system_message(initial_prompt)]
-
-        for example in question_sql_list:
-            if example is None:
-                print("example is None")
-            else:
-                if example is not None and "question" in example and "sql" in example:
-                    message_log.append(self.chat.generate_user_message(example["question"]))
-                    message_log.append(self.chat.generate_assistant_message(example["sql"]))
-
-        message_log.append(self.chat.generate_user_message(question))
-
-        return message_log
 
     def get_followup_questions_prompt(
         self,

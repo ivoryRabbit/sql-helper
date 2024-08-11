@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
+from typing import List, Dict
 
 import pandas as pd
 
 
 class VectorStore(ABC):
     @abstractmethod
-    def generate_embedding(self, text: str, **kwargs) -> list[float]:
+    def generate_embedding(self, text: str, **kwargs) -> List[float]:
         pass
 
     @abstractmethod
@@ -21,15 +22,15 @@ class VectorStore(ABC):
         pass
 
     @abstractmethod
-    def get_related_ddl(self, question: str, **kwargs) -> list:
+    def get_related_ddl(self, question: str, n_results: int) -> List[str]:
         pass
 
     @abstractmethod
-    def get_related_doc(self, question: str, **kwargs) -> list:
+    def get_related_doc(self, question: str, n_results: int) -> List[str]:
         pass
 
     @abstractmethod
-    def get_similar_question_sql(self, question: str, **kwargs) -> list:
+    def get_similar_question_sql(self, question: str, n_results: int) -> List[Dict[str, str]]:
         pass
 
     @abstractmethod

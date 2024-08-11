@@ -13,7 +13,7 @@ class LlamaChat(Chat):
         self.client = OpenAI(api_key=api_key, base_url="https://api.llama-api.com")
         self.model = model
 
-        self.temperature: float = config.get("temperature", 0.2)
+        self.temperature: float = config.get("temperature", 0.1)
         self.max_tokens: int = config.get("max_tokens", 1000)
 
     def generate_system_message(self, message: str) -> Dict[str, str]:

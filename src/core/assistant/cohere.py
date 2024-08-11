@@ -2,10 +2,10 @@ from typing import Union, List, Dict
 
 import cohere
 
-from src.core.interface.chat import Chat
+from src.core.interface.assistant import Assistant
 
 
-class CohereChat(Chat):
+class CohereAssistant(Assistant):
     def __init__(self, api_key: str, model: Union[str, None] = None, config=None):
         if config is None:
             config = {}

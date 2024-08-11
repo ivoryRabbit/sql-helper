@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Any
 
 
-class Chat(ABC):
+class Assistant(ABC):
     @abstractmethod
     def generate_system_message(self, message: str) -> Any:
         pass
@@ -16,6 +16,6 @@ class Chat(ABC):
         pass
 
     @abstractmethod
-    def submit_prompts(self, prompts: list, **kwargs) -> str:
+    def submit_prompts(self, prompts: list) -> str:
         pass
 

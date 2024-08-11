@@ -3,6 +3,7 @@ import streamlit as st
 
 def render_page() -> None:
     st.title("Data")
+    st.toggle("Edit mode")
 
     st.header("Tables", divider=True)
     with st.expander("table1", expanded=False):

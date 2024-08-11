@@ -2,10 +2,10 @@ from typing import Union, List, Dict
 
 from openai import OpenAI
 
-from src.core.interface.chat import Chat
+from src.core.interface.assistant import Assistant
 
 
-class OpenAIChat(Chat):
+class OpenAIAssistant(Assistant):
     def __init__(self, api_key: str, model: Union[str, None] = None, config=None):
         if config is None:
             config = {}
@@ -29,20 +29,8 @@ class OpenAIChat(Chat):
         if not prompts:
             raise ValueError("Prompt is empty")
 
-        num_tokens = 0
-        for prompt in prompts:
-            num_tokens += len(prompt["content"]) / 4
-
-        if self.model is not None:
-            model = self.model
-        else:
-            if num_tokens > 3500:
-                model = "gpt-3.5-turbo-16k"
-            else:
-                model = "gpt-3.5-turbo"
-
         response = self.client.chat.completions.create(
-            model=model,
+            model=self.model,
             messages=prompts,
             max_tokens=self.max_tokens,
             temperature=self.temperature,

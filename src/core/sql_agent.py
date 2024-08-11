@@ -1,32 +1,34 @@
 import re
-from typing import List, Optional, Any, Union
+from typing import List, Optional, Any
 
-import pandas as pd
 import sqlparse
 
-from src.core.interface.chat import Chat
+from src.core.interface.assistant import Assistant
 from src.core.interface.vector_store import VectorStore
 
 
 class SQLAgent:
     def __init__(
         self,
-        chat: Chat,
+        assistant: Assistant,
         vector_store: VectorStore,
         *,
         dialect: str = "SQL",
         language: Optional[str] = None,
         max_tokens: int = 1000,
+        print_log: bool = False,
     ):
-        self.chat = chat
+        self.assistant = assistant
         self.vector_store = vector_store
 
         self.dialect = dialect
         self.language = language
         self.max_tokens = max_tokens
+        self.print_log = print_log
 
-    def _log(self, message: Any, title: str = "Info") -> None:
-        print(f"{title}: {message}")
+    def _log(self, message: Any, title: str = "INFO") -> None:
+        if self.print_log is True:
+            print(f"{title}: {message}")
 
     def _response_language(self) -> str:
         if self.language is None:
@@ -38,7 +40,7 @@ class SQLAgent:
         question_sql = self.vector_store.get_similar_question_sql(question="", n_results=n_results)
         return [q["question"] for q in question_sql]
 
-    def generate_sql(self, question: str, **kwargs) -> str:
+    def generate_sql(self, question: str) -> str:
         ddl_list = self.vector_store.get_related_ddl(question, n_results=5)
         doc_list = self.vector_store.get_related_doc(question, n_results=5)
         question_sql_list = self.vector_store.get_similar_question_sql(question, n_results=5)
@@ -61,17 +63,16 @@ class SQLAgent:
             "5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"
         )
 
-        prompts = [self.chat.generate_system_message(initial_prompt)]
+        prompts = [self.assistant.generate_system_message(initial_prompt)]
 
         for example in question_sql_list:
-            prompts.append(self.chat.generate_user_message(example["question"]))
-            prompts.append(self.chat.generate_assistant_message(example["sql"]))
+            prompts.append(self.assistant.generate_user_message(example["question"]))
+            prompts.append(self.assistant.generate_assistant_message(example["sql"]))
 
-        prompts.append(self.chat.generate_user_message(question))
-
+        prompts.append(self.assistant.generate_user_message(question))
         self._log(title="SQL Prompt", message=prompts)
 
-        llm_response = self.chat.submit_prompts(prompts, **kwargs)
+        llm_response = self.assistant.submit_prompts(prompts)
         self._log(title="LLM Response", message=llm_response)
 
         return self.extract_sql(llm_response)
@@ -109,6 +110,7 @@ class SQLAgent:
 
     def is_sql_valid(self, sql: str) -> bool:
         parsed = sqlparse.parse(sql)
+        self._log(message="Check if the SQL is valid")
 
         for statement in parsed:
             if statement.get_type() == 'SELECT':
@@ -120,11 +122,11 @@ class SQLAgent:
         self, question: str, sql: str, n_questions: int = 5, **kwargs
     ) -> list:
         prompts = [
-            self.chat.generate_system_message(
+            self.assistant.generate_system_message(
                 f"You are a helpful data assistant. "
                 f"The user asked the question: '{question}'\n\nThe SQL query for this question was: {sql}\n\n"
             ),
-            self.chat.generate_user_message(
+            self.assistant.generate_user_message(
                 f"Generate a list of {n_questions} followup questions that the user might ask about this data. "
                 f"Respond with a list of questions, one per line. "
                 f"Do not answer with any explanations -- just the questions. "
@@ -137,7 +139,7 @@ class SQLAgent:
             ),
         ]
 
-        llm_response = self.chat.submit_prompts(prompts, **kwargs)
+        llm_response = self.assistant.submit_prompts(prompts)
 
         numbers_removed = re.sub(r"^\d+\.\s*", "", llm_response, flags=re.MULTILINE)
         return numbers_removed.split("\n")
@@ -190,9 +192,9 @@ class SQLAgent:
     def get_followup_questions_prompt(
         self,
         question: str,
-        question_sql_list: list,
         ddl_list: list,
         doc_list: list,
+            question_sql_list: list,
     ) -> list:
         initial_prompt = f"The user initially asked the question: '{question}': \n\n"
 
@@ -203,8 +205,8 @@ class SQLAgent:
         initial_prompt = self.add_sql_to_prompt(initial_prompt, question_sql_list)
 
         message_log = [
-            self.chat.generate_system_message(initial_prompt),
-            self.chat.generate_user_message(
+            self.assistant.generate_system_message(initial_prompt),
+            self.assistant.generate_user_message(
                 "Generate a list of followup questions that the user might ask about this data. "
                 "Respond with a list of questions, one per line. "
                 "Do not answer with any explanations -- just the questions."
@@ -213,24 +215,20 @@ class SQLAgent:
 
         return message_log
 
-    def generate_question(self, sql: str, **kwargs) -> str:
+    def generate_question(self, sql: str) -> str:
         prompts = [
-            self.chat.generate_system_message(
+            self.assistant.generate_system_message(
                 "The user will give you SQL and you will try to guess what the business question this query is answering. "
                 "Return just the question without any additional explanation. "
                 "Do not reference the table name in the question."
             ),
-            self.chat.generate_user_message(sql),
+            self.assistant.generate_user_message(sql),
         ]
 
-        response = self.chat.submit_prompts(prompts, **kwargs)
+        response = self.assistant.submit_prompts(prompts)
         return response
 
-    def ask(
-        self,
-        question: Union[str, None] = None,
-        auto_train: bool = True,
-    ) -> Union[str, None]:
+    def ask(self, question: Optional[str] = None, auto_train: bool = True) -> Optional[str]:
         if question is None:
             question = input("Enter a question: ")
 
@@ -263,5 +261,5 @@ class SQLAgent:
         if sql:
             if question is None:
                 question = self.generate_question(sql)
-                print("Question generated with sql:", question, "\nAdding SQL...")
+                self._log(f"Question is generated with sql: {question}")
             return self.vector_store.add_question_sql(question=question, sql=sql)

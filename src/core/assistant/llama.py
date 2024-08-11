@@ -2,10 +2,10 @@ from typing import Union, List, Dict
 
 from openai import OpenAI
 
-from src.core.interface.chat import Chat
+from src.core.interface.assistant import Assistant
 
 
-class LlamaChat(Chat):
+class LlamaAssistant(Assistant):
     def __init__(self, api_key: str, model: Union[str, None] = None, config=None):
         if config is None:
             config = {}
@@ -25,7 +25,7 @@ class LlamaChat(Chat):
     def generate_assistant_message(self, message: str) -> Dict[str, str]:
         return {"role": "assistant", "content": message}
 
-    def submit_prompts(self, prompts: List[Dict[str, str]], **kwargs) -> str:
+    def submit_prompts(self, prompts: List[Dict[str, str]]) -> str:
         if not prompts:
             raise ValueError("Prompt is empty")
 

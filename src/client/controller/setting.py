@@ -16,8 +16,3 @@ OPENAI = Assistant("OpenAI")
 COHERE = Assistant("Cohere")
 CLAUDE = Assistant("Claude")
 
-
-
-
-
-

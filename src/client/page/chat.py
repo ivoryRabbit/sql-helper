@@ -1,6 +1,6 @@
 import streamlit as st
 
-from src.client.component import (
+from src.client.controller.chat import (
     generate_suggestions_cached,
     generate_sql_cached,
     is_sql_valid_cached

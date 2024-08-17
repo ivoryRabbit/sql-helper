@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS movies (
+CREATE TABLE movies (
     id       BIGINT PRIMARY KEY,
     title    VARCHAR,
     genres   VARCHAR,

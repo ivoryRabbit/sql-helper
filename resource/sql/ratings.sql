@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS ratings (
+CREATE TABLE ratings (
     user_id    BIGINT,
     movie_id   BIGINT,
     rating     FLOAT,

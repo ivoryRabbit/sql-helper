@@ -10,19 +10,55 @@ class VectorStore(ABC):
         pass
 
     @abstractmethod
-    def add_ddl(self, ddl: str, **kwargs) -> str:
+    def add_ddl(self, table_name: str, ddl: str, summary: str) -> str:
         pass
 
     @abstractmethod
-    def add_doc(self, doc: str, **kwargs) -> str:
+    def add_doc(self, doc: str) -> str:
         pass
 
     @abstractmethod
-    def add_question_sql(self, question: str, sql: str, **kwargs) -> str:
+    def add_sql(self, question: str, sql: str) -> str:
         pass
 
     @abstractmethod
-    def get_related_ddl(self, question: str, n_results: int) -> List[str]:
+    def get_all_ddl(self) -> pd.DataFrame:
+        pass
+
+    @abstractmethod
+    def get_all_doc(self) -> pd.DataFrame:
+        pass
+
+    @abstractmethod
+    def get_all_sql(self) -> pd.DataFrame:
+        pass
+
+    @abstractmethod
+    def update_ddl(self, id: str, ddl: str, summary: str) -> str:
+        pass
+
+    @abstractmethod
+    def update_doc(self, id: str, doc: str) -> str:
+        pass
+
+    @abstractmethod
+    def update_sql(self, id: str, question: str, sql: str) -> str:
+        pass
+
+    @abstractmethod
+    def delete_ddl(self, id: str) -> None:
+        pass
+
+    @abstractmethod
+    def delete_doc(self, id: str) -> None:
+        pass
+
+    @abstractmethod
+    def delete_sql(self, id: str) -> None:
+        pass
+
+    @abstractmethod
+    def get_related_ddl(self, question: str, n_results: int) -> List[Dict[str, str]]:
         pass
 
     @abstractmethod
@@ -30,13 +66,5 @@ class VectorStore(ABC):
         pass
 
     @abstractmethod
-    def get_similar_question_sql(self, question: str, n_results: int) -> List[Dict[str, str]]:
-        pass
-
-    @abstractmethod
-    def get_all_data(self, **kwargs) -> pd.DataFrame:
-        pass
-
-    @abstractmethod
-    def remove_training_data(self, id: str, **kwargs) -> None:
+    def get_related_sql(self, question: str, n_results: int) -> List[Dict[str, str]]:
         pass

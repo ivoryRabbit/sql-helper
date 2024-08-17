@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE users (
     id         BIGINT PRIMARY KEY,
     gender     VARCHAR(4),
     age        SMALLINT,

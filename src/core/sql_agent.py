@@ -1,5 +1,5 @@
 import re
-from typing import List, Optional, Any
+from typing import List, Dict, Optional, Any
 
 import sqlparse
 
@@ -37,13 +37,13 @@ class SQLAgent:
         return f"Respond in the {self.language} language."
 
     def generate_suggestions(self, n_results: int = 5) -> List[str]:
-        question_sql = self.vector_store.get_similar_question_sql(question="", n_results=n_results)
+        question_sql = self.vector_store.get_related_sql(question="", n_results=n_results)
         return [q["question"] for q in question_sql]
 
     def generate_sql(self, question: str) -> str:
         ddl_list = self.vector_store.get_related_ddl(question, n_results=5)
         doc_list = self.vector_store.get_related_doc(question, n_results=5)
-        question_sql_list = self.vector_store.get_similar_question_sql(question, n_results=5)
+        question_sql_list = self.vector_store.get_related_sql(question, n_results=5)
 
         initial_prompt = (
             f"You are a {self.dialect} expert. "
@@ -118,9 +118,7 @@ class SQLAgent:
 
         return False
 
-    def generate_followup_questions(
-        self, question: str, sql: str, n_questions: int = 5, **kwargs
-    ) -> list:
+    def generate_followup_questions(self, question: str, sql: str, n_questions: int = 5) -> List[str]:
         prompts = [
             self.assistant.generate_system_message(
                 f"You are a helpful data assistant. "
@@ -147,21 +145,21 @@ class SQLAgent:
     def _approx_count_tokens(self, string: str) -> float:
         return len(string) / 4
 
-    def add_ddl_to_prompt(self, initial_prompt: str, ddl_list: list[str]) -> str:
+    def add_ddl_to_prompt(self, initial_prompt: str, ddl_list: List[Dict[str, str]]) -> str:
         if ddl_list:
             initial_prompt += "\n===Tables \n"
 
         for ddl in ddl_list:
             if (
                 self._approx_count_tokens(initial_prompt)
-                + self._approx_count_tokens(ddl)
+                + self._approx_count_tokens(ddl["ddl"])
                 < self.max_tokens
             ):
-                initial_prompt += f"{ddl}\n\n"
+                initial_prompt += f"{ddl['ddl']}\n\n"
 
         return initial_prompt
 
-    def add_doc_to_prompt(self, initial_prompt: str, doc_list: list[str]) -> str:
+    def add_doc_to_prompt(self, initial_prompt: str, doc_list: List[str]) -> str:
         if doc_list:
             initial_prompt += "\n===Additional Context \n\n"
 
@@ -175,7 +173,7 @@ class SQLAgent:
 
         return initial_prompt
 
-    def add_sql_to_prompt(self, initial_prompt: str, sql_list: list[dict[str, str]]) -> str:
+    def add_sql_to_prompt(self, initial_prompt: str, sql_list: List[Dict[str, str]]) -> str:
         if sql_list:
             initial_prompt += "\n===Question-SQL Pairs\n\n"
 
@@ -194,7 +192,7 @@ class SQLAgent:
         question: str,
         ddl_list: list,
         doc_list: list,
-            question_sql_list: list,
+        question_sql_list: list,
     ) -> list:
         initial_prompt = f"The user initially asked the question: '{question}': \n\n"
 
@@ -239,7 +237,7 @@ class SQLAgent:
             return None
 
         if auto_train is True:
-            self.vector_store.add_question_sql(question=question, sql=sql)
+            self.vector_store.add_sql(question=question, sql=sql)
 
         return sql
 
@@ -262,4 +260,4 @@ class SQLAgent:
             if question is None:
                 question = self.generate_question(sql)
                 self._log(f"Question is generated with sql: {question}")
-            return self.vector_store.add_question_sql(question=question, sql=sql)
+            return self.vector_store.add_sql(question=question, sql=sql)

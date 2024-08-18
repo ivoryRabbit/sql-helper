@@ -3,7 +3,7 @@ from streamlit_option_menu import option_menu
 
 from src.client.page import home, chat, data, setting
 
-st.set_page_config(page_title="SQL Helper", page_icon="💬", layout="wide")
+st.set_page_config(page_title="SQL Helper", page_icon="💬", layout="centered")
 
 page_names_to_funcs = {
     "Home": home.render_page,

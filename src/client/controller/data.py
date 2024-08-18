@@ -1,3 +1,7 @@
+import hashlib
+import uuid
+from typing import Union
+
 import pandas as pd
 
 from src.client.controller.common import get_vector_store
@@ -30,7 +34,7 @@ def get_all_sql() -> pd.DataFrame:
 
 def create_sql(sql_alias: str, question: str, sql: str) -> str:
     vector_store = get_vector_store()
-    return vector_store.add_sql(question, sql)
+    return vector_store.add_sql(sql_alias, question, sql)
 
 
 def update_sql():
@@ -50,7 +54,7 @@ def get_all_doc() -> pd.DataFrame:
 
 def create_doc(doc_name: str, doc: str) -> str:
     vector_store = get_vector_store()
-    return vector_store.add_doc(doc)
+    return vector_store.add_doc(doc_name, doc)
 
 
 def update_doc():
@@ -61,3 +65,19 @@ def update_doc():
 def delete_doc(id: str) -> None:
     vector_store = get_vector_store()
     return vector_store.delete_doc(id)
+
+
+def generate_uuid(content: Union[str, bytes]) -> str:
+    if isinstance(content, str):
+        content_bytes = content.encode("utf-8")
+    elif isinstance(content, bytes):
+        content_bytes = content
+    else:
+        raise ValueError(f"Content type {type(content)} not supported !")
+
+    hash_object = hashlib.sha256(content_bytes)
+    hash_hex = hash_object.hexdigest()
+    namespace = uuid.UUID("00000000-0000-0000-0000-000000000000")
+    content_uuid = str(uuid.uuid5(namespace, hash_hex))
+
+    return content_uuid

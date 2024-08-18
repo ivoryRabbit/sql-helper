@@ -1,16 +1,14 @@
 import streamlit as st
 
-from src.client.controller.common import get_vector_store
-from src.client.controller.setting import OPENAI
+from src.client.controller.common import get_vector_store, get_assistant
 from src.core.sql_agent import SQLAgent
-from src.core.assistant.openai import OpenAIAssistant
 
 
 @st.cache_resource(ttl=3600)
 def setup_agent():
-    chat = OpenAIAssistant(api_key=OPENAI.api_key, model=OPENAI.model_name)
+    assistant = get_assistant()
     vector_store = get_vector_store()
-    return SQLAgent(chat, vector_store, print_log=True)
+    return SQLAgent(assistant, vector_store, print_log=True)
 
 
 @st.cache_data(show_spinner="Generating sample questions ...")
@@ -32,6 +30,6 @@ def is_sql_valid_cached(sql: str):
 
 
 @st.cache_data(show_spinner="Generating followup questions ...")
-def generate_followup_cached(question, sql):
+def generate_followup_cached(question: str, sql: str):
     agent = setup_agent()
     return agent.generate_followup_questions(question=question, sql=sql)

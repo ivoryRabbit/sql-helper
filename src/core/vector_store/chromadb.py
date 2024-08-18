@@ -1,7 +1,5 @@
-import hashlib
 import json
-import uuid
-from typing import List, Union, Sequence
+from typing import List, Sequence
 
 import chromadb
 import pandas as pd
@@ -99,14 +97,13 @@ class ChromaDBVectorStore(VectorStore):
         )
         return id
 
-    def add_doc(self, documentation: str) -> str:
-        id = self._generate_uuid(documentation) + "-doc"
+    def add_doc(self, doc_name: str, documentation: str) -> str:
         self.doc_collection.add(
             documents=documentation,
             embeddings=self.generate_embedding(documentation),
-            ids=id,
+            ids=doc_name,
         )
-        return id
+        return doc_name
 
     def get_all_doc(self) -> pd.DataFrame:
         doc_list = self.doc_collection.get()
@@ -133,7 +130,7 @@ class ChromaDBVectorStore(VectorStore):
         )
         return id
 
-    def add_sql(self, question: str, sql: str) -> str:
+    def add_sql(self, sql_alias: str, question: str, sql: str) -> str:
         content = json.dumps(
             {
                 "question": question,
@@ -141,13 +138,12 @@ class ChromaDBVectorStore(VectorStore):
             },
             ensure_ascii=False,
         )
-        id = self._generate_uuid(content) + "-sql"
         self.sql_collection.add(
             documents=content,
             embeddings=self.generate_embedding(content),
-            ids=id,
+            ids=sql_alias,
         )
-        return id
+        return sql_alias
 
     def get_all_sql(self) -> pd.DataFrame:
         sql_list = self.sql_collection.get()
@@ -254,17 +250,3 @@ class ChromaDBVectorStore(VectorStore):
 
         return [json.loads(doc) for doc in documents]
 
-    def _generate_uuid(self, content: Union[str, bytes]) -> str:
-        if isinstance(content, str):
-            content_bytes = content.encode("utf-8")
-        elif isinstance(content, bytes):
-            content_bytes = content
-        else:
-            raise ValueError(f"Content type {type(content)} not supported !")
-
-        hash_object = hashlib.sha256(content_bytes)
-        hash_hex = hash_object.hexdigest()
-        namespace = uuid.UUID("00000000-0000-0000-0000-000000000000")
-        content_uuid = str(uuid.uuid5(namespace, hash_hex))
-
-        return content_uuid

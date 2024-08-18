@@ -43,7 +43,7 @@ class SQLAgent:
     def generate_sql(self, question: str) -> str:
         ddl_list = self.vector_store.get_related_ddl(question, n_results=5)
         doc_list = self.vector_store.get_related_doc(question, n_results=5)
-        question_sql_list = self.vector_store.get_related_sql(question, n_results=5)
+        sql_list = self.vector_store.get_related_sql(question, n_results=5)
 
         initial_prompt = (
             f"You are a {self.dialect} expert. "
@@ -55,17 +55,17 @@ class SQLAgent:
         initial_prompt = self.add_doc_to_prompt(initial_prompt, doc_list)
 
         initial_prompt += (
-            "===Response Guidelines \n"
-            "1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n"
-            "2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n"
-            "3. If the provided context is insufficient, please explain why it can't be generated. \n"
-            "4. Please use the most relevant table(s) and columns from those tables. \n"
-            "5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"
+            "==Response Guidelines\n"
+            "1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question.\n"
+            "2. If the provided context is insufficient, please explain why it can't be generated.\n"
+            "3. If the question has been asked and answered before, please repeat the same answer exactly as it was given before.\n"
+            "4. Please use the most relevant table(s) and columns from those tables.\n"
+            "5. Please format the query before responding if possible.\n"
         )
 
         prompts = [self.assistant.generate_system_message(initial_prompt)]
 
-        for example in question_sql_list:
+        for example in sql_list:
             prompts.append(self.assistant.generate_user_message(example["question"]))
             prompts.append(self.assistant.generate_assistant_message(example["sql"]))
 
@@ -147,7 +147,7 @@ class SQLAgent:
 
     def add_ddl_to_prompt(self, initial_prompt: str, ddl_list: List[Dict[str, str]]) -> str:
         if ddl_list:
-            initial_prompt += "\n===Tables \n"
+            initial_prompt += "\n==Tables \n"
 
         for ddl in ddl_list:
             if (
@@ -161,7 +161,7 @@ class SQLAgent:
 
     def add_doc_to_prompt(self, initial_prompt: str, doc_list: List[str]) -> str:
         if doc_list:
-            initial_prompt += "\n===Additional Context \n\n"
+            initial_prompt += "\n==Additional Context \n\n"
 
         for doc in doc_list:
             if (
@@ -175,7 +175,7 @@ class SQLAgent:
 
     def add_sql_to_prompt(self, initial_prompt: str, sql_list: List[Dict[str, str]]) -> str:
         if sql_list:
-            initial_prompt += "\n===Question-SQL Pairs\n\n"
+            initial_prompt += "\n==Question-SQL Pairs\n\n"
 
         for question in sql_list:
             if (
@@ -186,32 +186,6 @@ class SQLAgent:
                 initial_prompt += f"{question['question']}\n{question['sql']}\n\n"
 
         return initial_prompt
-
-    def get_followup_questions_prompt(
-        self,
-        question: str,
-        ddl_list: list,
-        doc_list: list,
-        question_sql_list: list,
-    ) -> list:
-        initial_prompt = f"The user initially asked the question: '{question}': \n\n"
-
-        initial_prompt = self.add_ddl_to_prompt(initial_prompt, ddl_list)
-
-        initial_prompt = self.add_doc_to_prompt(initial_prompt, doc_list)
-
-        initial_prompt = self.add_sql_to_prompt(initial_prompt, question_sql_list)
-
-        message_log = [
-            self.assistant.generate_system_message(initial_prompt),
-            self.assistant.generate_user_message(
-                "Generate a list of followup questions that the user might ask about this data. "
-                "Respond with a list of questions, one per line. "
-                "Do not answer with any explanations -- just the questions."
-            )
-        ]
-
-        return message_log
 
     def generate_question(self, sql: str) -> str:
         prompts = [

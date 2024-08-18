@@ -4,7 +4,7 @@ import streamlit as st
 
 
 @dataclass
-class Assistant:
+class AssistantConfig:
     name: str
 
     def __post_init__(self):
@@ -12,7 +12,7 @@ class Assistant:
         self.model_name = st.secrets[self.name]["MODEL_NAME"]
 
 
-OPENAI = Assistant("OpenAI")
-COHERE = Assistant("Cohere")
-CLAUDE = Assistant("Claude")
+OPENAI = AssistantConfig("OpenAI")
+COHERE = AssistantConfig("Cohere")
+CLAUDE = AssistantConfig("Claude")
 

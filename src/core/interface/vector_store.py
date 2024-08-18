@@ -14,11 +14,11 @@ class VectorStore(ABC):
         pass
 
     @abstractmethod
-    def add_doc(self, doc: str) -> str:
+    def add_doc(self, doc_name: str, doc: str) -> str:
         pass
 
     @abstractmethod
-    def add_sql(self, question: str, sql: str) -> str:
+    def add_sql(self, sql_alias: str, question: str, sql: str) -> str:
         pass
 
     @abstractmethod

@@ -1,35 +1,40 @@
+[![version](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-360/)
+
 # sql-helper
-SQL helper using LLM and RAG
+Text-to-SQL using LLM and RAG
+
+## How to run
+
+```bash
+pip3 install -r requirements.txt
+
+bin/run-local.sh
+```
 
 
-## Plans for development
+## Development plan
 
 LLM:
 - platform:
   - OpenAI ChatGPT
-  - Meta Llama 3 ?
   - Cohere Command R+ ?
-- self serve
-  - vLLM ?
+  - Claude
+  - Meta Llama 3 ?
 
 RAG:
 - database:
   - chromadb (standalone)
   - postgres pgvector
-  - duckdb vss extension ?
-  - GraphRAG ?
-- model:
+- embedding model:
   - sentence transformers:
-    - all-MiniLM-L6-v2
-  - OpenAI
-    - text-embedding series ? 
-- index (VSS algorithm):
+    - all-MiniLM-L6-v2 
+- index (VSS):
   - HNSW
-  - IVF-PQ ?
+  - IVF-PQ (if possible)
 
 ## TODO
-- [ ] Implement standalone application with ChromaDB
-- [ ] Implement CRUD with an admin page
+- [x] Implement standalone application with ChromaDB
+- [x] Implement CRUD with an admin page
 - [ ] Set a docker environment
 - [ ] Implement a vector store for PGVector
 

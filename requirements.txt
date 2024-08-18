@@ -8,9 +8,9 @@ pydantic-settings==2.3.4
 pandas==2.2.2
 
 # ML
-torch==2.2.2
+# torch==2.2.2
 transformers==4.42.3
-accelerate==0.31.0
+# accelerate==0.31.0
 
 # LLM
 openai==1.35.10
@@ -21,6 +21,4 @@ streamlit==1.36.0
 streamlit-option-menu==0.3.13
 
 # database
-duckdb==1.0.0
 chromadb==0.5.3
-vanna==0.6.2

@@ -43,7 +43,7 @@ class ChromaDBVectorStore(VectorStore):
             metadata=self.collection_metadata,
         )
 
-    def generate_embedding(self, text: str, **kwargs) -> Sequence[float]:
+    def generate_embedding(self, text: str) -> Sequence[float]:
         embedding = self.embedding_function([text])
         return embedding[0]
 
@@ -219,7 +219,6 @@ class ChromaDBVectorStore(VectorStore):
     def _extract_documents(self, query_results: QueryResult) -> List[str]:
         if "documents" in query_results:
             return query_results["documents"][0]
-
         return list()
 
     def get_related_ddl(self, question: str, n_results: int = 5) -> list:

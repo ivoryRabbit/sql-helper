@@ -9,7 +9,7 @@ def render_page() -> None:
     assistants = {
         "OpenAI": OPENAI,
         "Cohere": COHERE,
-        "Clause": CLAUDE
+        "Claude": CLAUDE
     }
 
     assistant_name = st.radio(

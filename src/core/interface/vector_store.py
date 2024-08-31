@@ -6,20 +6,32 @@ import pandas as pd
 
 class VectorStore(ABC):
     @abstractmethod
-    def generate_embedding(self, text: str, **kwargs) -> List[float]:
+    def generate_embedding(self, text: str) -> List[float]:
         pass
 
     @abstractmethod
-    def add_ddl(self, table_name: str, ddl: str, summary: str) -> str:
+    def add_ddl(self, id: str, ddl: str, summary: str) -> str:
         pass
 
     @abstractmethod
-    def add_doc(self, doc_name: str, doc: str) -> str:
+    def add_doc(self, id: str, doc: str) -> str:
         pass
 
     @abstractmethod
-    def add_sql(self, sql_alias: str, question: str, sql: str) -> str:
+    def add_sql(self, id: str, question: str, sql: str) -> str:
         pass
+
+    # @abstractmethod
+    # def add_ddl_bulk(self, data: List[Dict[str, str]]) -> str:
+    #     pass
+    #
+    # @abstractmethod
+    # def add_doc_bulk(self, data: List[Dict[str, str]]) -> str:
+    #     pass
+    #
+    # @abstractmethod
+    # def add_sql_bulk(self, data: List[Dict[str, str]]) -> str:
+    #     pass
 
     @abstractmethod
     def get_all_ddl(self) -> pd.DataFrame:

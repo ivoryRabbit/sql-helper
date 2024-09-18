@@ -165,3 +165,7 @@ cython_debug/
 benchmark
 benchmark/
 .streamlit/secrets.toml
+
+# Docker
+**docker/volume/*.
+**docker/volume

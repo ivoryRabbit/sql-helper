@@ -1,10 +1,12 @@
 services:
   vector-store:
     image: ankane/pgvector:latest
+    container_name: vector-store
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     volumes:
-      - ./docker/postgres/:/docker-entrypoint-initdb.d/
+      - ./docker/postgres/init_db.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./docker/volume/data:/var/lib/postgresql/data

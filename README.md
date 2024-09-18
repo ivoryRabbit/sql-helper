@@ -27,10 +27,10 @@ RAG:
   - postgres pgvector
 - embedding model:
   - sentence transformers:
-    - all-MiniLM-L6-v2 
+    - all-MiniLM-L6-v2 (*max len = 256) 
 - index (VSS):
   - HNSW
-  - IVF-PQ (if possible)
+  - IVF-PQ ?
 
 ## TODO
 - [x] Implement standalone application with ChromaDB

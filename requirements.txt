@@ -1,5 +1,4 @@
 # python utils
-argparse==1.4.0
 sqlparse==0.5.0
 pydantic==2.7.4
 pydantic-settings==2.3.4
@@ -22,3 +21,9 @@ streamlit-option-menu==0.3.13
 
 # database
 chromadb==0.5.3
+psycopg2-binary==2.9.9
+pgvector==0.3.0
+asyncpg==0.29.0
+
+# orm
+sqlalchemy[asyncio]==2.0.31

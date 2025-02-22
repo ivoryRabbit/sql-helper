@@ -1,32 +1,19 @@
-CREATE SCHEMA vector_store;
+-- temporal
+CREATE USER temporal WITH ENCRYPTED PASSWORD 'temporal';
+CREATE DATABASE temporal WITH OWNER temporal;
+ALTER USER temporal WITH CREATEDB;
 
-SET search_path TO vector_store;
+-- pgvector
+CREATE SCHEMA vectordb;
+SET search_path TO vectordb;
 
 CREATE EXTENSION IF NOT EXISTS vector;
 
 CREATE TABLE IF NOT EXISTS ddl_collection (
 	ID SERIAL PRIMARY KEY,
-	DOCUMENT VARCHAR NOT NULL,
-	QUESTION VARCHAR(256) NULL,
+	TABLE_NAME VARCHAR(128) NULL,
+	DDL_CONTENT VARCHAR NOT NULL,
 	EMBEDDING VECTOR(768)
 );
 
 CREATE INDEX IF NOT EXISTS ddl_collection_index ON ddl_collection USING hnsw (embedding vector_cosine_ops);
-
-CREATE TABLE IF NOT EXISTS doc_collection (
-	ID SERIAL PRIMARY KEY,
-	DOCUMENT VARCHAR NOT NULL,
-	QUESTION VARCHAR(256) NULL,
-	EMBEDDING VECTOR(768)
-);
-
-CREATE INDEX IF NOT EXISTS doc_collection_index ON doc_collection USING hnsw (embedding vector_cosine_ops);
-
-CREATE TABLE IF NOT EXISTS sql_collection (
-	ID SERIAL PRIMARY KEY,
-	DOCUMENT VARCHAR NOT NULL,
-	QUESTION VARCHAR(256) NULL,
-	EMBEDDING VECTOR(768)
-);
-
-CREATE INDEX IF NOT EXISTS sql_collection_index ON sql_collection USING hnsw (embedding vector_cosine_ops);

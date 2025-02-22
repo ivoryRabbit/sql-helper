@@ -38,5 +38,3 @@ RAG:
 - [ ] Set a docker environment
 - [ ] Implement a vector store for PGVector
 
-## Architecture
-![text-to-sql.drawio.png](assets/text-to-sql.drawio.png)

@@ -167,5 +167,7 @@ benchmark/
 .streamlit/secrets.toml
 
 # Docker
-**docker/volume/*.
-**docker/volume
+**docker/volumes/*
+**docker/volumes
+
+test/*

@@ -1,12 +1,58 @@
 services:
-  vector-store:
-    image: ankane/pgvector:latest
-    container_name: vector-store
+  postgres:
+    container_name: postgres
+    image: pgvector/pgvector:0.8.0-pg14
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
-      - ./docker/postgres/init_db.sql:/docker-entrypoint-initdb.d/create_tables.sql
-      - ./docker/volume/data:/var/lib/postgresql/data
+      - ./docker/postgres/:/docker-entrypoint-initdb.d/
+      - ./docker/volumes/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 10s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+  temporal:
+    container_name: temporal
+    image: temporalio/auto-setup:1.27.0
+    ports:
+      - "7233:7233"
+    environment:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_USER=temporal
+      - POSTGRES_PWD=temporal
+      - POSTGRES_SEEDS=postgres # server host name
+      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
+    volumes:
+      - ./docker/temporal:/etc/temporal/config/dynamicconfig
+    depends_on:
+      - postgres
+
+  temporal-admin-tools:
+    container_name: temporal-admin-tools
+    image: temporalio/admin-tools:1.27.0
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CLI_ADDRESS=temporal:7233
+    stdin_open: true
+    tty: true
+    depends_on:
+      - temporal
+
+  temporal-ui:
+    container_name: temporal-ui
+    image: temporalio/ui:2.35.1
+    ports:
+      - "8080:8080"
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    depends_on:
+      - temporal

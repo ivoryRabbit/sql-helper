@@ -1,0 +1,26 @@
+id,name,parent_id
+1,Electronics,
+2,Smartphones,1
+3,Laptops,1
+4,Tablets,1
+5,Accessories,1
+6,Clothing,
+7,Men,6
+8,Women,6
+9,Kids,6
+10,Sports,6
+11,Home & Kitchen,
+12,Furniture,11
+13,Appliances,11
+14,Cookware,11
+15,Bedding,11
+16,Books,
+17,Fiction,16
+18,Non-Fiction,16
+19,Science,16
+20,Technology,16
+21,Sports,
+22,Outdoor,21
+23,Fitness,21
+24,Team Sports,21
+25,Water Sports,21

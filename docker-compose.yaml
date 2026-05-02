@@ -1,58 +1,140 @@
 services:
   postgres:
     container_name: postgres
-    image: pgvector/pgvector:0.8.0-pg14
+    image: pgvector/pgvector:pg17
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vectordb
+      POSTGRES_USER: sqlhelper
+      POSTGRES_PASSWORD: sqlhelper
+      TZ: Asia/Seoul
     volumes:
-      - ./docker/postgres/:/docker-entrypoint-initdb.d/
+      - ./docker/postgres/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - ./docker/postgres/init_temporal.sql:/docker-entrypoint-initdb.d/init_temporal.sql
       - ./docker/volumes/postgres:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "postgres" ]
-      interval: 10s
-      retries: 3
+      test: [ "CMD", "pg_isready", "-U", "sqlhelper", "-d", "vectordb" ]
       start_period: 5s
+      interval: 10s
+      timeout: 3s
+      retries: 3
     restart: unless-stopped
+    networks:
+      - sql-helper-network
 
   temporal:
     container_name: temporal
-    image: temporalio/auto-setup:1.27.0
-    ports:
-      - "7233:7233"
+    image: temporalio/auto-setup:latest
     environment:
       - DB=postgres12
+      - POSTGRES_SEEDS=postgres
       - DB_PORT=5432
       - POSTGRES_USER=temporal
       - POSTGRES_PWD=temporal
-      - POSTGRES_SEEDS=postgres # server host name
-      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
-    volumes:
-      - ./docker/temporal:/etc/temporal/config/dynamicconfig
+      - DBNAME=temporal
+      - DEFAULT_NAMESPACE=default
+      - LOG_LEVEL=warn
+    ports:
+      - "7233:7233"
     depends_on:
-      - postgres
-
-  temporal-admin-tools:
-    container_name: temporal-admin-tools
-    image: temporalio/admin-tools:1.27.0
-    environment:
-      - TEMPORAL_ADDRESS=temporal:7233
-      - TEMPORAL_CLI_ADDRESS=temporal:7233
-    stdin_open: true
-    tty: true
-    depends_on:
-      - temporal
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - sql-helper-network
 
   temporal-ui:
     container_name: temporal-ui
-    image: temporalio/ui:2.35.1
-    ports:
-      - "8080:8080"
+    image: temporalio/ui:latest
     environment:
       - TEMPORAL_ADDRESS=temporal:7233
-      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    ports:
+      - "8088:8080"
     depends_on:
       - temporal
+    restart: unless-stopped
+    networks:
+      - sql-helper-network
+
+  minio:
+    container_name: minio
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-sqlhelper}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-sqlhelper}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ./docker/volumes/minio:/data
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      start_period: 5s
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - sql-helper-network
+
+#  backend:
+#    build:
+#      context: ./backend
+#      dockerfile: Dockerfile
+#    container_name: sql-helper-backend
+#    environment:
+#      DATABASE_URL: postgresql+psycopg://sqlhelper:sqlhelper@postgres:5432/vectordb
+#      TEMPORAL_ADDRESS: temporal:7233
+#      MINIO_ENDPOINT: minio:9000
+#      MINIO_ACCESS_KEY: minioadmin
+#      MINIO_SECRET_KEY: minioadmin
+#      OPENAI_API_KEY: ${OPENAI_API_KEY}
+#      TZ: Asia/Seoul
+#    ports:
+#      - "8000:8000"
+#    depends_on:
+#      - postgres
+#      - temporal
+#      - minio
+#    restart: unless-stopped
+#    networks:
+#      - sql-helper-network
+
+#  frontend:
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    container_name: sql-helper-frontend
+#    environment:
+#      VITE_BACKEND_URL: http://localhost:8000/api/v1
+#      TZ: Asia/Seoul
+#    ports:
+#      - "3000:3000"
+#    depends_on:
+#      - backend
+#    restart: unless-stopped
+#    networks:
+#      - sql-helper-network
+
+#  trino:
+#    container_name: trino
+#    image: trinodb/trino:450
+#    ports:
+#      - "543:543"
+#    volumes:
+#      - ./docker/trino/etc:/etc/trino
+#      - ./docker/volumes/trino:/var/lib/trino/data
+#    healthcheck:
+#      test: [ "CMD", "curl", "--fail", "http://localhost:543/v1/status" ]
+#      interval: 10s
+#      retries: 3
+#      start_period: 5s
+#    restart: unless-stopped
+#    networks:
+#      - sql-helper-network
+
+networks:
+  sql-helper-network:
+    driver: bridge

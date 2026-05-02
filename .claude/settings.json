@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install *)",
+      "Bash(python -c \"from main import app; print\\('Import OK'\\)\")",
+      "Bash(pip list *)",
+      "Bash(python3 -m pip list)",
+      "Read(//Users/dglee/**)",
+      "Bash(docker compose *)",
+      "Bash(docker exec *)"
+    ]
+  }
+}

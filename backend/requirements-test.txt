@@ -1,0 +1,7 @@
+# Test framework
+pytest==8.3.5
+pytest-asyncio==0.24.0
+pytest-cov==6.0.0
+
+# All production deps are needed too (install via requirements.txt first)
+# pip install -r requirements.txt -r requirements-test.txt

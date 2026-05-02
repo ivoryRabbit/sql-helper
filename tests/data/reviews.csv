@@ -1,0 +1,1501 @@
+id,customer_id,product_id,rating,body,helpful_votes,created_at
+1,121,50,5,Sturdy and well-made.,73,2024-07-11 05:50:07
+2,57,59,2,Would definitely buy again.,26,2023-07-24 08:30:51
+3,12,100,3,Sturdy and well-made.,21,2024-08-22 23:36:34
+4,340,4,3,A bit overpriced but the quality is there.,61,2024-05-04 14:10:31
+5,335,95,4,Good value for the price.,78,2023-12-30 23:48:37
+6,467,1,5,Shipping took longer than expected but product is great.,10,2024-01-21 20:55:05
+7,352,76,4,Exceeded my expectations.,14,2023-10-12 12:51:13
+8,204,7,5,Quality is decent but could be better.,14,2024-01-16 22:40:36
+9,81,16,5,Disappointed with the quality for this price.,52,2025-02-22 18:20:58
+10,386,85,3,Delivery was fast and packaging was secure.,77,2023-07-17 14:58:52
+11,60,15,4,Delivery was fast and packaging was secure.,16,2023-12-06 17:14:40
+12,22,16,5,Good value for the price.,57,2023-09-28 05:57:15
+13,371,44,5,"Perfect gift, recipient loved it.",56,2024-03-21 07:13:59
+14,102,80,5,A bit overpriced but the quality is there.,4,2024-05-30 02:39:25
+15,293,25,4,"Not what I expected, but still okay.",26,2023-03-21 19:55:34
+16,339,23,4,"Excellent build quality, highly recommend.",66,2023-08-08 23:35:25
+17,77,98,5,Would definitely buy again.,12,2023-07-18 23:11:19
+18,146,3,5,Looks exactly like the photos.,80,2023-10-05 10:21:57
+19,473,44,5,Sturdy and well-made.,41,2023-09-26 03:31:43
+20,77,77,4,Quality is decent but could be better.,2,2023-12-26 19:56:25
+21,359,47,5,Customer support was very helpful.,48,2023-06-11 13:18:48
+22,415,95,5,"Great product, exactly as described.",27,2024-08-18 07:26:04
+23,66,100,5,Shipping took longer than expected but product is great.,2,2023-07-29 22:41:16
+24,118,59,3,Had some issues at first but it works now.,24,2024-12-18 10:43:30
+25,479,46,4,Easy to set up and use.,46,2024-10-22 18:09:13
+26,158,98,5,A bit overpriced but the quality is there.,3,2024-04-06 21:32:22
+27,483,10,5,Quality is decent but could be better.,3,2023-10-05 19:06:46
+28,247,7,4,Customer support was very helpful.,78,2023-11-07 14:04:39
+29,246,30,5,Had some issues at first but it works now.,7,2023-11-14 10:02:45
+30,307,80,2,Works perfectly for my needs.,55,2024-12-22 01:50:44
+31,442,76,1,"Five stars, no complaints.",16,2023-09-13 11:37:10
+32,441,37,4,Delivery was fast and packaging was secure.,43,2024-07-09 05:24:22
+33,134,21,5,"Great product, exactly as described.",28,2024-05-17 10:33:48
+34,17,32,2,"Great product, exactly as described.",78,2024-09-15 04:35:03
+35,465,52,5,Sturdy and well-made.,57,2024-09-23 13:08:24
+36,217,40,5,Customer support was very helpful.,56,2024-08-22 15:34:41
+37,191,37,4,Would definitely buy again.,31,2024-03-25 08:26:34
+38,246,14,3,Had some issues at first but it works now.,59,2025-01-03 11:35:07
+39,2,15,2,Good value for the price.,15,2023-09-07 12:13:55
+40,20,27,1,Very satisfied with this purchase.,70,2024-02-21 01:27:50
+41,52,58,4,Works perfectly for my needs.,62,2023-11-07 11:06:48
+42,217,67,2,"Great product, exactly as described.",66,2023-07-30 08:23:28
+43,416,94,5,Disappointed with the quality for this price.,13,2023-10-17 02:45:59
+44,304,4,5,Delivery was fast and packaging was secure.,43,2023-06-03 10:52:45
+45,238,11,3,Good value for the price.,52,2025-02-01 15:41:22
+46,53,32,2,"Five stars, no complaints.",42,2023-07-02 19:42:49
+47,497,7,5,"Excellent build quality, highly recommend.",46,2024-05-02 01:09:58
+48,252,39,3,Looks exactly like the photos.,22,2023-08-25 09:54:10
+49,361,26,1,Sturdy and well-made.,55,2023-12-08 07:13:52
+50,179,69,5,Customer support was very helpful.,57,2024-12-21 15:00:56
+51,361,55,5,Shipping took longer than expected but product is great.,3,2024-01-12 18:37:13
+52,62,72,1,A bit overpriced but the quality is there.,25,2024-11-15 09:15:53
+53,81,57,5,Very satisfied with this purchase.,50,2025-01-07 13:24:51
+54,422,20,2,Sturdy and well-made.,8,2024-03-08 16:16:23
+55,426,18,5,Shipping took longer than expected but product is great.,2,2023-04-19 20:12:06
+56,30,35,4,Very satisfied with this purchase.,12,2024-06-25 12:03:18
+57,495,43,5,"Great product, exactly as described.",8,2023-08-28 22:40:18
+58,26,58,5,Disappointed with the quality for this price.,15,2024-03-26 23:02:44
+59,20,3,5,Had some issues at first but it works now.,74,2024-03-01 12:55:37
+60,279,99,5,Works perfectly for my needs.,72,2024-04-22 17:47:08
+61,294,1,4,Works perfectly for my needs.,40,2023-11-23 09:07:12
+62,22,33,5,"Perfect gift, recipient loved it.",4,2024-06-05 08:24:29
+63,332,77,5,Looks exactly like the photos.,77,2025-04-04 13:49:34
+64,328,29,5,A bit overpriced but the quality is there.,59,2025-01-10 23:45:10
+65,351,16,5,Looks exactly like the photos.,77,2024-05-28 13:30:57
+66,53,53,5,Delivery was fast and packaging was secure.,19,2024-01-30 23:38:11
+67,249,37,5,Shipping took longer than expected but product is great.,61,2024-04-17 11:41:26
+68,128,30,5,"Not what I expected, but still okay.",55,2023-12-10 07:18:22
+69,108,95,5,"Perfect gift, recipient loved it.",75,2024-05-23 02:38:54
+70,299,73,5,Exceeded my expectations.,57,2023-03-23 18:34:56
+71,35,92,5,Had some issues at first but it works now.,21,2024-12-29 04:54:12
+72,435,85,3,A bit overpriced but the quality is there.,59,2023-05-19 04:42:06
+73,264,59,5,Easy to set up and use.,21,2023-08-12 04:27:11
+74,46,53,2,Would definitely buy again.,3,2024-04-07 02:32:37
+75,49,70,5,Works perfectly for my needs.,30,2024-09-24 19:22:19
+76,351,90,5,Sturdy and well-made.,65,2025-04-22 15:30:40
+77,454,100,5,Quality is decent but could be better.,14,2023-07-08 17:08:06
+78,500,57,5,Easy to set up and use.,64,2024-05-24 03:17:01
+79,476,85,4,Works perfectly for my needs.,69,2024-11-09 19:51:35
+80,458,34,4,Quality is decent but could be better.,20,2023-09-03 18:58:47
+81,232,46,4,"Five stars, no complaints.",73,2025-01-13 01:34:18
+82,498,65,4,"Great product, exactly as described.",69,2023-11-24 02:03:49
+83,32,4,4,Good value for the price.,53,2025-03-06 19:28:13
+84,164,61,5,Would definitely buy again.,24,2024-10-11 16:44:38
+85,289,11,4,Looks exactly like the photos.,11,2023-07-09 12:57:33
+86,479,21,4,Shipping took longer than expected but product is great.,75,2024-04-24 01:50:36
+87,406,22,5,Very satisfied with this purchase.,71,2025-04-23 00:05:03
+88,78,60,5,Looks exactly like the photos.,74,2025-03-11 04:54:31
+89,341,82,2,Good value for the price.,75,2024-09-01 21:59:02
+90,118,92,3,Works perfectly for my needs.,74,2024-12-17 22:04:27
+91,58,46,4,Shipping took longer than expected but product is great.,70,2024-03-20 10:16:04
+92,91,63,4,Easy to set up and use.,71,2024-02-12 04:11:52
+93,171,93,4,Delivery was fast and packaging was secure.,58,2024-11-08 12:24:46
+94,94,38,5,Exceeded my expectations.,53,2024-05-13 16:29:43
+95,428,79,4,Easy to set up and use.,31,2024-04-15 09:37:44
+96,480,79,4,Had some issues at first but it works now.,57,2024-06-28 06:52:49
+97,78,9,4,Quality is decent but could be better.,71,2024-08-07 02:13:16
+98,53,50,3,Customer support was very helpful.,74,2024-03-12 17:35:20
+99,423,81,4,Easy to set up and use.,69,2023-09-11 06:29:20
+100,1,65,5,"Five stars, no complaints.",34,2024-11-11 13:56:52
+101,273,90,4,Exceeded my expectations.,5,2025-01-06 03:50:13
+102,71,34,4,Quality is decent but could be better.,67,2025-01-20 13:18:05
+103,309,74,2,"Great product, exactly as described.",79,2023-06-07 12:05:43
+104,46,39,2,Delivery was fast and packaging was secure.,75,2024-03-20 16:44:29
+105,184,85,5,Exceeded my expectations.,20,2024-01-12 18:57:44
+106,366,53,3,A bit overpriced but the quality is there.,60,2024-11-23 05:38:27
+107,458,1,4,"Five stars, no complaints.",5,2024-03-30 08:54:53
+108,165,72,4,Looks exactly like the photos.,42,2023-04-04 01:38:31
+109,466,22,4,Had some issues at first but it works now.,38,2025-04-08 21:00:27
+110,75,34,3,Delivery was fast and packaging was secure.,54,2024-07-06 19:33:44
+111,333,5,5,"Excellent build quality, highly recommend.",35,2023-04-13 21:25:16
+112,404,73,4,Works perfectly for my needs.,60,2025-03-22 05:45:37
+113,460,96,2,"Perfect gift, recipient loved it.",16,2024-04-05 20:43:53
+114,305,69,5,Easy to set up and use.,80,2023-05-04 23:34:08
+115,280,70,5,"Great product, exactly as described.",51,2025-02-15 06:21:28
+116,427,71,3,Had some issues at first but it works now.,10,2025-01-16 22:40:50
+117,139,53,4,Delivery was fast and packaging was secure.,28,2024-07-20 02:51:53
+118,319,24,5,Looks exactly like the photos.,33,2024-12-15 20:12:05
+119,316,85,4,"Five stars, no complaints.",74,2024-11-04 21:31:16
+120,357,80,4,"Excellent build quality, highly recommend.",64,2024-10-13 02:45:53
+121,291,40,5,Works perfectly for my needs.,41,2024-08-10 14:44:38
+122,302,34,5,Good value for the price.,14,2023-09-09 19:24:37
+123,315,18,5,Would definitely buy again.,7,2025-03-12 04:03:40
+124,185,32,5,Looks exactly like the photos.,5,2024-08-27 15:57:39
+125,59,10,4,Very satisfied with this purchase.,7,2024-02-16 17:45:15
+126,427,77,4,Easy to set up and use.,50,2024-01-16 18:47:46
+127,216,41,4,Quality is decent but could be better.,12,2024-04-07 17:58:24
+128,168,48,5,Looks exactly like the photos.,62,2023-03-12 22:16:08
+129,26,4,5,Sturdy and well-made.,38,2023-09-28 02:13:30
+130,153,68,5,Had some issues at first but it works now.,22,2023-05-12 22:43:57
+131,151,49,5,Had some issues at first but it works now.,71,2025-01-04 14:32:45
+132,221,64,4,"Not what I expected, but still okay.",55,2024-04-11 04:56:40
+133,83,2,5,"Excellent build quality, highly recommend.",40,2024-12-18 00:36:18
+134,443,47,4,Disappointed with the quality for this price.,43,2023-04-15 08:03:57
+135,293,58,5,"Excellent build quality, highly recommend.",40,2024-02-06 21:30:38
+136,99,65,5,"Great product, exactly as described.",54,2023-09-20 06:39:32
+137,125,48,4,Looks exactly like the photos.,48,2023-09-20 04:48:21
+138,438,82,3,Very satisfied with this purchase.,43,2024-05-23 05:48:04
+139,28,14,4,"Not what I expected, but still okay.",77,2024-08-21 01:58:23
+140,118,7,1,Very satisfied with this purchase.,20,2023-12-16 02:05:57
+141,61,23,3,Would definitely buy again.,57,2024-12-25 03:46:52
+142,494,62,5,Shipping took longer than expected but product is great.,39,2024-11-13 07:09:57
+143,69,98,4,Works perfectly for my needs.,49,2023-04-13 02:33:14
+144,54,11,3,Delivery was fast and packaging was secure.,11,2024-09-29 16:09:07
+145,467,65,5,Had some issues at first but it works now.,68,2024-10-24 02:49:11
+146,31,1,5,Easy to set up and use.,1,2023-08-16 07:30:02
+147,243,76,4,Looks exactly like the photos.,61,2025-04-07 05:34:18
+148,287,17,3,Works perfectly for my needs.,22,2024-09-07 16:48:45
+149,228,2,5,Had some issues at first but it works now.,57,2023-09-26 13:48:35
+150,368,53,5,Would definitely buy again.,54,2023-06-27 06:41:36
+151,76,94,3,Would definitely buy again.,6,2024-01-11 17:36:19
+152,271,33,4,Shipping took longer than expected but product is great.,43,2024-02-18 03:33:33
+153,221,45,5,Looks exactly like the photos.,68,2023-05-14 17:03:45
+154,237,71,4,Would definitely buy again.,47,2024-04-15 05:44:29
+155,486,66,3,Quality is decent but could be better.,15,2024-02-25 06:29:32
+156,258,42,5,Customer support was very helpful.,34,2023-05-13 05:50:42
+157,17,87,5,Had some issues at first but it works now.,39,2024-09-21 18:40:48
+158,147,84,4,Quality is decent but could be better.,25,2023-06-28 03:43:28
+159,58,18,5,Quality is decent but could be better.,57,2024-05-17 10:56:32
+160,395,69,5,Shipping took longer than expected but product is great.,79,2023-07-10 20:03:47
+161,231,57,5,Looks exactly like the photos.,26,2024-03-12 07:49:36
+162,341,38,5,Would definitely buy again.,62,2023-11-19 15:39:32
+163,16,25,5,Easy to set up and use.,68,2024-10-10 13:02:43
+164,351,22,5,Shipping took longer than expected but product is great.,45,2023-03-20 14:20:35
+165,336,70,2,Works perfectly for my needs.,77,2024-10-22 05:19:58
+166,493,32,5,Had some issues at first but it works now.,42,2023-12-27 22:20:15
+167,17,50,5,"Five stars, no complaints.",41,2025-04-20 10:44:22
+168,425,19,4,"Five stars, no complaints.",42,2024-02-20 13:03:56
+169,452,40,1,Delivery was fast and packaging was secure.,65,2023-06-16 09:06:49
+170,367,51,4,"Perfect gift, recipient loved it.",36,2023-06-13 00:28:55
+171,432,55,4,Would definitely buy again.,35,2024-03-29 17:37:54
+172,131,86,5,Had some issues at first but it works now.,33,2024-12-24 02:15:40
+173,28,69,4,Easy to set up and use.,46,2023-06-11 11:04:10
+174,244,78,5,Disappointed with the quality for this price.,70,2023-08-14 10:57:30
+175,8,83,5,"Not what I expected, but still okay.",30,2023-09-08 14:10:54
+176,76,69,4,"Perfect gift, recipient loved it.",65,2024-03-31 20:07:07
+177,448,69,5,Exceeded my expectations.,72,2024-12-21 02:57:25
+178,301,68,4,Quality is decent but could be better.,76,2023-06-03 15:17:40
+179,157,41,4,Quality is decent but could be better.,61,2023-08-10 13:47:19
+180,141,58,5,Had some issues at first but it works now.,48,2024-02-25 06:08:13
+181,19,12,5,Exceeded my expectations.,69,2024-10-13 09:19:48
+182,364,33,3,Quality is decent but could be better.,26,2024-02-15 16:12:47
+183,304,58,3,"Five stars, no complaints.",30,2023-08-08 07:41:58
+184,78,15,5,Easy to set up and use.,63,2023-04-16 17:35:47
+185,201,21,5,Sturdy and well-made.,26,2023-11-23 19:37:48
+186,265,66,5,Sturdy and well-made.,71,2024-01-24 11:19:49
+187,86,19,3,Delivery was fast and packaging was secure.,1,2023-12-13 13:33:37
+188,118,23,5,"Great product, exactly as described.",8,2024-10-20 12:52:45
+189,237,56,4,Good value for the price.,3,2025-04-28 00:44:55
+190,431,81,5,Easy to set up and use.,61,2024-10-20 23:50:27
+191,63,2,4,"Excellent build quality, highly recommend.",24,2024-09-29 22:11:41
+192,197,12,4,"Five stars, no complaints.",70,2024-05-23 12:14:03
+193,476,41,5,Works perfectly for my needs.,75,2023-05-13 13:52:59
+194,403,62,4,Easy to set up and use.,17,2023-12-28 21:39:27
+195,162,40,4,Sturdy and well-made.,40,2023-07-30 16:57:34
+196,18,1,3,"Great product, exactly as described.",58,2024-11-18 00:33:54
+197,469,24,1,Had some issues at first but it works now.,42,2024-10-10 01:12:20
+198,225,10,4,Good value for the price.,55,2025-01-01 09:50:55
+199,498,86,4,Had some issues at first but it works now.,11,2023-06-23 16:25:24
+200,7,83,4,Customer support was very helpful.,38,2023-07-13 10:30:36
+201,363,12,5,"Five stars, no complaints.",36,2023-03-03 11:07:01
+202,414,58,4,Delivery was fast and packaging was secure.,51,2024-04-21 15:59:50
+203,396,80,4,"Perfect gift, recipient loved it.",78,2023-03-24 08:53:44
+204,189,99,5,A bit overpriced but the quality is there.,55,2024-12-11 23:11:34
+205,281,26,4,Quality is decent but could be better.,48,2024-11-19 13:03:15
+206,82,50,5,"Great product, exactly as described.",67,2024-02-27 15:07:44
+207,277,56,5,"Perfect gift, recipient loved it.",72,2023-08-31 19:02:19
+208,242,68,5,Shipping took longer than expected but product is great.,78,2023-06-21 20:30:29
+209,187,4,4,Sturdy and well-made.,54,2023-12-06 13:37:55
+210,186,59,5,Sturdy and well-made.,58,2024-10-06 17:36:47
+211,12,89,5,Quality is decent but could be better.,2,2023-07-14 02:40:50
+212,68,56,5,Customer support was very helpful.,58,2023-12-16 03:21:49
+213,195,2,4,Works perfectly for my needs.,70,2023-03-10 01:53:36
+214,390,74,4,Quality is decent but could be better.,9,2025-02-14 02:47:08
+215,185,43,4,Delivery was fast and packaging was secure.,58,2025-03-25 23:55:17
+216,234,38,5,Quality is decent but could be better.,62,2024-06-04 01:25:34
+217,198,78,3,Works perfectly for my needs.,12,2023-10-11 17:04:14
+218,144,12,5,Sturdy and well-made.,51,2023-10-01 00:28:00
+219,224,35,3,Quality is decent but could be better.,77,2025-03-11 19:31:55
+220,172,66,5,Disappointed with the quality for this price.,6,2024-04-14 15:04:43
+221,370,94,4,Quality is decent but could be better.,13,2024-08-20 10:36:40
+222,349,38,4,Good value for the price.,40,2025-01-04 22:21:43
+223,400,65,3,Sturdy and well-made.,18,2023-09-13 05:52:08
+224,433,47,4,"Great product, exactly as described.",73,2023-03-29 01:23:35
+225,481,94,2,Looks exactly like the photos.,28,2024-08-13 13:03:52
+226,210,36,5,Disappointed with the quality for this price.,21,2024-01-23 04:47:43
+227,424,18,4,Shipping took longer than expected but product is great.,22,2025-04-20 12:52:42
+228,84,72,5,Had some issues at first but it works now.,0,2023-05-30 17:42:40
+229,46,63,4,"Perfect gift, recipient loved it.",23,2023-11-05 23:26:56
+230,353,34,5,"Five stars, no complaints.",11,2023-09-28 15:45:27
+231,215,10,4,Easy to set up and use.,47,2023-03-10 16:54:17
+232,247,9,2,Customer support was very helpful.,71,2023-05-31 15:44:55
+233,47,15,5,"Great product, exactly as described.",78,2023-12-02 12:19:49
+234,433,60,5,Delivery was fast and packaging was secure.,11,2024-07-02 07:25:52
+235,96,55,3,Good value for the price.,46,2024-02-17 06:33:44
+236,485,57,2,Sturdy and well-made.,17,2024-01-05 01:59:03
+237,23,5,4,Very satisfied with this purchase.,75,2024-06-30 15:25:00
+238,349,2,1,Shipping took longer than expected but product is great.,32,2023-07-13 13:33:56
+239,450,65,5,"Excellent build quality, highly recommend.",71,2024-07-21 07:58:26
+240,358,38,4,Quality is decent but could be better.,72,2025-02-25 12:25:46
+241,212,76,5,A bit overpriced but the quality is there.,52,2024-08-17 08:07:58
+242,68,77,4,Shipping took longer than expected but product is great.,14,2024-12-02 05:23:59
+243,429,94,3,Exceeded my expectations.,65,2023-10-06 10:12:24
+244,243,26,5,Easy to set up and use.,10,2024-01-26 05:19:13
+245,462,99,5,Works perfectly for my needs.,4,2024-04-04 12:06:42
+246,171,6,3,Easy to set up and use.,78,2024-11-16 11:25:52
+247,114,88,3,Disappointed with the quality for this price.,37,2024-01-26 09:43:59
+248,498,94,4,Had some issues at first but it works now.,67,2024-03-10 20:47:42
+249,173,20,4,Good value for the price.,51,2024-04-28 02:29:39
+250,280,56,2,Very satisfied with this purchase.,57,2023-12-26 23:45:08
+251,302,71,4,Had some issues at first but it works now.,38,2025-04-20 23:21:36
+252,100,71,4,Would definitely buy again.,40,2024-02-17 22:55:11
+253,196,81,5,"Excellent build quality, highly recommend.",51,2023-10-01 05:16:30
+254,277,7,4,Good value for the price.,57,2025-01-19 05:57:12
+255,475,36,5,Looks exactly like the photos.,46,2025-01-26 11:23:52
+256,318,43,4,Customer support was very helpful.,50,2023-11-03 16:56:30
+257,106,73,3,"Great product, exactly as described.",76,2023-04-22 20:08:42
+258,277,43,5,"Not what I expected, but still okay.",13,2023-05-06 00:42:27
+259,253,81,5,"Great product, exactly as described.",76,2023-08-06 00:16:23
+260,456,30,3,Works perfectly for my needs.,12,2025-02-16 18:41:44
+261,399,65,5,Delivery was fast and packaging was secure.,76,2023-03-30 15:58:23
+262,73,43,5,Disappointed with the quality for this price.,49,2023-05-23 20:38:50
+263,352,90,3,"Great product, exactly as described.",51,2024-09-27 05:58:56
+264,471,30,4,Had some issues at first but it works now.,10,2023-12-01 03:45:13
+265,1,11,5,Would definitely buy again.,56,2024-06-30 09:20:10
+266,402,73,4,Good value for the price.,1,2023-11-01 07:15:43
+267,441,54,5,Good value for the price.,10,2024-07-09 08:06:16
+268,57,44,4,Would definitely buy again.,44,2024-04-07 07:41:44
+269,226,82,5,"Not what I expected, but still okay.",4,2025-01-09 12:07:24
+270,145,6,5,Shipping took longer than expected but product is great.,12,2025-01-17 02:05:01
+271,361,25,5,Disappointed with the quality for this price.,76,2023-05-16 22:08:43
+272,477,46,5,Sturdy and well-made.,46,2023-04-13 13:47:31
+273,468,30,5,Works perfectly for my needs.,6,2023-03-16 02:29:24
+274,202,37,5,Exceeded my expectations.,27,2024-06-15 08:16:11
+275,396,93,1,Sturdy and well-made.,15,2023-03-05 16:00:16
+276,143,45,3,Good value for the price.,27,2024-12-25 12:13:01
+277,24,65,5,"Excellent build quality, highly recommend.",8,2023-06-20 20:40:37
+278,278,39,5,Delivery was fast and packaging was secure.,28,2024-08-05 05:12:51
+279,451,79,5,Would definitely buy again.,69,2024-09-08 22:59:01
+280,178,98,5,Customer support was very helpful.,72,2024-08-10 21:33:09
+281,76,6,4,Works perfectly for my needs.,4,2023-06-01 03:47:30
+282,209,63,5,Sturdy and well-made.,1,2023-03-30 20:37:57
+283,204,74,4,Easy to set up and use.,7,2023-06-23 11:16:41
+284,280,50,5,Shipping took longer than expected but product is great.,33,2023-05-08 11:45:02
+285,399,90,5,Shipping took longer than expected but product is great.,64,2024-04-18 20:33:53
+286,356,88,3,A bit overpriced but the quality is there.,24,2024-05-22 21:48:26
+287,158,75,5,Customer support was very helpful.,28,2023-04-01 20:42:46
+288,2,51,4,Looks exactly like the photos.,20,2024-08-01 02:55:12
+289,168,2,4,Customer support was very helpful.,1,2023-06-22 05:06:31
+290,253,28,5,"Not what I expected, but still okay.",32,2023-09-18 23:02:42
+291,461,51,3,Delivery was fast and packaging was secure.,58,2024-03-30 18:33:27
+292,95,75,2,Would definitely buy again.,73,2023-10-19 03:57:38
+293,113,29,4,Delivery was fast and packaging was secure.,8,2023-03-24 15:56:24
+294,378,5,5,Very satisfied with this purchase.,5,2024-09-04 06:57:40
+295,126,1,5,Easy to set up and use.,71,2024-12-03 03:12:28
+296,262,33,4,Quality is decent but could be better.,14,2023-07-16 07:16:41
+297,197,51,4,Quality is decent but could be better.,78,2023-03-11 02:09:34
+298,145,87,4,Disappointed with the quality for this price.,42,2025-01-29 20:00:07
+299,166,73,5,Works perfectly for my needs.,21,2024-12-17 21:08:23
+300,160,22,4,"Five stars, no complaints.",30,2024-12-11 00:26:41
+301,344,23,5,Quality is decent but could be better.,58,2024-09-25 20:14:24
+302,182,67,3,Had some issues at first but it works now.,59,2025-02-17 19:35:05
+303,456,4,5,Quality is decent but could be better.,0,2025-01-20 03:43:58
+304,59,12,5,Would definitely buy again.,28,2023-03-10 12:08:25
+305,93,25,4,Would definitely buy again.,12,2023-11-21 12:14:23
+306,35,46,5,"Perfect gift, recipient loved it.",15,2025-03-29 09:00:54
+307,371,1,5,Sturdy and well-made.,12,2025-01-02 18:48:26
+308,55,99,3,Very satisfied with this purchase.,27,2024-09-27 23:51:13
+309,171,71,5,Sturdy and well-made.,40,2025-02-18 09:51:11
+310,354,61,3,Delivery was fast and packaging was secure.,48,2023-05-09 01:28:46
+311,363,7,5,"Not what I expected, but still okay.",30,2025-03-13 17:06:05
+312,274,98,5,Exceeded my expectations.,27,2023-06-13 08:13:55
+313,281,49,5,Quality is decent but could be better.,65,2025-03-15 00:28:50
+314,461,23,5,Had some issues at first but it works now.,42,2024-06-26 02:36:44
+315,444,7,5,"Perfect gift, recipient loved it.",17,2023-11-17 04:01:06
+316,370,97,4,"Great product, exactly as described.",6,2023-12-01 22:36:38
+317,283,28,5,Easy to set up and use.,16,2024-02-19 04:15:35
+318,70,85,5,Good value for the price.,32,2023-07-16 18:14:59
+319,143,36,4,Had some issues at first but it works now.,27,2023-09-21 13:21:08
+320,474,96,5,Delivery was fast and packaging was secure.,8,2024-12-14 17:10:27
+321,499,47,5,A bit overpriced but the quality is there.,1,2023-09-13 13:29:30
+322,377,81,5,Quality is decent but could be better.,4,2024-01-17 21:29:40
+323,26,36,5,Quality is decent but could be better.,28,2023-09-20 19:30:39
+324,67,92,4,Customer support was very helpful.,16,2023-08-08 08:53:43
+325,125,48,5,Good value for the price.,16,2025-04-20 21:48:19
+326,48,54,4,Good value for the price.,52,2024-03-28 17:53:04
+327,203,26,1,Good value for the price.,44,2024-02-22 13:11:15
+328,479,57,4,Customer support was very helpful.,50,2023-07-28 01:25:01
+329,313,69,4,Works perfectly for my needs.,2,2023-11-07 12:02:12
+330,307,12,4,Works perfectly for my needs.,60,2024-06-06 18:18:08
+331,194,78,2,Would definitely buy again.,74,2024-02-02 21:57:30
+332,62,4,4,Easy to set up and use.,35,2023-06-12 21:29:53
+333,318,50,4,Quality is decent but could be better.,72,2023-07-05 01:51:32
+334,411,26,5,Very satisfied with this purchase.,62,2023-03-22 17:39:48
+335,257,8,4,Easy to set up and use.,47,2024-12-08 20:23:23
+336,431,51,4,Good value for the price.,49,2024-02-27 07:13:35
+337,359,51,5,Works perfectly for my needs.,73,2024-11-01 14:48:39
+338,186,47,2,Sturdy and well-made.,36,2024-03-30 17:14:09
+339,154,84,2,Very satisfied with this purchase.,50,2023-12-31 00:21:11
+340,351,40,5,A bit overpriced but the quality is there.,28,2024-12-07 12:37:59
+341,177,2,4,Exceeded my expectations.,48,2023-11-15 20:27:27
+342,233,25,3,Would definitely buy again.,49,2023-09-26 05:35:36
+343,223,16,3,Quality is decent but could be better.,32,2024-01-31 05:32:52
+344,403,53,5,"Not what I expected, but still okay.",71,2024-07-10 23:23:44
+345,137,87,3,"Perfect gift, recipient loved it.",65,2023-05-01 00:52:00
+346,274,95,4,Exceeded my expectations.,79,2023-07-31 08:54:55
+347,379,80,5,Quality is decent but could be better.,30,2024-06-26 07:56:59
+348,465,92,3,Exceeded my expectations.,73,2024-10-11 17:21:13
+349,135,29,4,"Not what I expected, but still okay.",30,2023-09-25 03:03:29
+350,369,37,5,Would definitely buy again.,46,2023-05-29 11:36:09
+351,187,69,4,"Five stars, no complaints.",33,2024-01-09 06:32:49
+352,487,5,5,"Five stars, no complaints.",9,2023-07-01 05:36:39
+353,362,47,5,"Perfect gift, recipient loved it.",63,2024-11-20 04:23:29
+354,15,48,5,Had some issues at first but it works now.,47,2025-02-23 07:27:38
+355,399,94,4,Sturdy and well-made.,34,2025-04-14 18:13:00
+356,170,59,4,Had some issues at first but it works now.,42,2024-01-04 16:59:24
+357,185,31,4,Sturdy and well-made.,60,2024-04-24 18:11:17
+358,202,50,5,Exceeded my expectations.,64,2024-10-14 21:27:59
+359,493,9,4,Had some issues at first but it works now.,16,2023-07-01 20:15:57
+360,91,44,4,"Great product, exactly as described.",68,2023-03-13 07:15:15
+361,294,43,5,Exceeded my expectations.,39,2025-04-28 05:18:42
+362,45,44,3,Looks exactly like the photos.,76,2023-10-08 12:20:27
+363,166,48,5,Looks exactly like the photos.,38,2025-01-22 21:35:50
+364,94,15,5,"Five stars, no complaints.",1,2025-02-02 00:31:58
+365,446,36,3,Customer support was very helpful.,75,2023-09-01 08:05:37
+366,137,24,4,"Excellent build quality, highly recommend.",6,2024-04-15 07:24:44
+367,334,70,5,"Five stars, no complaints.",20,2024-12-05 09:19:35
+368,419,15,4,"Not what I expected, but still okay.",39,2024-01-26 15:31:12
+369,368,8,4,Very satisfied with this purchase.,28,2025-02-09 07:39:56
+370,116,14,5,"Great product, exactly as described.",3,2023-09-06 11:48:56
+371,254,68,5,Would definitely buy again.,18,2023-09-03 19:08:33
+372,41,48,5,Disappointed with the quality for this price.,11,2024-05-10 06:53:46
+373,163,21,4,Had some issues at first but it works now.,22,2025-01-01 13:22:50
+374,456,65,5,Had some issues at first but it works now.,34,2025-04-12 16:50:53
+375,25,15,4,Would definitely buy again.,3,2024-11-28 08:17:15
+376,408,44,5,Quality is decent but could be better.,28,2025-01-19 19:58:28
+377,237,58,3,Very satisfied with this purchase.,51,2024-07-16 04:22:54
+378,209,25,3,"Great product, exactly as described.",14,2024-05-06 21:05:55
+379,467,8,5,Good value for the price.,80,2024-09-05 18:01:21
+380,418,20,5,Easy to set up and use.,8,2023-04-08 04:39:18
+381,475,48,4,"Perfect gift, recipient loved it.",5,2023-04-26 11:50:35
+382,13,20,4,Would definitely buy again.,16,2023-06-11 01:56:33
+383,159,24,4,A bit overpriced but the quality is there.,15,2024-12-20 20:54:18
+384,14,78,4,Sturdy and well-made.,15,2024-02-02 01:20:16
+385,391,51,4,Works perfectly for my needs.,63,2023-11-11 12:11:59
+386,466,5,3,A bit overpriced but the quality is there.,48,2024-08-19 06:42:55
+387,180,91,3,Looks exactly like the photos.,22,2023-04-11 14:45:56
+388,308,83,3,Shipping took longer than expected but product is great.,31,2024-08-16 08:06:31
+389,66,93,4,Exceeded my expectations.,45,2024-01-26 04:59:40
+390,466,31,3,Quality is decent but could be better.,56,2024-02-16 09:11:13
+391,359,79,3,"Perfect gift, recipient loved it.",77,2023-11-26 18:36:40
+392,1,37,4,Shipping took longer than expected but product is great.,28,2024-08-31 23:31:25
+393,116,17,4,Very satisfied with this purchase.,11,2025-04-27 00:36:59
+394,180,5,4,Works perfectly for my needs.,6,2025-02-11 05:02:13
+395,24,66,3,Exceeded my expectations.,63,2023-09-04 15:29:44
+396,392,65,5,A bit overpriced but the quality is there.,48,2023-04-29 22:09:27
+397,51,2,4,Quality is decent but could be better.,50,2023-08-02 23:56:39
+398,182,83,5,Easy to set up and use.,28,2023-12-10 02:26:49
+399,362,12,5,Shipping took longer than expected but product is great.,80,2025-01-04 08:20:56
+400,473,91,5,Easy to set up and use.,33,2024-11-15 07:40:29
+401,245,26,4,Had some issues at first but it works now.,16,2023-10-12 11:31:56
+402,108,28,5,Quality is decent but could be better.,18,2023-11-06 16:53:57
+403,471,92,4,Delivery was fast and packaging was secure.,77,2024-05-27 15:55:32
+404,130,20,4,Sturdy and well-made.,19,2023-12-12 00:57:16
+405,92,94,5,Looks exactly like the photos.,7,2024-10-06 16:34:59
+406,94,80,5,"Not what I expected, but still okay.",27,2024-09-28 05:54:09
+407,336,7,5,"Five stars, no complaints.",61,2024-03-15 00:55:06
+408,35,83,3,Good value for the price.,34,2024-11-06 10:30:44
+409,351,63,4,"Five stars, no complaints.",0,2025-03-24 07:14:36
+410,343,41,4,Easy to set up and use.,39,2023-09-06 13:24:32
+411,335,72,4,"Great product, exactly as described.",9,2024-02-05 08:55:52
+412,397,50,3,Good value for the price.,65,2024-05-19 13:33:56
+413,340,52,4,Shipping took longer than expected but product is great.,46,2024-10-20 19:27:35
+414,33,41,5,Shipping took longer than expected but product is great.,5,2024-09-12 14:53:40
+415,164,33,5,Would definitely buy again.,80,2023-06-13 12:51:25
+416,189,12,4,Had some issues at first but it works now.,9,2023-06-29 09:09:16
+417,290,99,5,"Not what I expected, but still okay.",42,2024-12-25 06:53:03
+418,140,3,5,Works perfectly for my needs.,73,2024-10-05 01:22:24
+419,304,28,5,Disappointed with the quality for this price.,70,2025-04-10 12:29:49
+420,184,24,2,"Great product, exactly as described.",17,2023-03-29 05:03:35
+421,130,22,4,Would definitely buy again.,1,2023-06-19 11:34:11
+422,319,84,4,Quality is decent but could be better.,11,2023-10-19 12:08:40
+423,158,10,5,Sturdy and well-made.,31,2024-12-27 23:25:48
+424,464,80,4,Easy to set up and use.,72,2025-02-03 02:44:18
+425,208,5,5,"Perfect gift, recipient loved it.",60,2024-01-29 22:52:31
+426,38,22,4,Shipping took longer than expected but product is great.,29,2023-07-03 02:59:48
+427,409,78,5,Would definitely buy again.,16,2025-01-09 04:11:52
+428,334,50,5,"Great product, exactly as described.",58,2024-08-08 19:16:07
+429,357,74,5,Easy to set up and use.,79,2025-03-08 03:02:13
+430,333,70,4,"Five stars, no complaints.",26,2024-06-22 15:40:57
+431,104,15,5,Looks exactly like the photos.,42,2024-06-22 15:39:24
+432,97,4,5,Sturdy and well-made.,42,2023-12-08 05:51:25
+433,120,16,3,Would definitely buy again.,15,2023-06-16 13:56:31
+434,181,4,5,Shipping took longer than expected but product is great.,48,2024-04-26 23:36:41
+435,145,73,5,"Excellent build quality, highly recommend.",61,2023-03-11 16:47:26
+436,365,7,1,Very satisfied with this purchase.,71,2025-02-19 05:08:10
+437,203,40,4,Very satisfied with this purchase.,63,2024-11-12 19:08:45
+438,153,74,4,Disappointed with the quality for this price.,39,2023-07-17 07:09:46
+439,215,26,4,Customer support was very helpful.,54,2023-04-22 11:12:46
+440,132,43,2,Very satisfied with this purchase.,31,2024-08-30 08:55:04
+441,162,90,4,A bit overpriced but the quality is there.,4,2024-10-20 19:37:53
+442,500,35,5,Exceeded my expectations.,23,2025-02-19 10:12:04
+443,226,11,3,Sturdy and well-made.,45,2023-09-30 08:53:52
+444,292,90,4,"Not what I expected, but still okay.",26,2023-05-16 23:11:06
+445,356,48,5,"Great product, exactly as described.",22,2024-09-22 16:17:22
+446,180,15,3,Would definitely buy again.,59,2024-12-02 09:20:48
+447,346,27,4,"Five stars, no complaints.",10,2024-06-30 19:16:27
+448,315,38,5,Exceeded my expectations.,71,2024-08-03 00:35:17
+449,314,51,4,"Excellent build quality, highly recommend.",52,2025-01-04 03:58:37
+450,127,39,5,Had some issues at first but it works now.,37,2024-02-07 22:38:17
+451,158,91,4,Works perfectly for my needs.,39,2023-09-05 10:50:57
+452,203,73,5,Sturdy and well-made.,31,2024-03-11 15:29:29
+453,427,91,5,Had some issues at first but it works now.,35,2025-01-29 10:24:45
+454,146,29,5,Had some issues at first but it works now.,52,2024-04-13 18:57:59
+455,9,68,5,Easy to set up and use.,21,2023-10-13 23:09:26
+456,115,7,5,"Perfect gift, recipient loved it.",53,2023-09-16 07:30:31
+457,310,93,4,A bit overpriced but the quality is there.,73,2024-04-22 19:44:30
+458,52,32,3,"Great product, exactly as described.",73,2025-01-21 03:02:57
+459,67,8,5,Delivery was fast and packaging was secure.,61,2023-05-07 08:16:10
+460,246,42,4,"Perfect gift, recipient loved it.",44,2023-12-25 08:59:16
+461,147,81,5,Very satisfied with this purchase.,47,2024-08-05 00:16:12
+462,242,75,3,Quality is decent but could be better.,4,2024-03-14 17:09:16
+463,6,6,4,Sturdy and well-made.,55,2024-06-15 20:21:27
+464,196,9,3,Exceeded my expectations.,28,2023-05-24 19:55:18
+465,422,4,3,Customer support was very helpful.,13,2023-09-28 19:53:05
+466,399,15,4,Disappointed with the quality for this price.,42,2024-11-01 06:05:00
+467,443,46,4,Exceeded my expectations.,50,2023-12-21 15:26:31
+468,170,75,4,Shipping took longer than expected but product is great.,0,2024-12-28 08:39:47
+469,498,11,5,Exceeded my expectations.,27,2023-06-15 20:27:56
+470,134,91,4,"Excellent build quality, highly recommend.",24,2024-04-06 22:11:50
+471,357,42,4,"Five stars, no complaints.",10,2023-06-21 14:12:44
+472,115,70,5,Good value for the price.,26,2024-06-03 18:55:19
+473,456,24,3,Very satisfied with this purchase.,20,2023-09-27 20:27:02
+474,18,32,3,Disappointed with the quality for this price.,37,2023-12-10 10:53:42
+475,136,53,4,Delivery was fast and packaging was secure.,2,2024-06-10 23:42:20
+476,119,85,4,Sturdy and well-made.,53,2025-04-22 14:41:18
+477,380,89,5,Looks exactly like the photos.,69,2023-04-13 12:40:35
+478,17,71,5,"Not what I expected, but still okay.",18,2024-05-09 20:46:20
+479,196,97,5,Good value for the price.,19,2023-07-18 07:09:41
+480,332,85,5,Disappointed with the quality for this price.,36,2023-06-09 01:25:37
+481,239,34,3,Good value for the price.,38,2024-01-17 20:48:41
+482,431,41,2,"Five stars, no complaints.",68,2024-09-20 12:18:41
+483,485,7,3,Easy to set up and use.,78,2024-05-09 11:29:39
+484,217,51,4,Disappointed with the quality for this price.,43,2023-11-03 17:57:33
+485,102,26,3,Quality is decent but could be better.,79,2024-02-27 03:41:37
+486,5,18,1,"Not what I expected, but still okay.",51,2023-08-15 11:20:28
+487,111,27,5,"Five stars, no complaints.",2,2024-02-04 22:02:47
+488,102,33,4,Disappointed with the quality for this price.,8,2023-09-07 20:23:37
+489,344,55,5,Customer support was very helpful.,1,2025-01-08 16:39:29
+490,439,55,3,Shipping took longer than expected but product is great.,78,2024-08-21 15:01:16
+491,385,41,4,Good value for the price.,22,2024-05-05 20:22:04
+492,329,48,4,Works perfectly for my needs.,22,2024-02-22 13:58:44
+493,377,75,5,Had some issues at first but it works now.,62,2023-11-21 01:26:51
+494,121,4,4,Quality is decent but could be better.,5,2023-09-14 08:59:00
+495,277,38,4,Sturdy and well-made.,2,2023-07-20 03:45:59
+496,233,92,3,Would definitely buy again.,16,2024-05-28 15:40:50
+497,27,48,2,Very satisfied with this purchase.,33,2025-02-16 13:51:27
+498,374,100,5,Shipping took longer than expected but product is great.,63,2024-07-11 20:01:55
+499,423,34,4,Exceeded my expectations.,76,2023-12-10 02:08:19
+500,474,34,2,Customer support was very helpful.,69,2024-02-17 05:42:49
+501,275,57,3,Shipping took longer than expected but product is great.,80,2023-10-17 10:26:22
+502,174,65,5,Works perfectly for my needs.,23,2023-10-28 15:23:34
+503,163,77,2,Sturdy and well-made.,43,2024-10-19 12:10:55
+504,202,98,4,Had some issues at first but it works now.,64,2023-10-16 00:41:44
+505,485,32,4,A bit overpriced but the quality is there.,57,2023-06-27 13:00:39
+506,407,24,3,Works perfectly for my needs.,11,2023-05-13 05:44:26
+507,62,68,4,"Perfect gift, recipient loved it.",5,2024-03-01 03:45:49
+508,357,45,5,Easy to set up and use.,53,2023-05-17 16:00:32
+509,343,10,4,Good value for the price.,62,2024-05-26 14:14:32
+510,356,5,5,"Five stars, no complaints.",76,2023-10-21 15:34:27
+511,181,14,5,Exceeded my expectations.,79,2024-03-26 04:29:54
+512,356,46,3,"Not what I expected, but still okay.",14,2025-04-06 09:20:50
+513,53,23,3,Shipping took longer than expected but product is great.,49,2024-03-30 09:27:37
+514,128,29,5,Would definitely buy again.,20,2023-04-03 08:14:11
+515,185,38,3,Delivery was fast and packaging was secure.,48,2023-11-29 15:15:26
+516,193,87,4,Had some issues at first but it works now.,75,2024-10-15 04:38:19
+517,436,25,5,"Great product, exactly as described.",69,2023-12-29 16:50:36
+518,104,38,4,Disappointed with the quality for this price.,2,2024-06-16 09:16:45
+519,258,67,4,Exceeded my expectations.,74,2024-07-26 13:25:25
+520,7,35,4,Would definitely buy again.,1,2024-10-02 06:51:08
+521,315,88,4,"Perfect gift, recipient loved it.",44,2023-06-19 20:55:12
+522,314,99,5,A bit overpriced but the quality is there.,57,2025-04-10 19:21:31
+523,132,80,5,Would definitely buy again.,50,2024-12-23 12:53:03
+524,325,85,4,Exceeded my expectations.,40,2024-12-03 07:19:13
+525,120,35,3,Shipping took longer than expected but product is great.,60,2024-07-08 09:42:23
+526,407,22,3,Customer support was very helpful.,72,2023-10-25 15:01:54
+527,9,54,3,Looks exactly like the photos.,44,2023-07-09 01:07:11
+528,73,78,3,Customer support was very helpful.,73,2023-10-31 22:17:09
+529,78,76,4,Works perfectly for my needs.,41,2024-11-27 17:01:24
+530,112,6,3,"Not what I expected, but still okay.",40,2024-11-14 19:58:03
+531,120,56,4,Quality is decent but could be better.,52,2023-11-23 18:03:50
+532,424,80,5,Would definitely buy again.,5,2024-12-30 06:09:38
+533,194,10,4,Had some issues at first but it works now.,79,2023-04-12 01:09:44
+534,331,86,5,Delivery was fast and packaging was secure.,24,2024-01-13 02:06:26
+535,371,14,4,Easy to set up and use.,5,2023-05-07 17:52:33
+536,140,74,4,"Five stars, no complaints.",20,2023-06-08 18:45:18
+537,420,83,3,Quality is decent but could be better.,12,2023-11-24 14:01:16
+538,401,10,4,"Excellent build quality, highly recommend.",65,2023-08-22 23:59:52
+539,365,48,4,Very satisfied with this purchase.,69,2024-12-08 00:43:00
+540,275,64,5,"Excellent build quality, highly recommend.",1,2023-08-09 12:41:59
+541,391,75,3,"Not what I expected, but still okay.",33,2023-05-30 20:34:38
+542,200,40,5,Quality is decent but could be better.,0,2023-05-06 03:30:22
+543,407,50,3,"Perfect gift, recipient loved it.",63,2025-01-16 00:03:27
+544,327,68,4,"Not what I expected, but still okay.",66,2024-07-21 10:20:19
+545,398,95,5,Looks exactly like the photos.,36,2024-11-10 06:49:33
+546,384,40,5,Delivery was fast and packaging was secure.,76,2025-01-05 06:48:57
+547,371,17,4,Would definitely buy again.,14,2023-10-05 21:28:53
+548,367,56,5,Would definitely buy again.,9,2023-12-26 07:02:32
+549,94,3,4,Works perfectly for my needs.,5,2024-05-15 16:17:47
+550,84,79,4,A bit overpriced but the quality is there.,14,2024-05-11 03:31:13
+551,376,63,5,Sturdy and well-made.,14,2023-07-18 21:13:04
+552,242,79,4,Very satisfied with this purchase.,75,2024-05-05 08:51:00
+553,295,89,4,Would definitely buy again.,65,2024-01-04 09:18:56
+554,57,95,4,Good value for the price.,28,2024-12-31 01:47:28
+555,217,53,1,Would definitely buy again.,0,2023-06-05 21:59:30
+556,3,45,5,Would definitely buy again.,69,2024-08-04 23:36:55
+557,100,70,4,Delivery was fast and packaging was secure.,0,2024-07-12 20:17:11
+558,324,6,4,Would definitely buy again.,34,2024-03-14 11:06:44
+559,454,68,5,Easy to set up and use.,0,2024-09-02 21:43:33
+560,284,89,3,Very satisfied with this purchase.,78,2023-11-21 12:12:49
+561,338,100,5,Exceeded my expectations.,7,2023-06-01 15:35:19
+562,231,51,4,Very satisfied with this purchase.,20,2025-02-08 12:41:03
+563,388,56,5,"Five stars, no complaints.",22,2024-01-16 06:24:10
+564,452,65,5,Looks exactly like the photos.,26,2024-01-28 04:46:21
+565,418,62,4,Works perfectly for my needs.,64,2024-08-04 07:16:58
+566,326,15,5,Easy to set up and use.,51,2023-12-01 00:16:24
+567,204,59,3,Very satisfied with this purchase.,70,2024-06-16 08:08:36
+568,495,100,3,Works perfectly for my needs.,24,2023-10-27 20:46:39
+569,340,65,5,A bit overpriced but the quality is there.,28,2023-10-23 16:11:23
+570,51,87,4,"Perfect gift, recipient loved it.",28,2024-08-24 15:52:38
+571,460,24,4,Exceeded my expectations.,8,2025-03-10 19:01:44
+572,167,91,5,"Great product, exactly as described.",51,2025-03-19 04:38:42
+573,253,50,3,Good value for the price.,54,2024-09-26 03:19:35
+574,423,75,3,Easy to set up and use.,66,2023-08-04 01:05:25
+575,439,84,5,"Five stars, no complaints.",9,2023-09-14 23:08:44
+576,240,78,4,Very satisfied with this purchase.,14,2025-02-13 14:03:52
+577,471,65,5,Customer support was very helpful.,75,2024-12-10 21:25:27
+578,297,69,5,Easy to set up and use.,38,2024-08-25 14:50:23
+579,339,64,3,"Great product, exactly as described.",19,2024-10-28 01:40:43
+580,193,48,5,Looks exactly like the photos.,68,2024-10-18 06:09:46
+581,392,22,5,Customer support was very helpful.,73,2023-07-25 08:03:36
+582,71,42,4,"Excellent build quality, highly recommend.",78,2025-04-26 22:53:51
+583,304,73,5,Would definitely buy again.,43,2024-07-19 15:45:51
+584,115,78,4,Very satisfied with this purchase.,80,2023-03-15 00:45:16
+585,392,57,5,Quality is decent but could be better.,74,2023-04-04 21:55:18
+586,228,35,5,Quality is decent but could be better.,79,2024-11-30 00:41:13
+587,217,76,5,"Excellent build quality, highly recommend.",8,2025-01-09 05:04:46
+588,294,80,4,"Great product, exactly as described.",71,2023-03-06 23:26:07
+589,284,77,4,Shipping took longer than expected but product is great.,32,2024-08-28 17:23:54
+590,352,80,5,"Excellent build quality, highly recommend.",51,2024-05-02 10:33:17
+591,39,66,3,Exceeded my expectations.,64,2024-06-12 13:24:15
+592,58,53,4,"Excellent build quality, highly recommend.",58,2024-08-15 09:29:19
+593,106,52,5,Easy to set up and use.,68,2023-08-13 22:27:27
+594,195,38,5,Easy to set up and use.,3,2024-04-16 00:09:33
+595,149,41,1,Exceeded my expectations.,21,2024-11-02 19:58:09
+596,449,2,4,Would definitely buy again.,15,2023-04-18 18:38:27
+597,84,52,3,Disappointed with the quality for this price.,5,2024-11-06 06:19:55
+598,205,38,5,Good value for the price.,2,2023-12-04 06:52:44
+599,139,69,5,Customer support was very helpful.,66,2023-08-10 03:22:08
+600,395,29,1,Easy to set up and use.,73,2023-12-21 01:59:39
+601,448,86,5,"Not what I expected, but still okay.",61,2024-06-16 23:44:43
+602,342,70,5,Exceeded my expectations.,76,2025-03-05 21:48:57
+603,135,96,5,Easy to set up and use.,44,2024-12-06 05:22:54
+604,444,31,1,Disappointed with the quality for this price.,47,2023-03-20 18:26:09
+605,25,1,4,Customer support was very helpful.,49,2024-11-16 12:00:15
+606,53,76,5,Exceeded my expectations.,45,2024-01-10 19:47:17
+607,9,46,4,Delivery was fast and packaging was secure.,71,2024-04-09 12:59:37
+608,393,73,3,Disappointed with the quality for this price.,69,2024-05-31 00:11:14
+609,222,58,5,"Perfect gift, recipient loved it.",61,2023-03-31 07:13:27
+610,335,16,4,Would definitely buy again.,53,2023-04-24 05:53:32
+611,16,15,5,A bit overpriced but the quality is there.,54,2024-09-29 10:37:58
+612,455,89,3,"Five stars, no complaints.",34,2024-06-02 05:45:04
+613,156,33,3,Exceeded my expectations.,5,2024-11-01 02:48:57
+614,248,36,5,Very satisfied with this purchase.,71,2024-11-12 17:29:22
+615,420,48,3,Good value for the price.,48,2023-10-07 05:19:18
+616,404,100,3,"Not what I expected, but still okay.",44,2025-01-06 14:15:56
+617,447,62,3,Very satisfied with this purchase.,22,2023-12-12 04:50:44
+618,481,24,3,"Great product, exactly as described.",42,2024-03-01 11:25:51
+619,111,82,5,"Excellent build quality, highly recommend.",56,2023-04-15 16:05:42
+620,133,64,4,Looks exactly like the photos.,38,2024-05-22 06:48:26
+621,351,42,4,"Five stars, no complaints.",76,2025-01-07 23:16:39
+622,168,22,3,"Five stars, no complaints.",68,2024-02-13 20:57:56
+623,161,1,4,Works perfectly for my needs.,17,2024-05-20 13:39:11
+624,171,94,4,Delivery was fast and packaging was secure.,21,2023-05-27 13:07:35
+625,2,95,4,Quality is decent but could be better.,23,2023-07-20 23:48:34
+626,477,9,5,Shipping took longer than expected but product is great.,30,2023-10-09 10:22:31
+627,325,60,4,Very satisfied with this purchase.,34,2024-03-17 17:44:27
+628,317,45,5,"Not what I expected, but still okay.",70,2024-07-17 10:35:19
+629,88,24,5,"Excellent build quality, highly recommend.",21,2024-08-19 22:04:49
+630,72,92,5,Delivery was fast and packaging was secure.,51,2023-08-27 15:58:26
+631,258,42,4,Exceeded my expectations.,10,2025-01-25 22:00:53
+632,35,8,4,Good value for the price.,67,2023-05-13 06:23:12
+633,186,40,5,Had some issues at first but it works now.,57,2025-02-03 10:22:26
+634,158,35,4,Customer support was very helpful.,27,2024-09-04 23:49:55
+635,396,19,4,"Perfect gift, recipient loved it.",37,2023-08-22 04:41:42
+636,427,60,3,Sturdy and well-made.,38,2025-02-11 17:59:50
+637,103,34,4,Exceeded my expectations.,26,2023-04-26 22:18:00
+638,171,30,4,Easy to set up and use.,3,2024-02-09 05:54:51
+639,100,16,4,Very satisfied with this purchase.,10,2023-06-15 15:22:14
+640,353,26,4,"Perfect gift, recipient loved it.",76,2023-12-09 01:38:50
+641,219,5,4,"Perfect gift, recipient loved it.",68,2023-11-27 23:33:05
+642,416,72,2,Would definitely buy again.,61,2025-03-08 05:24:18
+643,101,2,4,Easy to set up and use.,55,2023-12-11 18:19:13
+644,162,88,2,Would definitely buy again.,15,2025-01-20 13:09:11
+645,355,40,4,A bit overpriced but the quality is there.,41,2024-02-15 17:46:49
+646,248,66,2,"Perfect gift, recipient loved it.",72,2023-08-14 19:24:50
+647,183,55,5,A bit overpriced but the quality is there.,37,2024-05-07 17:56:20
+648,446,49,4,Shipping took longer than expected but product is great.,56,2024-10-09 14:24:43
+649,478,21,5,Looks exactly like the photos.,75,2023-06-10 10:43:28
+650,159,29,4,Looks exactly like the photos.,17,2024-04-03 03:53:04
+651,455,49,5,Very satisfied with this purchase.,33,2024-08-12 10:22:01
+652,27,79,5,Sturdy and well-made.,3,2023-04-27 08:53:42
+653,58,7,4,Easy to set up and use.,43,2025-03-15 04:09:37
+654,117,74,1,"Five stars, no complaints.",43,2023-11-10 08:08:29
+655,49,91,3,Exceeded my expectations.,52,2024-05-25 06:58:28
+656,464,37,3,"Excellent build quality, highly recommend.",49,2024-05-04 04:53:53
+657,377,66,5,"Excellent build quality, highly recommend.",79,2025-02-09 04:48:38
+658,299,48,4,Easy to set up and use.,47,2025-03-31 14:53:58
+659,169,82,5,Customer support was very helpful.,66,2023-09-13 09:13:11
+660,485,67,5,Sturdy and well-made.,6,2023-12-04 07:12:01
+661,74,10,4,Sturdy and well-made.,59,2023-06-23 22:07:31
+662,420,18,4,Easy to set up and use.,24,2025-01-30 22:18:31
+663,461,11,4,"Not what I expected, but still okay.",74,2024-06-07 20:48:00
+664,469,34,5,Delivery was fast and packaging was secure.,34,2024-01-15 04:21:47
+665,218,64,5,Would definitely buy again.,66,2024-10-28 17:41:12
+666,268,14,3,A bit overpriced but the quality is there.,3,2024-01-21 02:23:11
+667,271,65,4,Very satisfied with this purchase.,68,2023-08-25 05:05:47
+668,397,11,5,Exceeded my expectations.,62,2023-07-02 22:39:05
+669,141,44,5,"Great product, exactly as described.",79,2023-11-15 07:22:34
+670,427,14,4,Sturdy and well-made.,6,2024-09-26 09:45:22
+671,162,19,5,Very satisfied with this purchase.,54,2024-01-17 16:34:50
+672,114,48,3,"Not what I expected, but still okay.",64,2023-04-02 02:32:28
+673,387,93,4,"Great product, exactly as described.",40,2023-12-29 04:03:00
+674,65,87,4,Delivery was fast and packaging was secure.,15,2024-03-09 14:01:10
+675,404,75,2,"Five stars, no complaints.",68,2023-09-12 04:34:47
+676,437,74,5,"Excellent build quality, highly recommend.",17,2024-07-02 13:36:38
+677,179,16,4,Very satisfied with this purchase.,5,2023-05-31 18:19:09
+678,354,68,4,Easy to set up and use.,12,2025-04-19 06:40:19
+679,368,16,2,"Not what I expected, but still okay.",7,2023-09-27 16:36:57
+680,154,28,5,A bit overpriced but the quality is there.,51,2023-06-17 05:48:49
+681,464,44,5,"Perfect gift, recipient loved it.",63,2024-01-14 10:52:25
+682,195,97,4,Disappointed with the quality for this price.,10,2024-02-01 03:34:30
+683,354,45,4,Exceeded my expectations.,51,2024-03-16 03:09:46
+684,108,46,4,Exceeded my expectations.,7,2023-03-12 01:14:38
+685,321,43,4,Very satisfied with this purchase.,11,2024-09-20 16:14:23
+686,325,38,4,"Five stars, no complaints.",11,2024-08-01 08:03:50
+687,441,50,5,"Five stars, no complaints.",74,2025-03-27 01:28:45
+688,291,24,4,Delivery was fast and packaging was secure.,12,2024-10-11 01:07:14
+689,149,32,4,Exceeded my expectations.,5,2023-09-25 04:46:26
+690,430,66,5,Shipping took longer than expected but product is great.,62,2023-12-08 06:40:06
+691,234,4,5,Easy to set up and use.,76,2024-12-15 06:44:46
+692,393,84,4,"Great product, exactly as described.",43,2024-03-22 09:20:12
+693,152,23,4,Looks exactly like the photos.,32,2024-04-02 08:12:27
+694,36,91,5,Works perfectly for my needs.,4,2023-08-10 20:50:03
+695,320,90,4,"Not what I expected, but still okay.",26,2024-08-02 00:50:09
+696,275,82,5,Very satisfied with this purchase.,33,2023-05-06 13:42:05
+697,500,48,5,Good value for the price.,24,2023-03-02 21:34:30
+698,70,63,5,"Great product, exactly as described.",33,2023-10-08 16:36:41
+699,250,54,4,Quality is decent but could be better.,65,2023-08-07 03:33:37
+700,135,82,4,Had some issues at first but it works now.,58,2023-08-28 07:00:07
+701,271,97,5,Sturdy and well-made.,40,2024-01-23 10:06:28
+702,475,3,5,Sturdy and well-made.,5,2024-12-09 22:40:32
+703,254,52,4,Exceeded my expectations.,80,2023-03-06 13:59:09
+704,292,23,3,Easy to set up and use.,35,2025-04-29 22:23:42
+705,233,98,4,"Not what I expected, but still okay.",44,2023-08-21 19:24:21
+706,439,91,4,"Not what I expected, but still okay.",68,2025-02-02 18:12:40
+707,70,63,3,Had some issues at first but it works now.,25,2023-04-03 01:06:51
+708,329,55,5,Easy to set up and use.,15,2023-08-12 03:13:41
+709,388,50,5,Had some issues at first but it works now.,4,2024-01-10 11:55:59
+710,157,27,5,"Perfect gift, recipient loved it.",8,2025-04-26 23:54:59
+711,253,27,4,Disappointed with the quality for this price.,45,2024-02-09 13:20:21
+712,375,30,4,"Excellent build quality, highly recommend.",60,2025-01-27 06:50:25
+713,8,33,3,"Great product, exactly as described.",77,2023-03-20 08:24:26
+714,319,15,5,Customer support was very helpful.,24,2024-12-11 02:20:29
+715,497,3,3,Quality is decent but could be better.,50,2023-09-23 23:33:25
+716,179,34,5,Good value for the price.,33,2023-06-14 08:30:56
+717,336,22,5,"Five stars, no complaints.",10,2023-04-24 03:18:35
+718,371,84,4,Disappointed with the quality for this price.,17,2023-03-12 09:00:50
+719,138,98,4,"Great product, exactly as described.",7,2025-04-07 13:32:21
+720,354,76,5,Had some issues at first but it works now.,12,2024-01-29 03:11:29
+721,82,35,4,"Five stars, no complaints.",70,2023-06-25 22:46:01
+722,31,80,4,Exceeded my expectations.,39,2023-08-01 11:11:00
+723,489,82,5,Quality is decent but could be better.,35,2025-02-21 07:25:34
+724,15,76,5,Easy to set up and use.,60,2023-10-21 14:33:31
+725,382,50,5,Sturdy and well-made.,52,2024-01-12 23:15:03
+726,94,23,4,Shipping took longer than expected but product is great.,38,2023-10-10 22:24:58
+727,95,38,1,A bit overpriced but the quality is there.,22,2024-12-11 05:30:21
+728,52,14,4,Exceeded my expectations.,6,2023-04-25 01:31:26
+729,99,40,4,Very satisfied with this purchase.,12,2024-10-13 14:41:54
+730,111,7,4,Quality is decent but could be better.,69,2024-11-10 09:04:54
+731,230,89,5,Good value for the price.,19,2023-04-24 14:24:33
+732,17,77,4,"Five stars, no complaints.",50,2024-12-03 06:56:15
+733,370,18,2,Customer support was very helpful.,25,2024-11-25 18:41:50
+734,491,70,5,"Great product, exactly as described.",43,2025-02-20 02:43:39
+735,244,78,4,Good value for the price.,12,2025-04-07 20:25:59
+736,125,18,4,Sturdy and well-made.,1,2023-04-10 09:13:59
+737,409,60,4,Disappointed with the quality for this price.,11,2023-12-20 09:18:59
+738,386,100,2,Disappointed with the quality for this price.,21,2023-11-04 22:28:03
+739,48,14,4,Looks exactly like the photos.,72,2023-05-04 02:09:06
+740,381,66,4,Works perfectly for my needs.,49,2025-04-08 21:50:20
+741,73,24,3,Had some issues at first but it works now.,40,2024-05-07 22:05:35
+742,381,53,5,Shipping took longer than expected but product is great.,14,2023-11-15 17:03:59
+743,281,9,4,"Great product, exactly as described.",58,2024-04-02 23:30:53
+744,157,32,4,Quality is decent but could be better.,28,2024-06-11 10:00:59
+745,151,17,3,Quality is decent but could be better.,11,2024-11-07 04:50:35
+746,8,19,4,A bit overpriced but the quality is there.,75,2024-04-23 05:47:05
+747,387,11,3,"Great product, exactly as described.",74,2024-04-25 21:52:36
+748,157,95,5,Shipping took longer than expected but product is great.,23,2024-10-04 19:52:09
+749,316,3,4,Would definitely buy again.,53,2024-08-30 13:21:05
+750,162,13,4,Quality is decent but could be better.,60,2024-11-25 07:42:14
+751,41,84,4,"Excellent build quality, highly recommend.",71,2023-04-07 10:45:11
+752,497,87,3,Customer support was very helpful.,45,2024-08-26 21:06:56
+753,58,49,2,Delivery was fast and packaging was secure.,13,2023-08-19 13:30:20
+754,164,69,5,Works perfectly for my needs.,21,2024-12-27 18:36:18
+755,277,52,5,"Excellent build quality, highly recommend.",77,2024-12-02 13:00:57
+756,131,62,5,"Perfect gift, recipient loved it.",53,2023-09-14 03:14:19
+757,110,60,4,Good value for the price.,1,2025-04-16 00:48:12
+758,270,35,4,Had some issues at first but it works now.,3,2024-02-22 09:54:45
+759,225,85,5,Works perfectly for my needs.,72,2023-08-18 03:46:40
+760,293,5,4,Exceeded my expectations.,72,2023-09-19 22:13:14
+761,44,56,4,Good value for the price.,51,2024-01-08 04:11:35
+762,202,78,5,Quality is decent but could be better.,25,2024-07-19 11:28:44
+763,118,36,4,"Perfect gift, recipient loved it.",55,2024-04-24 01:57:06
+764,230,6,4,Delivery was fast and packaging was secure.,28,2024-11-27 06:03:05
+765,164,36,4,Quality is decent but could be better.,1,2023-11-17 05:55:36
+766,34,22,3,Shipping took longer than expected but product is great.,18,2023-03-23 14:16:12
+767,184,43,1,A bit overpriced but the quality is there.,27,2023-03-04 01:45:28
+768,32,3,1,"Perfect gift, recipient loved it.",48,2024-03-21 06:58:15
+769,407,38,5,Looks exactly like the photos.,58,2024-03-06 16:43:57
+770,304,15,5,"Great product, exactly as described.",66,2023-07-18 18:44:44
+771,63,33,3,"Great product, exactly as described.",2,2023-07-22 10:52:53
+772,197,73,5,Quality is decent but could be better.,30,2023-10-02 17:12:52
+773,351,64,4,Disappointed with the quality for this price.,74,2025-02-12 07:44:48
+774,379,92,5,Looks exactly like the photos.,1,2024-08-05 06:14:45
+775,154,70,5,Works perfectly for my needs.,70,2024-12-20 14:44:42
+776,246,34,4,Good value for the price.,6,2023-04-05 19:39:07
+777,472,77,5,Sturdy and well-made.,65,2024-05-04 19:36:45
+778,351,29,4,Delivery was fast and packaging was secure.,12,2024-03-14 12:51:16
+779,488,58,3,Delivery was fast and packaging was secure.,66,2023-07-11 07:06:19
+780,163,12,5,Easy to set up and use.,47,2024-04-06 13:21:40
+781,169,65,3,Sturdy and well-made.,39,2023-10-20 03:26:01
+782,499,3,3,Had some issues at first but it works now.,1,2023-06-15 06:38:36
+783,186,27,4,"Five stars, no complaints.",35,2024-12-01 09:01:08
+784,211,4,4,Looks exactly like the photos.,73,2024-03-23 22:56:58
+785,146,75,5,Had some issues at first but it works now.,51,2024-12-30 23:58:52
+786,227,19,5,Delivery was fast and packaging was secure.,7,2023-10-01 07:04:51
+787,137,83,5,Quality is decent but could be better.,69,2023-07-21 07:10:33
+788,353,65,3,Quality is decent but could be better.,28,2025-01-22 23:36:47
+789,306,99,4,"Great product, exactly as described.",19,2024-10-28 12:35:43
+790,73,5,4,"Perfect gift, recipient loved it.",8,2025-04-10 21:03:13
+791,135,89,4,Quality is decent but could be better.,59,2024-02-17 06:08:34
+792,405,46,5,A bit overpriced but the quality is there.,52,2024-06-27 00:17:05
+793,82,29,4,Disappointed with the quality for this price.,2,2023-03-14 01:58:03
+794,151,12,3,Delivery was fast and packaging was secure.,71,2023-10-03 16:32:07
+795,283,90,4,Easy to set up and use.,14,2024-12-10 09:15:24
+796,481,9,5,"Not what I expected, but still okay.",44,2023-03-28 19:19:12
+797,147,86,5,Looks exactly like the photos.,14,2023-04-19 06:07:41
+798,32,60,5,"Five stars, no complaints.",7,2024-04-14 21:21:21
+799,219,53,1,Works perfectly for my needs.,16,2024-03-11 09:42:31
+800,268,19,4,"Great product, exactly as described.",11,2023-11-29 01:35:31
+801,103,17,5,Very satisfied with this purchase.,8,2024-08-27 00:32:32
+802,46,17,1,Had some issues at first but it works now.,68,2024-10-02 09:28:16
+803,6,64,5,Very satisfied with this purchase.,41,2024-02-12 13:48:15
+804,490,99,5,Had some issues at first but it works now.,39,2024-10-14 03:51:55
+805,372,6,5,"Excellent build quality, highly recommend.",22,2023-10-11 04:53:03
+806,226,54,5,"Excellent build quality, highly recommend.",49,2023-04-09 01:46:47
+807,55,80,3,"Five stars, no complaints.",0,2024-09-19 11:38:24
+808,256,93,5,A bit overpriced but the quality is there.,39,2025-04-03 00:18:26
+809,433,20,4,Customer support was very helpful.,71,2024-12-15 07:55:20
+810,43,63,5,Easy to set up and use.,21,2023-11-09 11:51:43
+811,482,41,5,Quality is decent but could be better.,58,2023-12-10 16:54:29
+812,202,58,5,"Perfect gift, recipient loved it.",50,2024-12-09 19:33:39
+813,361,50,5,Looks exactly like the photos.,19,2023-09-18 23:34:19
+814,142,10,5,Exceeded my expectations.,56,2024-11-25 00:02:29
+815,437,70,4,Had some issues at first but it works now.,79,2024-05-29 20:40:35
+816,243,60,5,Would definitely buy again.,74,2023-06-02 08:17:59
+817,328,27,4,Good value for the price.,52,2023-08-17 02:20:15
+818,413,66,4,Sturdy and well-made.,61,2024-06-11 02:39:51
+819,499,19,3,"Not what I expected, but still okay.",34,2024-01-20 09:47:24
+820,158,7,4,Very satisfied with this purchase.,48,2023-10-23 16:24:23
+821,486,15,3,"Not what I expected, but still okay.",55,2024-03-27 16:14:24
+822,310,95,5,Would definitely buy again.,45,2024-04-02 21:22:27
+823,295,23,1,Looks exactly like the photos.,35,2024-05-13 17:03:06
+824,330,12,5,Delivery was fast and packaging was secure.,78,2025-04-04 22:31:13
+825,397,26,4,Works perfectly for my needs.,67,2023-10-14 23:18:02
+826,238,32,1,Very satisfied with this purchase.,29,2024-06-19 11:27:44
+827,116,44,5,"Excellent build quality, highly recommend.",64,2025-04-19 21:38:57
+828,413,23,5,"Perfect gift, recipient loved it.",66,2024-05-04 15:47:17
+829,301,54,4,Looks exactly like the photos.,51,2024-04-07 09:12:46
+830,444,100,1,Delivery was fast and packaging was secure.,12,2023-05-07 22:50:05
+831,94,12,3,Customer support was very helpful.,39,2023-12-30 14:08:35
+832,337,96,4,Would definitely buy again.,31,2023-04-15 12:39:59
+833,61,91,4,"Excellent build quality, highly recommend.",78,2024-12-18 11:32:20
+834,3,31,4,Delivery was fast and packaging was secure.,64,2024-10-19 03:43:31
+835,28,8,4,Good value for the price.,25,2023-08-11 03:58:21
+836,305,58,5,Sturdy and well-made.,79,2023-05-16 21:26:36
+837,42,12,5,Good value for the price.,1,2024-01-21 00:01:16
+838,153,61,5,"Five stars, no complaints.",13,2025-04-10 02:27:42
+839,383,13,5,Disappointed with the quality for this price.,71,2024-12-04 14:07:02
+840,24,100,5,Looks exactly like the photos.,19,2024-09-02 03:06:09
+841,351,92,5,Good value for the price.,64,2024-04-05 08:45:03
+842,51,75,5,Disappointed with the quality for this price.,67,2024-07-23 13:12:42
+843,445,47,5,Delivery was fast and packaging was secure.,9,2024-01-15 01:28:04
+844,491,57,4,"Not what I expected, but still okay.",67,2023-11-13 07:49:21
+845,362,16,1,Would definitely buy again.,71,2025-01-18 04:07:11
+846,268,96,1,Quality is decent but could be better.,59,2023-05-27 08:42:29
+847,367,30,4,Very satisfied with this purchase.,13,2024-12-22 22:28:00
+848,15,71,5,Delivery was fast and packaging was secure.,78,2025-02-28 02:11:09
+849,500,20,3,A bit overpriced but the quality is there.,76,2024-10-17 19:54:46
+850,129,62,4,Delivery was fast and packaging was secure.,68,2024-01-02 12:41:17
+851,249,44,5,Good value for the price.,57,2024-12-11 05:51:10
+852,287,14,5,"Great product, exactly as described.",23,2024-05-19 12:31:43
+853,281,2,5,Easy to set up and use.,46,2024-08-28 15:42:28
+854,239,65,2,Would definitely buy again.,32,2024-05-29 09:48:19
+855,100,99,3,Looks exactly like the photos.,23,2023-11-08 01:50:11
+856,497,16,4,Good value for the price.,49,2024-10-15 01:54:00
+857,283,46,5,Had some issues at first but it works now.,50,2025-03-03 11:23:36
+858,11,50,5,Customer support was very helpful.,8,2025-01-07 17:57:20
+859,318,89,3,Sturdy and well-made.,46,2023-10-07 15:32:38
+860,46,42,2,Delivery was fast and packaging was secure.,52,2024-06-06 05:23:44
+861,422,19,4,"Great product, exactly as described.",61,2023-03-15 23:38:09
+862,112,26,4,"Perfect gift, recipient loved it.",33,2023-10-30 04:15:43
+863,145,28,5,Delivery was fast and packaging was secure.,79,2024-02-09 01:39:30
+864,296,18,4,"Excellent build quality, highly recommend.",64,2023-06-11 11:06:28
+865,113,4,1,Delivery was fast and packaging was secure.,54,2023-06-24 21:04:31
+866,417,2,4,"Five stars, no complaints.",5,2023-10-15 21:58:58
+867,52,48,5,Looks exactly like the photos.,60,2024-09-17 14:03:38
+868,391,92,5,Looks exactly like the photos.,37,2024-11-18 00:38:46
+869,366,32,4,Exceeded my expectations.,42,2024-02-25 10:39:40
+870,159,71,3,"Great product, exactly as described.",41,2023-03-27 12:38:19
+871,420,16,5,Had some issues at first but it works now.,63,2024-12-13 09:31:08
+872,133,99,5,Shipping took longer than expected but product is great.,64,2024-12-19 09:59:44
+873,439,16,4,"Five stars, no complaints.",70,2024-08-05 10:46:50
+874,165,96,5,Delivery was fast and packaging was secure.,17,2023-06-27 14:54:28
+875,464,58,5,"Not what I expected, but still okay.",12,2023-09-25 03:22:31
+876,120,76,4,Sturdy and well-made.,63,2025-04-26 02:45:34
+877,51,44,4,Quality is decent but could be better.,48,2023-05-10 20:37:47
+878,391,86,5,Disappointed with the quality for this price.,20,2024-02-16 18:15:30
+879,376,50,1,"Excellent build quality, highly recommend.",37,2025-01-04 22:53:05
+880,389,95,5,Customer support was very helpful.,35,2024-12-16 21:02:47
+881,396,60,4,Good value for the price.,45,2023-06-09 10:37:10
+882,227,14,1,A bit overpriced but the quality is there.,7,2025-04-15 18:51:06
+883,238,16,4,Had some issues at first but it works now.,61,2024-02-21 02:33:10
+884,247,86,5,A bit overpriced but the quality is there.,12,2025-03-26 00:35:44
+885,163,40,5,"Perfect gift, recipient loved it.",2,2023-12-14 11:51:35
+886,455,57,4,Works perfectly for my needs.,38,2025-04-20 18:42:04
+887,434,42,5,Would definitely buy again.,49,2023-05-17 09:04:17
+888,83,73,3,Had some issues at first but it works now.,50,2024-11-15 18:27:56
+889,76,58,3,"Perfect gift, recipient loved it.",38,2023-05-10 23:34:03
+890,230,54,4,Quality is decent but could be better.,1,2025-01-20 18:42:58
+891,335,49,5,Quality is decent but could be better.,61,2023-06-14 00:13:42
+892,441,91,4,"Not what I expected, but still okay.",26,2024-11-12 18:08:26
+893,244,54,5,Customer support was very helpful.,77,2023-09-11 18:31:05
+894,112,68,4,"Perfect gift, recipient loved it.",60,2023-05-20 23:06:29
+895,209,86,5,Had some issues at first but it works now.,66,2024-11-01 02:25:50
+896,303,87,4,Good value for the price.,42,2024-09-26 13:50:57
+897,399,31,4,Customer support was very helpful.,3,2023-10-11 22:10:19
+898,243,26,5,Works perfectly for my needs.,41,2025-01-27 01:48:13
+899,220,33,5,"Not what I expected, but still okay.",24,2024-07-12 16:41:26
+900,211,58,2,Shipping took longer than expected but product is great.,64,2025-02-17 19:48:44
+901,256,91,4,Had some issues at first but it works now.,20,2025-01-06 19:43:03
+902,436,10,5,"Great product, exactly as described.",30,2024-04-07 09:16:22
+903,76,24,4,Looks exactly like the photos.,16,2025-02-05 12:05:45
+904,374,27,3,Would definitely buy again.,22,2023-10-15 16:56:50
+905,247,14,3,Works perfectly for my needs.,59,2024-09-27 07:34:26
+906,334,63,4,Delivery was fast and packaging was secure.,62,2023-08-13 14:37:57
+907,217,22,2,"Excellent build quality, highly recommend.",20,2024-09-28 19:15:38
+908,59,37,4,Easy to set up and use.,51,2024-02-25 11:16:23
+909,17,48,3,Delivery was fast and packaging was secure.,54,2023-03-13 05:10:38
+910,107,75,5,Would definitely buy again.,23,2023-04-15 23:07:10
+911,461,24,5,Sturdy and well-made.,70,2023-03-22 14:45:28
+912,49,35,3,Looks exactly like the photos.,34,2025-04-08 15:55:32
+913,425,10,2,Easy to set up and use.,3,2023-06-19 23:57:20
+914,231,60,5,"Great product, exactly as described.",27,2023-07-03 20:58:21
+915,205,25,4,Good value for the price.,43,2023-03-17 17:55:08
+916,482,5,4,A bit overpriced but the quality is there.,26,2023-12-12 23:57:58
+917,212,59,3,Had some issues at first but it works now.,48,2024-02-11 18:43:49
+918,437,15,5,Disappointed with the quality for this price.,20,2024-05-06 20:20:32
+919,401,57,4,"Five stars, no complaints.",71,2023-03-09 06:41:36
+920,277,29,5,Good value for the price.,50,2024-07-18 00:28:19
+921,134,8,3,Customer support was very helpful.,78,2024-07-17 22:44:31
+922,56,90,5,Exceeded my expectations.,28,2023-09-14 15:07:34
+923,237,90,3,Shipping took longer than expected but product is great.,23,2023-07-14 03:50:33
+924,82,74,3,Looks exactly like the photos.,28,2024-08-22 16:40:47
+925,334,7,4,Sturdy and well-made.,54,2023-06-01 10:18:32
+926,65,56,5,Disappointed with the quality for this price.,50,2024-07-27 09:20:05
+927,422,22,4,Would definitely buy again.,70,2024-06-14 19:35:30
+928,183,27,5,Had some issues at first but it works now.,79,2024-10-01 10:06:47
+929,12,58,5,"Perfect gift, recipient loved it.",69,2025-01-04 12:20:52
+930,155,1,4,Shipping took longer than expected but product is great.,46,2024-12-01 05:40:33
+931,434,3,3,Easy to set up and use.,1,2023-08-08 10:39:34
+932,290,22,5,Would definitely buy again.,23,2023-06-29 18:53:28
+933,463,48,5,"Excellent build quality, highly recommend.",30,2023-04-20 14:27:46
+934,144,34,4,Good value for the price.,74,2024-02-13 18:58:00
+935,89,21,4,A bit overpriced but the quality is there.,31,2024-01-15 11:02:51
+936,89,1,5,"Five stars, no complaints.",45,2023-06-13 10:43:37
+937,21,20,5,"Not what I expected, but still okay.",44,2023-06-01 05:49:51
+938,59,80,5,"Five stars, no complaints.",43,2024-05-14 16:21:12
+939,169,92,5,Good value for the price.,28,2024-11-18 20:47:17
+940,298,65,5,Easy to set up and use.,36,2024-01-18 08:26:27
+941,320,25,5,"Five stars, no complaints.",24,2023-11-07 23:17:57
+942,151,32,4,Would definitely buy again.,75,2024-12-22 22:34:11
+943,68,1,5,"Great product, exactly as described.",44,2024-02-22 01:20:36
+944,63,17,5,Had some issues at first but it works now.,34,2023-07-19 12:48:43
+945,83,75,2,"Not what I expected, but still okay.",76,2024-10-31 05:27:29
+946,161,79,5,Quality is decent but could be better.,7,2023-08-31 03:47:40
+947,74,32,5,Looks exactly like the photos.,25,2023-06-25 21:40:15
+948,247,59,4,Customer support was very helpful.,35,2023-11-04 15:12:45
+949,34,2,4,Exceeded my expectations.,34,2023-07-23 07:48:52
+950,290,27,5,"Not what I expected, but still okay.",79,2023-07-30 21:50:05
+951,301,17,3,Disappointed with the quality for this price.,9,2024-02-19 20:43:18
+952,52,62,4,Looks exactly like the photos.,16,2024-12-17 23:10:13
+953,438,36,4,Quality is decent but could be better.,65,2024-11-09 06:26:39
+954,129,50,3,Quality is decent but could be better.,3,2024-12-21 08:07:13
+955,62,58,5,"Five stars, no complaints.",3,2023-03-08 00:07:30
+956,293,76,3,Easy to set up and use.,34,2024-07-02 23:09:08
+957,448,18,4,A bit overpriced but the quality is there.,21,2023-08-12 12:02:29
+958,33,46,5,"Not what I expected, but still okay.",45,2023-03-16 10:19:57
+959,163,13,4,Quality is decent but could be better.,12,2023-08-11 05:11:56
+960,154,31,5,Good value for the price.,66,2025-01-15 00:39:36
+961,249,76,4,Quality is decent but could be better.,33,2025-02-22 02:52:31
+962,310,17,4,Had some issues at first but it works now.,16,2023-10-25 04:23:09
+963,498,12,4,"Five stars, no complaints.",32,2024-07-12 04:16:38
+964,359,70,5,Sturdy and well-made.,23,2023-03-12 12:46:26
+965,155,99,4,Shipping took longer than expected but product is great.,5,2024-12-30 04:34:48
+966,253,82,4,Sturdy and well-made.,25,2024-01-19 14:57:04
+967,451,31,5,Sturdy and well-made.,75,2024-12-27 23:30:05
+968,182,13,4,Exceeded my expectations.,7,2023-11-13 18:17:14
+969,175,60,5,"Excellent build quality, highly recommend.",55,2024-05-01 02:23:55
+970,30,67,4,"Perfect gift, recipient loved it.",45,2023-12-24 10:12:35
+971,425,95,4,"Not what I expected, but still okay.",55,2025-03-12 06:38:32
+972,70,52,5,"Great product, exactly as described.",65,2024-04-17 09:52:38
+973,204,62,3,Sturdy and well-made.,21,2024-09-13 23:43:15
+974,157,28,5,"Not what I expected, but still okay.",47,2023-07-03 12:19:26
+975,403,75,4,Easy to set up and use.,20,2023-11-24 03:29:53
+976,94,45,1,Delivery was fast and packaging was secure.,68,2023-12-10 19:49:19
+977,181,94,5,Looks exactly like the photos.,21,2024-06-08 20:10:39
+978,229,23,5,A bit overpriced but the quality is there.,75,2024-03-26 09:27:09
+979,451,24,5,Works perfectly for my needs.,21,2023-11-08 11:22:49
+980,126,36,3,Sturdy and well-made.,73,2023-11-27 20:35:19
+981,305,2,5,Exceeded my expectations.,53,2024-11-02 17:00:21
+982,88,89,4,Quality is decent but could be better.,52,2024-11-09 01:13:42
+983,1,34,5,"Not what I expected, but still okay.",6,2024-09-12 06:28:58
+984,221,25,3,Shipping took longer than expected but product is great.,36,2023-05-01 02:37:53
+985,10,92,4,Works perfectly for my needs.,6,2023-07-10 02:44:30
+986,295,29,4,A bit overpriced but the quality is there.,68,2023-12-01 22:46:16
+987,69,21,4,Disappointed with the quality for this price.,11,2023-07-13 21:45:36
+988,487,76,4,"Great product, exactly as described.",5,2024-12-12 05:57:48
+989,495,3,5,Quality is decent but could be better.,59,2025-03-24 17:55:57
+990,338,5,4,Had some issues at first but it works now.,51,2023-08-20 06:33:00
+991,473,88,5,Good value for the price.,60,2025-01-06 04:30:56
+992,446,17,4,A bit overpriced but the quality is there.,67,2024-08-31 21:39:03
+993,6,2,5,"Five stars, no complaints.",59,2023-11-25 11:12:44
+994,103,35,4,Disappointed with the quality for this price.,54,2023-10-14 18:08:01
+995,439,29,5,A bit overpriced but the quality is there.,25,2024-11-27 11:34:32
+996,59,2,5,Exceeded my expectations.,33,2024-05-13 19:15:56
+997,365,12,5,"Excellent build quality, highly recommend.",17,2024-01-05 18:23:27
+998,367,13,4,Had some issues at first but it works now.,36,2023-08-28 16:08:05
+999,469,96,3,Would definitely buy again.,59,2025-02-27 21:57:43
+1000,338,50,4,Shipping took longer than expected but product is great.,53,2023-04-19 03:51:04
+1001,217,89,4,Had some issues at first but it works now.,77,2024-05-28 02:23:09
+1002,93,80,5,Had some issues at first but it works now.,54,2023-06-16 21:42:36
+1003,243,42,5,Delivery was fast and packaging was secure.,65,2025-01-14 15:51:01
+1004,11,12,5,Shipping took longer than expected but product is great.,79,2023-12-19 06:26:19
+1005,89,39,5,Good value for the price.,21,2024-05-19 21:17:46
+1006,287,29,4,Had some issues at first but it works now.,34,2023-06-29 19:27:13
+1007,394,64,3,Had some issues at first but it works now.,44,2024-12-25 11:56:00
+1008,400,43,5,"Perfect gift, recipient loved it.",49,2024-03-31 22:47:24
+1009,230,73,5,"Great product, exactly as described.",21,2024-09-08 14:04:55
+1010,448,38,5,Customer support was very helpful.,28,2024-10-08 23:30:53
+1011,432,98,3,Easy to set up and use.,72,2023-05-04 09:49:54
+1012,144,89,4,A bit overpriced but the quality is there.,66,2025-01-02 23:58:27
+1013,376,91,4,"Great product, exactly as described.",0,2024-08-08 11:14:24
+1014,117,65,5,"Not what I expected, but still okay.",61,2024-04-20 04:39:56
+1015,90,12,4,Had some issues at first but it works now.,30,2024-07-12 02:27:02
+1016,400,76,5,Good value for the price.,74,2024-02-06 08:09:25
+1017,245,69,2,Very satisfied with this purchase.,6,2024-06-16 08:57:37
+1018,251,83,5,Delivery was fast and packaging was secure.,37,2024-02-09 01:34:07
+1019,234,65,5,"Perfect gift, recipient loved it.",33,2024-05-02 10:50:38
+1020,109,59,2,Looks exactly like the photos.,10,2025-01-30 04:22:39
+1021,432,84,5,Customer support was very helpful.,53,2024-04-02 07:33:13
+1022,459,54,5,Quality is decent but could be better.,49,2024-02-27 06:11:20
+1023,207,71,5,Works perfectly for my needs.,47,2024-06-04 06:31:31
+1024,452,89,3,Customer support was very helpful.,66,2023-04-22 03:08:07
+1025,481,8,3,Shipping took longer than expected but product is great.,21,2023-08-18 20:58:06
+1026,6,100,4,"Not what I expected, but still okay.",5,2025-02-03 22:04:52
+1027,333,72,4,"Excellent build quality, highly recommend.",30,2024-09-15 10:19:53
+1028,211,97,5,Good value for the price.,43,2023-04-26 17:00:15
+1029,117,91,4,Had some issues at first but it works now.,54,2024-03-16 14:23:19
+1030,109,4,4,Disappointed with the quality for this price.,27,2023-04-04 13:39:29
+1031,419,52,4,Delivery was fast and packaging was secure.,70,2023-09-27 17:00:01
+1032,94,95,3,Very satisfied with this purchase.,60,2024-05-10 20:14:31
+1033,398,11,5,"Perfect gift, recipient loved it.",57,2025-04-28 06:47:27
+1034,332,65,4,A bit overpriced but the quality is there.,64,2024-07-24 20:17:30
+1035,347,77,5,Good value for the price.,49,2025-03-01 06:01:08
+1036,385,27,5,A bit overpriced but the quality is there.,38,2023-11-18 18:44:25
+1037,357,66,5,"Perfect gift, recipient loved it.",61,2024-11-11 01:48:30
+1038,13,95,5,"Not what I expected, but still okay.",2,2024-06-13 04:51:06
+1039,293,18,3,Delivery was fast and packaging was secure.,58,2023-05-31 03:50:59
+1040,135,83,5,Very satisfied with this purchase.,9,2024-11-13 15:59:16
+1041,350,93,4,Very satisfied with this purchase.,50,2024-01-14 21:43:45
+1042,96,8,5,Looks exactly like the photos.,20,2023-03-24 00:54:13
+1043,243,25,5,Sturdy and well-made.,74,2023-12-01 10:38:46
+1044,393,66,5,Works perfectly for my needs.,72,2023-11-04 03:28:25
+1045,252,16,5,Very satisfied with this purchase.,41,2024-01-12 00:24:44
+1046,396,30,4,Disappointed with the quality for this price.,0,2024-12-16 22:25:52
+1047,422,40,5,Would definitely buy again.,51,2024-05-27 12:11:24
+1048,81,4,4,Sturdy and well-made.,68,2024-02-28 03:43:04
+1049,498,12,5,"Five stars, no complaints.",41,2024-06-12 21:31:43
+1050,352,82,5,"Great product, exactly as described.",14,2024-05-12 12:02:55
+1051,184,100,5,Very satisfied with this purchase.,57,2023-04-11 14:34:54
+1052,195,77,3,Exceeded my expectations.,43,2025-01-11 06:09:37
+1053,98,1,4,Exceeded my expectations.,67,2023-11-08 06:56:14
+1054,491,35,4,"Perfect gift, recipient loved it.",35,2024-03-16 03:35:46
+1055,416,7,5,Works perfectly for my needs.,59,2023-08-21 10:27:58
+1056,213,61,4,"Great product, exactly as described.",49,2024-10-06 12:02:34
+1057,489,83,4,"Five stars, no complaints.",14,2024-08-15 23:32:58
+1058,453,83,4,Good value for the price.,13,2024-10-10 17:01:24
+1059,334,33,5,Sturdy and well-made.,18,2023-07-23 17:01:07
+1060,169,1,3,Disappointed with the quality for this price.,5,2023-08-25 18:32:40
+1061,244,7,5,Quality is decent but could be better.,52,2024-06-06 11:03:48
+1062,22,58,5,A bit overpriced but the quality is there.,3,2023-04-18 20:22:19
+1063,266,82,5,Works perfectly for my needs.,58,2023-11-03 12:24:11
+1064,206,20,4,Exceeded my expectations.,53,2023-11-26 01:43:07
+1065,334,99,4,"Excellent build quality, highly recommend.",67,2024-07-19 19:26:36
+1066,386,4,5,"Great product, exactly as described.",58,2023-10-15 19:56:04
+1067,265,65,5,"Not what I expected, but still okay.",72,2023-12-11 14:27:05
+1068,329,83,4,Had some issues at first but it works now.,11,2023-06-25 21:58:10
+1069,215,70,1,Sturdy and well-made.,14,2024-10-18 21:18:30
+1070,440,15,3,Shipping took longer than expected but product is great.,51,2024-10-29 19:34:49
+1071,68,2,5,"Perfect gift, recipient loved it.",17,2023-03-27 00:13:38
+1072,123,80,3,Good value for the price.,22,2024-12-14 10:25:41
+1073,100,87,5,Had some issues at first but it works now.,35,2024-04-22 09:06:28
+1074,112,42,5,Looks exactly like the photos.,80,2023-12-11 15:33:32
+1075,329,33,4,"Perfect gift, recipient loved it.",62,2023-03-10 02:50:15
+1076,42,23,1,"Excellent build quality, highly recommend.",18,2024-06-06 07:48:42
+1077,84,85,5,A bit overpriced but the quality is there.,52,2023-03-29 20:14:28
+1078,300,12,5,Quality is decent but could be better.,28,2025-02-10 07:12:47
+1079,187,32,1,Easy to set up and use.,34,2025-01-30 03:31:01
+1080,208,91,2,Exceeded my expectations.,48,2025-01-26 06:41:17
+1081,1,17,5,"Excellent build quality, highly recommend.",31,2024-10-04 05:08:34
+1082,163,18,5,"Excellent build quality, highly recommend.",5,2024-08-28 16:55:22
+1083,182,29,5,Very satisfied with this purchase.,32,2025-04-17 15:17:21
+1084,386,11,5,Disappointed with the quality for this price.,47,2024-05-06 10:48:32
+1085,348,3,5,Looks exactly like the photos.,34,2023-10-15 03:43:04
+1086,61,46,5,Sturdy and well-made.,57,2025-04-13 06:10:56
+1087,128,67,4,Looks exactly like the photos.,52,2023-10-23 13:02:34
+1088,102,17,4,Good value for the price.,48,2024-11-16 09:35:03
+1089,414,60,5,Exceeded my expectations.,67,2024-11-23 10:07:11
+1090,146,75,2,Customer support was very helpful.,74,2024-06-25 04:59:45
+1091,291,63,5,Would definitely buy again.,17,2023-05-18 10:41:28
+1092,488,33,3,"Perfect gift, recipient loved it.",49,2023-12-12 15:21:46
+1093,85,53,5,Quality is decent but could be better.,1,2024-10-17 06:16:52
+1094,214,51,2,Disappointed with the quality for this price.,72,2024-11-24 02:06:23
+1095,91,25,5,Looks exactly like the photos.,78,2023-10-26 17:27:50
+1096,302,95,5,Easy to set up and use.,31,2024-01-29 12:19:01
+1097,165,97,5,Shipping took longer than expected but product is great.,51,2025-02-18 18:50:59
+1098,364,64,4,Would definitely buy again.,47,2025-01-02 22:17:34
+1099,7,39,3,Had some issues at first but it works now.,67,2023-11-24 05:28:36
+1100,26,67,5,Had some issues at first but it works now.,77,2024-03-18 17:32:55
+1101,49,42,4,"Perfect gift, recipient loved it.",24,2023-07-10 11:31:32
+1102,80,17,4,"Great product, exactly as described.",0,2023-06-12 07:14:40
+1103,149,39,2,Disappointed with the quality for this price.,51,2023-10-15 00:52:50
+1104,431,79,5,Works perfectly for my needs.,39,2024-02-16 08:47:34
+1105,437,5,5,Sturdy and well-made.,9,2024-02-02 05:27:24
+1106,154,16,1,"Perfect gift, recipient loved it.",73,2025-04-09 01:15:52
+1107,165,20,5,Easy to set up and use.,60,2023-09-22 16:03:11
+1108,17,76,5,Very satisfied with this purchase.,41,2024-10-17 03:01:46
+1109,153,21,5,Quality is decent but could be better.,37,2023-03-18 15:24:07
+1110,169,80,5,Quality is decent but could be better.,7,2023-12-09 17:44:23
+1111,120,44,5,"Great product, exactly as described.",72,2025-03-22 14:41:45
+1112,219,55,5,Delivery was fast and packaging was secure.,79,2024-04-09 11:29:07
+1113,287,80,4,Sturdy and well-made.,69,2023-04-22 17:56:33
+1114,333,48,4,Quality is decent but could be better.,0,2023-07-11 07:33:23
+1115,243,85,4,"Great product, exactly as described.",57,2024-11-24 13:39:18
+1116,210,13,5,Very satisfied with this purchase.,73,2024-07-30 14:48:08
+1117,246,20,5,"Excellent build quality, highly recommend.",0,2024-06-23 23:28:25
+1118,127,40,4,Delivery was fast and packaging was secure.,20,2024-07-06 23:26:22
+1119,116,10,5,Shipping took longer than expected but product is great.,79,2024-07-03 11:57:31
+1120,436,52,3,Good value for the price.,63,2025-03-31 11:40:54
+1121,254,26,5,Works perfectly for my needs.,63,2024-08-25 02:28:29
+1122,32,29,4,Sturdy and well-made.,22,2023-05-09 21:17:35
+1123,76,89,4,Exceeded my expectations.,74,2023-06-19 06:25:30
+1124,303,26,4,A bit overpriced but the quality is there.,26,2025-02-11 23:56:40
+1125,21,25,4,Would definitely buy again.,37,2024-06-25 08:36:38
+1126,141,58,4,Exceeded my expectations.,0,2024-04-24 21:08:13
+1127,253,56,1,Easy to set up and use.,53,2023-09-16 21:11:41
+1128,397,29,4,Works perfectly for my needs.,0,2025-02-28 19:07:35
+1129,212,42,2,Exceeded my expectations.,9,2025-03-02 00:14:35
+1130,323,5,5,Easy to set up and use.,45,2023-07-18 13:02:46
+1131,248,89,4,Would definitely buy again.,68,2024-08-21 05:19:16
+1132,41,35,4,A bit overpriced but the quality is there.,32,2023-04-27 12:55:44
+1133,310,10,5,Customer support was very helpful.,65,2023-03-03 06:16:10
+1134,177,45,4,Works perfectly for my needs.,12,2024-07-11 14:17:28
+1135,459,58,4,Exceeded my expectations.,50,2024-09-19 03:58:38
+1136,128,78,5,Looks exactly like the photos.,6,2025-04-03 03:14:48
+1137,421,61,1,"Excellent build quality, highly recommend.",1,2024-03-16 21:12:17
+1138,457,2,5,"Not what I expected, but still okay.",39,2023-08-30 02:38:19
+1139,277,36,5,"Five stars, no complaints.",77,2023-10-19 09:54:51
+1140,92,11,5,"Great product, exactly as described.",26,2024-10-15 09:04:07
+1141,202,99,3,Good value for the price.,30,2024-09-28 11:43:20
+1142,469,70,5,Had some issues at first but it works now.,80,2023-04-02 16:29:36
+1143,338,57,4,"Great product, exactly as described.",19,2024-10-29 13:12:20
+1144,165,21,5,"Not what I expected, but still okay.",11,2024-10-14 15:04:57
+1145,145,89,4,Exceeded my expectations.,26,2024-01-11 11:22:09
+1146,370,31,4,Very satisfied with this purchase.,16,2024-01-05 19:48:15
+1147,29,25,5,Disappointed with the quality for this price.,38,2024-04-13 13:28:35
+1148,436,3,4,"Perfect gift, recipient loved it.",6,2024-12-31 02:13:20
+1149,250,6,4,Exceeded my expectations.,71,2025-03-20 06:20:57
+1150,497,6,5,Good value for the price.,15,2023-07-22 22:28:54
+1151,277,93,5,"Excellent build quality, highly recommend.",28,2023-07-01 12:08:33
+1152,48,26,5,Quality is decent but could be better.,49,2024-10-09 02:11:56
+1153,52,13,4,Had some issues at first but it works now.,70,2024-08-07 20:19:11
+1154,288,7,4,Looks exactly like the photos.,30,2023-12-15 16:07:56
+1155,337,16,3,Looks exactly like the photos.,4,2024-06-01 16:24:42
+1156,233,88,5,Would definitely buy again.,18,2023-03-29 02:25:26
+1157,161,29,5,Shipping took longer than expected but product is great.,0,2025-03-09 12:23:07
+1158,245,35,4,Had some issues at first but it works now.,37,2025-03-16 00:55:54
+1159,372,90,5,Good value for the price.,68,2023-09-30 17:36:05
+1160,471,82,5,Works perfectly for my needs.,56,2023-06-07 16:19:30
+1161,149,50,5,Exceeded my expectations.,73,2024-08-08 13:17:17
+1162,374,32,5,Very satisfied with this purchase.,62,2024-10-22 22:31:21
+1163,209,17,5,Would definitely buy again.,31,2024-07-20 12:53:14
+1164,360,98,5,"Great product, exactly as described.",46,2024-02-24 12:54:38
+1165,500,2,3,Looks exactly like the photos.,9,2024-06-10 21:48:21
+1166,9,17,4,Easy to set up and use.,57,2023-03-10 05:22:19
+1167,111,50,4,Good value for the price.,42,2023-05-20 12:30:12
+1168,202,31,2,Looks exactly like the photos.,30,2025-01-03 03:40:31
+1169,425,2,4,Quality is decent but could be better.,67,2023-07-15 06:48:44
+1170,332,82,4,"Great product, exactly as described.",79,2023-09-04 11:23:22
+1171,6,28,5,Sturdy and well-made.,15,2023-11-12 04:14:45
+1172,31,95,4,"Great product, exactly as described.",18,2024-09-17 18:05:20
+1173,70,3,5,"Not what I expected, but still okay.",20,2024-01-05 17:41:44
+1174,393,59,5,Sturdy and well-made.,59,2024-09-20 14:22:38
+1175,119,15,5,Would definitely buy again.,50,2023-05-04 17:11:54
+1176,26,80,5,Very satisfied with this purchase.,5,2023-09-23 16:23:12
+1177,442,60,4,Shipping took longer than expected but product is great.,37,2024-07-12 17:07:36
+1178,132,35,5,Sturdy and well-made.,17,2023-05-08 02:39:02
+1179,164,37,5,Exceeded my expectations.,36,2024-05-17 05:15:01
+1180,474,43,4,Works perfectly for my needs.,15,2023-03-26 07:20:04
+1181,323,72,3,Easy to set up and use.,76,2024-10-25 17:46:12
+1182,179,81,4,A bit overpriced but the quality is there.,36,2024-05-13 14:38:12
+1183,391,43,4,Looks exactly like the photos.,20,2023-11-16 18:47:44
+1184,306,88,4,Delivery was fast and packaging was secure.,63,2025-04-08 00:29:14
+1185,27,41,5,Looks exactly like the photos.,1,2024-02-28 15:30:29
+1186,497,53,3,Very satisfied with this purchase.,17,2024-06-23 22:36:35
+1187,278,55,2,"Great product, exactly as described.",37,2025-01-26 08:34:04
+1188,443,82,3,Very satisfied with this purchase.,51,2023-03-25 21:50:39
+1189,68,26,4,Works perfectly for my needs.,46,2025-04-21 21:17:03
+1190,187,4,2,A bit overpriced but the quality is there.,0,2023-06-14 09:41:20
+1191,226,30,5,Works perfectly for my needs.,54,2025-04-11 03:22:58
+1192,415,13,4,Good value for the price.,44,2025-01-12 13:47:41
+1193,293,8,4,Would definitely buy again.,32,2024-06-12 11:39:26
+1194,39,27,4,"Not what I expected, but still okay.",39,2025-01-16 03:32:32
+1195,291,34,2,Looks exactly like the photos.,33,2024-09-18 13:51:50
+1196,110,13,5,"Not what I expected, but still okay.",59,2023-05-24 12:42:35
+1197,164,93,4,Sturdy and well-made.,10,2024-11-08 01:16:55
+1198,223,96,5,Looks exactly like the photos.,74,2024-01-28 16:37:32
+1199,220,43,4,Delivery was fast and packaging was secure.,70,2024-02-29 03:21:13
+1200,100,42,5,Shipping took longer than expected but product is great.,33,2025-02-12 14:16:09
+1201,203,71,5,Customer support was very helpful.,59,2023-05-16 09:24:54
+1202,396,24,5,Shipping took longer than expected but product is great.,60,2023-07-16 19:03:25
+1203,278,34,4,"Great product, exactly as described.",12,2023-12-14 07:59:23
+1204,84,4,5,Very satisfied with this purchase.,62,2024-03-10 18:31:05
+1205,112,25,5,Quality is decent but could be better.,77,2025-03-14 04:34:34
+1206,109,88,3,Sturdy and well-made.,51,2024-05-23 02:16:24
+1207,133,6,3,Easy to set up and use.,17,2024-07-13 10:59:45
+1208,123,98,3,Looks exactly like the photos.,58,2024-10-05 04:36:35
+1209,317,76,5,Had some issues at first but it works now.,21,2025-01-11 10:08:38
+1210,243,31,5,Would definitely buy again.,28,2024-08-07 07:03:42
+1211,334,19,2,"Five stars, no complaints.",23,2023-04-03 16:42:08
+1212,295,13,4,"Great product, exactly as described.",8,2024-12-17 13:00:57
+1213,316,25,4,Would definitely buy again.,66,2024-05-07 06:09:24
+1214,151,18,4,"Excellent build quality, highly recommend.",63,2023-06-18 16:14:15
+1215,310,76,4,Exceeded my expectations.,1,2025-03-20 17:39:50
+1216,170,42,5,"Not what I expected, but still okay.",34,2024-08-13 10:16:56
+1217,65,50,2,Disappointed with the quality for this price.,41,2025-01-06 22:49:26
+1218,292,89,5,Works perfectly for my needs.,25,2024-02-07 12:35:36
+1219,64,4,1,Looks exactly like the photos.,36,2024-03-16 22:08:05
+1220,110,87,3,Very satisfied with this purchase.,80,2023-10-20 20:49:48
+1221,468,17,4,Disappointed with the quality for this price.,59,2024-02-03 04:27:06
+1222,105,10,4,"Perfect gift, recipient loved it.",4,2024-11-08 22:23:20
+1223,206,39,5,"Great product, exactly as described.",56,2023-03-06 08:35:18
+1224,107,72,4,"Five stars, no complaints.",48,2023-04-23 16:14:12
+1225,172,79,4,Exceeded my expectations.,64,2024-06-15 14:43:16
+1226,70,81,4,Good value for the price.,60,2024-06-05 04:01:13
+1227,373,7,3,Shipping took longer than expected but product is great.,34,2023-03-29 17:49:40
+1228,346,83,5,Shipping took longer than expected but product is great.,46,2025-04-25 13:42:24
+1229,86,55,4,Quality is decent but could be better.,47,2023-03-04 18:14:14
+1230,432,56,5,"Great product, exactly as described.",5,2024-03-15 18:22:22
+1231,362,52,3,"Perfect gift, recipient loved it.",45,2024-11-16 21:03:41
+1232,453,34,5,Works perfectly for my needs.,36,2025-01-24 15:48:54
+1233,137,41,5,Sturdy and well-made.,26,2023-08-10 07:33:53
+1234,268,28,5,Sturdy and well-made.,62,2024-05-05 12:59:55
+1235,432,77,5,Had some issues at first but it works now.,76,2025-04-25 04:15:26
+1236,219,5,5,Exceeded my expectations.,40,2024-06-30 03:12:37
+1237,8,37,5,A bit overpriced but the quality is there.,18,2024-12-07 16:52:15
+1238,397,56,4,Quality is decent but could be better.,16,2024-02-09 12:51:21
+1239,500,76,4,Looks exactly like the photos.,12,2023-09-20 03:10:18
+1240,52,21,5,Sturdy and well-made.,68,2023-06-24 22:24:06
+1241,339,14,4,"Excellent build quality, highly recommend.",71,2024-08-09 07:01:32
+1242,117,33,1,Works perfectly for my needs.,23,2025-01-28 17:14:54
+1243,224,95,5,Would definitely buy again.,17,2023-12-25 23:36:31
+1244,419,76,5,"Excellent build quality, highly recommend.",63,2024-06-09 07:11:38
+1245,89,82,3,Looks exactly like the photos.,59,2025-04-21 23:04:04
+1246,357,63,2,"Perfect gift, recipient loved it.",64,2023-10-06 13:40:45
+1247,466,17,4,"Perfect gift, recipient loved it.",69,2025-03-20 10:29:08
+1248,30,43,5,"Excellent build quality, highly recommend.",8,2024-10-23 15:11:04
+1249,268,7,4,Works perfectly for my needs.,25,2024-03-31 18:40:00
+1250,295,83,4,"Excellent build quality, highly recommend.",59,2024-04-25 00:18:23
+1251,201,4,5,"Not what I expected, but still okay.",65,2024-12-25 11:12:50
+1252,352,57,5,Sturdy and well-made.,49,2023-12-25 12:01:15
+1253,453,87,4,"Great product, exactly as described.",79,2025-01-19 22:22:39
+1254,79,26,4,Delivery was fast and packaging was secure.,6,2023-06-01 04:52:35
+1255,294,19,4,Looks exactly like the photos.,51,2023-09-22 16:32:44
+1256,4,13,4,Customer support was very helpful.,40,2025-01-27 10:59:45
+1257,351,65,4,Had some issues at first but it works now.,42,2025-04-14 13:50:43
+1258,341,67,5,"Not what I expected, but still okay.",41,2024-09-07 20:52:35
+1259,455,64,4,Would definitely buy again.,32,2025-02-28 12:34:27
+1260,221,36,1,Good value for the price.,49,2025-01-22 11:24:07
+1261,173,67,5,Very satisfied with this purchase.,67,2023-09-23 06:51:36
+1262,150,88,2,Works perfectly for my needs.,53,2024-10-15 08:54:11
+1263,181,33,4,Quality is decent but could be better.,22,2024-04-02 18:00:54
+1264,442,39,4,"Perfect gift, recipient loved it.",75,2025-03-03 16:58:18
+1265,478,38,1,A bit overpriced but the quality is there.,25,2024-11-21 12:45:23
+1266,468,69,5,"Great product, exactly as described.",65,2024-02-26 13:04:54
+1267,429,41,5,Good value for the price.,8,2025-02-01 03:28:01
+1268,11,32,4,Good value for the price.,79,2024-06-06 09:23:39
+1269,415,35,3,A bit overpriced but the quality is there.,65,2024-11-28 19:06:12
+1270,32,23,2,"Not what I expected, but still okay.",6,2024-02-10 22:40:31
+1271,16,78,5,Had some issues at first but it works now.,8,2024-01-25 05:58:23
+1272,138,86,5,Sturdy and well-made.,55,2023-06-11 20:37:11
+1273,422,78,4,Shipping took longer than expected but product is great.,73,2025-03-26 11:52:50
+1274,70,35,4,Quality is decent but could be better.,71,2024-04-21 10:50:15
+1275,57,27,4,Exceeded my expectations.,34,2023-03-21 11:28:47
+1276,153,41,5,Disappointed with the quality for this price.,26,2024-08-31 19:44:44
+1277,386,99,4,Shipping took longer than expected but product is great.,38,2023-03-22 23:57:00
+1278,294,42,4,"Five stars, no complaints.",73,2024-03-25 05:57:56
+1279,347,3,5,Sturdy and well-made.,80,2023-05-10 03:35:22
+1280,72,85,5,"Great product, exactly as described.",21,2024-03-24 21:00:48
+1281,139,19,5,Good value for the price.,29,2023-07-18 20:18:39
+1282,182,68,5,Quality is decent but could be better.,42,2024-05-09 12:49:37
+1283,313,3,4,"Excellent build quality, highly recommend.",19,2023-05-03 11:42:27
+1284,117,13,5,Disappointed with the quality for this price.,58,2025-03-01 22:18:14
+1285,147,69,4,Customer support was very helpful.,78,2024-09-18 11:21:28
+1286,490,15,5,Works perfectly for my needs.,65,2024-12-20 18:35:49
+1287,378,35,5,"Perfect gift, recipient loved it.",20,2024-01-07 23:13:08
+1288,2,65,4,Quality is decent but could be better.,77,2024-07-10 02:27:53
+1289,403,83,4,Looks exactly like the photos.,65,2024-05-03 10:56:28
+1290,55,74,4,"Five stars, no complaints.",28,2023-11-17 11:14:52
+1291,498,55,2,Customer support was very helpful.,70,2024-10-06 06:01:46
+1292,367,80,5,Would definitely buy again.,58,2024-12-12 10:21:43
+1293,430,62,4,"Perfect gift, recipient loved it.",26,2023-08-01 06:11:55
+1294,435,57,3,"Great product, exactly as described.",49,2024-11-15 19:31:39
+1295,94,76,4,Works perfectly for my needs.,47,2023-07-22 08:10:34
+1296,416,68,5,Works perfectly for my needs.,59,2025-04-16 17:41:12
+1297,77,38,5,Looks exactly like the photos.,46,2024-08-09 23:51:31
+1298,289,40,4,Easy to set up and use.,75,2023-04-06 08:32:54
+1299,478,54,5,"Five stars, no complaints.",17,2025-02-12 20:18:50
+1300,372,19,4,Shipping took longer than expected but product is great.,15,2025-01-28 12:46:21
+1301,320,65,5,"Great product, exactly as described.",19,2023-11-22 01:08:25
+1302,117,61,5,Sturdy and well-made.,7,2023-04-25 18:52:48
+1303,363,98,5,"Not what I expected, but still okay.",34,2025-01-24 23:26:00
+1304,29,86,5,Had some issues at first but it works now.,59,2025-01-22 19:30:16
+1305,298,42,5,Works perfectly for my needs.,80,2025-01-20 13:08:29
+1306,216,64,4,A bit overpriced but the quality is there.,75,2023-06-29 05:27:16
+1307,420,70,4,Good value for the price.,57,2024-01-21 10:14:57
+1308,237,66,2,Sturdy and well-made.,8,2024-07-10 17:35:11
+1309,253,78,2,Sturdy and well-made.,38,2024-09-25 03:27:31
+1310,262,78,5,Looks exactly like the photos.,21,2024-11-19 03:00:39
+1311,424,71,4,Had some issues at first but it works now.,70,2025-01-17 15:11:36
+1312,211,27,4,Quality is decent but could be better.,2,2025-03-14 01:55:00
+1313,205,11,3,Sturdy and well-made.,51,2023-08-16 23:23:44
+1314,93,15,5,Exceeded my expectations.,3,2024-07-31 10:42:55
+1315,378,12,4,Easy to set up and use.,12,2023-10-27 07:07:23
+1316,476,73,5,Easy to set up and use.,66,2024-10-22 03:09:31
+1317,434,84,5,Delivery was fast and packaging was secure.,65,2023-09-24 20:59:18
+1318,418,4,5,Shipping took longer than expected but product is great.,0,2024-11-14 03:48:56
+1319,199,92,5,Exceeded my expectations.,4,2023-08-31 23:04:51
+1320,25,59,5,"Five stars, no complaints.",61,2023-10-14 22:39:40
+1321,302,72,3,Easy to set up and use.,77,2024-02-22 19:06:09
+1322,115,36,5,"Perfect gift, recipient loved it.",55,2024-06-14 22:02:37
+1323,312,59,5,"Five stars, no complaints.",40,2023-05-08 17:20:20
+1324,216,63,4,"Perfect gift, recipient loved it.",78,2024-12-02 18:18:12
+1325,442,67,5,"Five stars, no complaints.",24,2024-08-07 13:27:17
+1326,182,89,4,Shipping took longer than expected but product is great.,56,2024-03-01 19:24:05
+1327,379,13,5,A bit overpriced but the quality is there.,12,2024-07-14 14:45:22
+1328,169,44,5,"Not what I expected, but still okay.",56,2023-04-20 20:25:57
+1329,184,17,5,"Perfect gift, recipient loved it.",61,2024-02-09 20:45:29
+1330,265,36,5,Had some issues at first but it works now.,33,2023-05-09 11:00:07
+1331,160,48,5,Easy to set up and use.,26,2023-08-10 14:24:13
+1332,498,10,4,"Excellent build quality, highly recommend.",61,2023-05-19 20:33:51
+1333,334,90,3,Quality is decent but could be better.,29,2024-07-14 07:16:48
+1334,436,7,3,Easy to set up and use.,56,2023-08-24 19:55:16
+1335,167,81,5,Easy to set up and use.,77,2023-06-24 23:04:15
+1336,381,5,5,Disappointed with the quality for this price.,57,2025-01-22 11:19:19
+1337,276,7,5,Quality is decent but could be better.,29,2024-06-12 23:59:57
+1338,412,100,5,Customer support was very helpful.,54,2024-05-27 11:39:38
+1339,135,53,5,Sturdy and well-made.,37,2023-04-08 10:21:49
+1340,469,98,5,Very satisfied with this purchase.,54,2024-06-06 04:19:38
+1341,417,3,2,A bit overpriced but the quality is there.,17,2024-07-09 00:17:32
+1342,246,28,5,"Perfect gift, recipient loved it.",26,2023-09-01 21:34:53
+1343,182,75,5,Customer support was very helpful.,57,2023-11-04 19:27:25
+1344,308,91,5,Disappointed with the quality for this price.,29,2023-08-10 06:34:22
+1345,261,51,5,A bit overpriced but the quality is there.,4,2023-09-29 08:44:15
+1346,290,12,4,Customer support was very helpful.,38,2023-11-10 06:20:10
+1347,421,30,4,"Excellent build quality, highly recommend.",11,2024-10-04 23:08:12
+1348,438,95,4,Easy to set up and use.,44,2024-03-30 00:35:57
+1349,276,32,5,Looks exactly like the photos.,3,2025-02-22 18:45:28
+1350,467,27,4,Looks exactly like the photos.,60,2024-03-30 12:28:43
+1351,200,23,5,Customer support was very helpful.,80,2024-09-05 04:06:13
+1352,279,37,5,Shipping took longer than expected but product is great.,34,2023-08-26 11:57:10
+1353,218,9,4,"Not what I expected, but still okay.",1,2023-11-06 23:27:59
+1354,460,22,2,Delivery was fast and packaging was secure.,51,2023-06-20 13:05:42
+1355,331,37,5,Delivery was fast and packaging was secure.,29,2024-06-08 19:17:19
+1356,429,36,5,Looks exactly like the photos.,7,2024-03-31 08:30:54
+1357,419,72,4,Shipping took longer than expected but product is great.,57,2024-05-21 02:01:09
+1358,14,95,5,Sturdy and well-made.,16,2024-11-19 06:01:59
+1359,148,86,5,"Five stars, no complaints.",25,2023-04-14 12:57:43
+1360,416,20,4,Customer support was very helpful.,3,2024-10-18 06:06:40
+1361,363,24,3,A bit overpriced but the quality is there.,53,2024-10-06 19:44:19
+1362,232,59,3,Looks exactly like the photos.,53,2024-12-02 21:55:43
+1363,223,10,1,"Not what I expected, but still okay.",50,2024-03-08 14:52:27
+1364,143,23,5,Good value for the price.,17,2023-09-15 20:24:26
+1365,69,88,5,"Five stars, no complaints.",34,2023-05-01 13:03:35
+1366,38,27,5,Very satisfied with this purchase.,70,2024-02-06 20:33:39
+1367,457,54,4,Exceeded my expectations.,2,2023-07-24 16:38:44
+1368,243,58,5,"Not what I expected, but still okay.",19,2024-06-15 21:56:20
+1369,142,52,3,"Excellent build quality, highly recommend.",3,2023-11-11 01:59:26
+1370,109,32,5,Customer support was very helpful.,8,2025-02-09 08:32:24
+1371,156,51,5,Very satisfied with this purchase.,39,2023-10-04 15:46:20
+1372,445,49,5,Delivery was fast and packaging was secure.,70,2024-10-17 02:29:42
+1373,127,63,5,Looks exactly like the photos.,27,2023-06-12 06:43:01
+1374,291,75,5,Customer support was very helpful.,48,2024-08-02 04:18:09
+1375,183,75,5,Would definitely buy again.,62,2025-01-10 10:51:50
+1376,193,34,5,"Excellent build quality, highly recommend.",77,2023-05-09 21:01:14
+1377,14,28,5,Easy to set up and use.,41,2023-03-04 20:27:58
+1378,499,23,5,"Not what I expected, but still okay.",43,2023-06-07 17:09:43
+1379,374,93,5,Had some issues at first but it works now.,36,2024-04-01 09:35:08
+1380,449,71,4,Quality is decent but could be better.,23,2024-02-19 06:19:24
+1381,294,1,4,"Five stars, no complaints.",29,2023-06-11 16:33:40
+1382,130,47,4,Works perfectly for my needs.,47,2025-03-19 01:47:01
+1383,150,75,5,Quality is decent but could be better.,45,2023-07-23 03:38:53
+1384,59,34,5,Sturdy and well-made.,58,2025-02-22 18:29:42
+1385,302,41,4,Quality is decent but could be better.,1,2024-05-23 17:50:08
+1386,8,75,4,"Five stars, no complaints.",56,2025-04-08 19:20:07
+1387,334,56,4,"Perfect gift, recipient loved it.",24,2023-05-20 10:01:59
+1388,358,68,5,"Perfect gift, recipient loved it.",6,2023-06-01 20:33:23
+1389,52,93,5,Shipping took longer than expected but product is great.,31,2023-07-12 05:53:25
+1390,160,27,5,"Not what I expected, but still okay.",11,2023-06-09 20:30:06
+1391,129,30,4,Easy to set up and use.,52,2023-11-21 09:00:47
+1392,324,14,5,"Great product, exactly as described.",62,2023-06-29 13:44:35
+1393,281,59,3,Exceeded my expectations.,51,2024-07-10 05:34:40
+1394,217,39,3,Disappointed with the quality for this price.,6,2024-11-21 13:08:20
+1395,329,71,5,"Great product, exactly as described.",18,2024-12-24 14:03:09
+1396,421,75,5,"Five stars, no complaints.",9,2024-09-29 07:53:32
+1397,483,34,3,A bit overpriced but the quality is there.,1,2024-11-17 23:19:22
+1398,18,7,3,Good value for the price.,23,2025-04-19 03:27:59
+1399,222,43,5,"Not what I expected, but still okay.",2,2024-07-20 02:35:59
+1400,469,18,3,Delivery was fast and packaging was secure.,12,2024-05-23 08:59:40
+1401,404,20,1,Very satisfied with this purchase.,61,2023-04-26 23:05:20
+1402,53,41,2,"Not what I expected, but still okay.",75,2023-10-07 01:44:50
+1403,10,13,5,Looks exactly like the photos.,54,2024-03-23 03:02:14
+1404,106,95,4,Quality is decent but could be better.,17,2023-09-29 05:56:18
+1405,143,5,2,"Not what I expected, but still okay.",29,2023-09-19 17:05:00
+1406,95,86,3,Customer support was very helpful.,48,2023-10-04 05:32:38
+1407,336,4,3,Exceeded my expectations.,5,2023-06-26 07:48:01
+1408,59,98,4,Easy to set up and use.,39,2024-01-19 18:54:53
+1409,115,74,3,"Five stars, no complaints.",22,2024-09-15 20:37:54
+1410,93,67,4,Delivery was fast and packaging was secure.,27,2023-11-01 22:44:29
+1411,125,94,5,"Not what I expected, but still okay.",52,2024-05-14 02:29:47
+1412,171,17,4,Would definitely buy again.,64,2024-11-10 22:55:58
+1413,153,99,5,Exceeded my expectations.,56,2024-12-25 04:20:00
+1414,407,1,3,Sturdy and well-made.,65,2024-12-28 01:22:03
+1415,220,25,4,Good value for the price.,74,2024-09-04 23:21:22
+1416,127,56,5,Shipping took longer than expected but product is great.,80,2024-03-11 17:09:57
+1417,142,85,5,Customer support was very helpful.,22,2025-03-03 01:37:18
+1418,426,30,4,Works perfectly for my needs.,42,2023-12-01 20:03:08
+1419,197,52,4,"Not what I expected, but still okay.",72,2023-06-12 01:10:26
+1420,137,63,5,Looks exactly like the photos.,20,2024-09-25 08:36:21
+1421,404,32,5,"Perfect gift, recipient loved it.",7,2024-12-07 02:19:17
+1422,214,39,3,Shipping took longer than expected but product is great.,47,2024-02-04 11:27:17
+1423,128,52,5,Customer support was very helpful.,20,2024-05-22 05:41:05
+1424,450,57,5,Had some issues at first but it works now.,50,2025-01-03 15:57:39
+1425,369,41,5,"Not what I expected, but still okay.",26,2024-11-23 08:58:58
+1426,66,98,5,Sturdy and well-made.,70,2024-08-08 17:57:48
+1427,383,32,3,A bit overpriced but the quality is there.,49,2025-04-06 04:13:01
+1428,473,76,3,Delivery was fast and packaging was secure.,43,2025-03-07 14:36:45
+1429,42,21,5,Very satisfied with this purchase.,25,2024-02-12 21:54:06
+1430,166,35,4,"Excellent build quality, highly recommend.",52,2024-07-23 08:14:53
+1431,257,96,4,Sturdy and well-made.,3,2024-12-01 12:13:09
+1432,402,13,4,Easy to set up and use.,18,2024-06-02 20:59:18
+1433,290,61,5,"Five stars, no complaints.",78,2023-06-28 20:52:51
+1434,213,13,4,"Five stars, no complaints.",64,2023-07-08 09:44:21
+1435,52,51,5,"Perfect gift, recipient loved it.",25,2025-02-15 13:03:11
+1436,46,4,4,Shipping took longer than expected but product is great.,26,2025-03-06 07:23:49
+1437,67,49,2,Would definitely buy again.,0,2023-07-27 05:28:16
+1438,141,69,5,Shipping took longer than expected but product is great.,70,2023-03-30 16:03:42
+1439,285,18,4,Had some issues at first but it works now.,73,2024-01-18 03:02:30
+1440,61,17,5,"Excellent build quality, highly recommend.",50,2023-12-31 04:32:02
+1441,304,99,4,Disappointed with the quality for this price.,50,2023-12-11 17:54:43
+1442,166,83,4,Quality is decent but could be better.,74,2023-11-11 11:03:27
+1443,199,90,4,Looks exactly like the photos.,26,2023-12-23 02:30:00
+1444,307,14,4,Sturdy and well-made.,75,2024-06-09 22:15:21
+1445,6,28,4,Sturdy and well-made.,33,2025-04-24 11:08:41
+1446,434,86,2,Delivery was fast and packaging was secure.,23,2024-12-02 12:33:08
+1447,360,50,5,Sturdy and well-made.,58,2023-07-16 08:57:12
+1448,318,53,4,"Great product, exactly as described.",52,2024-02-12 06:38:50
+1449,112,43,4,Delivery was fast and packaging was secure.,4,2023-08-10 22:10:55
+1450,490,50,3,Customer support was very helpful.,73,2023-04-12 18:45:42
+1451,59,52,5,"Five stars, no complaints.",72,2024-04-26 16:56:45
+1452,375,75,2,Works perfectly for my needs.,24,2024-02-15 17:36:07
+1453,119,35,5,A bit overpriced but the quality is there.,60,2024-12-11 07:13:20
+1454,427,62,5,A bit overpriced but the quality is there.,35,2023-08-03 22:50:34
+1455,145,6,5,Easy to set up and use.,33,2023-07-16 15:39:14
+1456,373,8,5,Very satisfied with this purchase.,63,2024-01-31 08:04:57
+1457,20,10,5,Easy to set up and use.,11,2023-08-09 03:18:56
+1458,206,2,5,Sturdy and well-made.,75,2023-07-07 23:52:48
+1459,396,4,2,"Excellent build quality, highly recommend.",20,2023-04-30 01:04:12
+1460,78,68,5,Very satisfied with this purchase.,53,2023-09-01 23:14:56
+1461,207,70,5,Works perfectly for my needs.,79,2023-05-01 10:44:09
+1462,127,38,3,A bit overpriced but the quality is there.,33,2025-04-18 17:50:00
+1463,459,96,5,"Excellent build quality, highly recommend.",70,2024-04-09 15:44:55
+1464,455,20,5,A bit overpriced but the quality is there.,40,2024-01-01 18:39:15
+1465,39,55,2,Shipping took longer than expected but product is great.,72,2023-07-28 09:24:59
+1466,249,76,3,Easy to set up and use.,48,2023-05-31 06:45:25
+1467,41,42,5,Delivery was fast and packaging was secure.,11,2025-04-08 18:02:28
+1468,60,27,5,Delivery was fast and packaging was secure.,74,2024-06-23 16:39:00
+1469,475,3,5,"Excellent build quality, highly recommend.",59,2023-03-07 16:37:04
+1470,83,67,5,Works perfectly for my needs.,37,2023-07-21 22:35:30
+1471,62,17,5,Disappointed with the quality for this price.,80,2024-06-07 14:17:06
+1472,163,18,5,Works perfectly for my needs.,77,2024-01-26 01:56:29
+1473,497,56,4,"Perfect gift, recipient loved it.",47,2025-04-01 12:34:06
+1474,195,38,5,A bit overpriced but the quality is there.,77,2023-06-20 10:56:39
+1475,123,71,5,Works perfectly for my needs.,4,2025-04-14 15:53:17
+1476,155,79,5,Looks exactly like the photos.,15,2024-05-18 16:50:47
+1477,87,32,5,Delivery was fast and packaging was secure.,44,2024-05-15 02:45:16
+1478,450,7,2,"Five stars, no complaints.",10,2024-08-03 04:55:19
+1479,112,43,2,Exceeded my expectations.,55,2023-12-14 05:39:36
+1480,199,9,4,Had some issues at first but it works now.,44,2024-08-05 17:18:35
+1481,86,42,3,Shipping took longer than expected but product is great.,39,2023-06-25 14:08:00
+1482,2,18,5,"Excellent build quality, highly recommend.",62,2023-06-09 23:32:46
+1483,479,91,4,Easy to set up and use.,76,2024-05-02 14:56:24
+1484,267,68,5,Customer support was very helpful.,54,2024-10-27 12:09:49
+1485,310,37,4,Exceeded my expectations.,28,2023-05-30 15:36:22
+1486,16,48,3,"Not what I expected, but still okay.",55,2025-01-30 06:04:18
+1487,179,85,5,A bit overpriced but the quality is there.,46,2024-09-16 13:12:09
+1488,399,65,4,Quality is decent but could be better.,23,2025-01-25 08:09:05
+1489,327,93,3,Quality is decent but could be better.,49,2024-11-17 21:56:30
+1490,69,98,5,Looks exactly like the photos.,46,2023-04-10 05:15:41
+1491,133,49,5,Shipping took longer than expected but product is great.,2,2023-05-06 12:56:45
+1492,43,38,5,Had some issues at first but it works now.,14,2024-02-09 14:44:27
+1493,3,49,4,Very satisfied with this purchase.,23,2024-04-08 22:44:36
+1494,21,90,4,Delivery was fast and packaging was secure.,0,2023-03-06 07:53:38
+1495,496,82,5,Very satisfied with this purchase.,52,2023-05-31 15:28:25
+1496,345,35,5,Delivery was fast and packaging was secure.,62,2023-09-27 14:37:29
+1497,275,19,1,Very satisfied with this purchase.,21,2023-12-24 12:45:54
+1498,257,93,3,Customer support was very helpful.,20,2023-10-04 11:50:20
+1499,118,19,5,Would definitely buy again.,22,2023-10-27 19:41:00
+1500,146,2,4,Shipping took longer than expected but product is great.,41,2023-10-28 15:07:31

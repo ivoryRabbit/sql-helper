@@ -165,9 +165,19 @@ cython_debug/
 benchmark
 benchmark/
 .streamlit/secrets.toml
+legacy/
+
+# OS / IDE
+.DS_Store
+.vscode/
+
+# Frontend build artifacts
+frontend/dist/
+frontend/node_modules/
+frontend/.vite/
 
 # Docker
 **docker/volumes/*
 **docker/volumes
 
-test/*
+**/test/*

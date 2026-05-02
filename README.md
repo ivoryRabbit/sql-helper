@@ -1,40 +1,69 @@
-[![version](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-360/)
+# SQL Helper
 
-# sql-helper
-Text-to-SQL using LLM and RAG
+A **text-to-SQL service** that lets you register data sources, explore schemas via semantic search, and generate SQL from natural-language questions using an LLM agent.
 
-## How to run
-
-```bash
-pip3 install -r requirements.txt
-
-bin/run-local.sh
+```
+Data Source → Data Catalog (Browse + Search) → Text-to-SQL → Data Analysis → Dashboard
 ```
 
+## Tech Stack
 
-## Development plan
+| Layer | Tech |
+|---|---|
+| Backend | FastAPI 0.128 · SQLAlchemy 2.0 (async) · psycopg v3 |
+| Vector search | pgvector (`all-MiniLM-L6-v2`, 384-dim) |
+| Async workflows | Temporal |
+| Object storage | MinIO (S3-compatible) |
+| LLM | OpenAI (pluggable) |
+| Frontend | Svelte 4 · Vite 5 |
+| Database | PostgreSQL 17 + pgvector 0.8.1 |
 
-LLM:
-- platform:
-  - OpenAI ChatGPT
-  - Cohere Command R+ ?
-  - Claude
-  - Meta Llama 3 ?
+## Quick Start
 
-RAG:
-- database:
-  - chromadb (standalone)
-  - postgres pgvector
-- embedding model:
-  - sentence transformers:
-    - all-MiniLM-L6-v2 (*max len = 256) 
-- index (VSS):
-  - HNSW
-  - IVF-PQ ?
+**Prerequisites:** Docker, Python 3.11+, Node.js 18+
 
-## TODO
-- [x] Implement standalone application with ChromaDB
-- [x] Implement CRUD with an admin page
-- [ ] Set a docker environment
-- [ ] Implement a vector store for PGVector
+```bash
+# 1. Copy env config
+cp .env.example .env
+# fill in OPENAI_API_KEY and other values
 
+# 2. Start infrastructure (Postgres + pgvector, Temporal, MinIO)
+docker compose up -d
+
+# 3. Backend (http://localhost:8000)
+./bin/run-backend.sh
+
+# 4. Frontend (http://localhost:3000)
+./bin/run-frontend.sh
+```
+
+API docs available at `http://localhost:8000/docs`.
+
+## Services
+
+| Service | URL |
+|---|---|
+| Backend API | http://localhost:8000 |
+| Frontend | http://localhost:3000 |
+| Temporal UI | http://localhost:8088 |
+| MinIO Console | http://localhost:9001 |
+
+## Project Structure
+
+```
+backend/      FastAPI app — controllers, services, repositories, Temporal workflows
+frontend/     Svelte 4 SPA
+docker/       DB init scripts
+bin/          Dev run scripts
+prd/          Feature specs (DB schema + API contracts)
+```
+
+## Features
+
+| # | Feature | Status |
+|---|---|---|
+| 1 | Data Source — register PostgreSQL / Redshift / Trino connections | ✅ Done |
+| 2 | Data Catalog — browse schemas and semantic vector search | ✅ Done |
+| 3 | SQL Assistant — LLM-powered text-to-SQL with streaming SSE | ✅ Done |
+| 4 | Data Analysis — execute SQL and auto-generate insights | 🚧 In progress |
+| 5 | Dashboard — save and share HTML dashboards via MinIO | 📋 Planned |

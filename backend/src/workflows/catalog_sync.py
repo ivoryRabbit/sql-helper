@@ -3,6 +3,7 @@ from datetime import timedelta
 from uuid import UUID
 
 from temporalio import workflow
+from temporalio.common import RetryPolicy
 
 with workflow.unsafe.imports_passed_through():
     from activities.catalog import (
@@ -36,7 +37,7 @@ class CatalogSyncWorkflow:
             introspect_postgres,
             input.config,
             start_to_close_timeout=timedelta(minutes=5),
-            retry_policy=workflow.RetryPolicy(maximum_attempts=2),
+            retry_policy=RetryPolicy(maximum_attempts=2),
         )
 
         upsert_input = CatalogSyncActivityInput(
@@ -47,14 +48,14 @@ class CatalogSyncWorkflow:
             upsert_catalog_data,
             upsert_input,
             start_to_close_timeout=timedelta(minutes=10),
-            retry_policy=workflow.RetryPolicy(maximum_attempts=2),
+            retry_policy=RetryPolicy(maximum_attempts=2),
         )
 
         documents_indexed = await workflow.execute_activity(
             generate_catalog_embeddings,
             input.data_source_id,
             start_to_close_timeout=timedelta(minutes=30),
-            retry_policy=workflow.RetryPolicy(maximum_attempts=1),
+            retry_policy=RetryPolicy(maximum_attempts=1),
         )
 
         return CatalogSyncResult(

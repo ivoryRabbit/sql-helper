@@ -45,6 +45,7 @@ class AppContainer(containers.DeclarativeContainer):
     storage_client = providers.Singleton(
         StorageClient,
         endpoint=settings.provided.minio_endpoint,
+        public_endpoint=settings.provided.minio_public_endpoint,
         access_key=settings.provided.minio_access_key,
         secret_key=settings.provided.minio_secret_key,
     )

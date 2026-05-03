@@ -36,7 +36,7 @@ class RedshiftAdapter(BaseAdapter):
 
         conn = await psycopg.AsyncConnection.connect(**_build_conn_kwargs(config))
         try:
-            limited_sql = f"SELECT * FROM ({sql}) AS _q LIMIT {int(limit)}"
+            limited_sql = f"SELECT * FROM ({sql.rstrip().rstrip(';')}) AS _q LIMIT {int(limit)}"
             async with conn.cursor() as cur:
                 await cur.execute(limited_sql)
                 raw_rows = await cur.fetchall()

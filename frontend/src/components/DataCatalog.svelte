@@ -264,9 +264,17 @@
             </div>
 
             <table class="columns-table">
+              <colgroup>
+                <col style="width: 40px" />
+                <col style="width: 200px" />
+                <col style="width: 160px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+                <col />
+              </colgroup>
               <thead>
                 <tr>
-                  <th>#</th><th>컬럼명</th><th>타입</th><th>Null</th><th>키</th><th>설명</th>
+                  <th>#</th><th>Name</th><th>Type</th><th>Nullable</th><th>Key</th><th>Description</th>
                 </tr>
               </thead>
               <tbody>
@@ -555,7 +563,7 @@
   .meta-chip { font-size: 12px; padding: 3px 10px; border-radius: 12px; background: #f3f4f6; color: #374151; }
   .meta-chip.tag { background: #eff6ff; color: #1d4ed8; }
 
-  .columns-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .columns-table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
   .columns-table th {
     text-align: left;
     padding: 8px 12px;

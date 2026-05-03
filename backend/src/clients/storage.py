@@ -15,12 +15,16 @@ class StorageClient:
         endpoint: str,
         access_key: str,
         secret_key: str,
+        public_endpoint: str = "",
         secure: bool = False,
     ) -> None:
         scheme = "https" if secure else "http"
+        self._internal_url = f"{scheme}://{endpoint}"
+        public = public_endpoint or endpoint
+        self._public_url = f"{scheme}://{public}"
         self._client = boto3.client(
             "s3",
-            endpoint_url=f"{scheme}://{endpoint}",
+            endpoint_url=self._internal_url,
             aws_access_key_id=access_key,
             aws_secret_access_key=secret_key,
             region_name="us-east-1",  # MinIO ignores region but boto3 requires one
@@ -67,6 +71,9 @@ class StorageClient:
             Params={"Bucket": bucket, "Key": key},
             ExpiresIn=expires_seconds,
         )
+        # Replace internal Docker hostname with the browser-accessible public endpoint
+        if self._public_url != self._internal_url:
+            url = url.replace(self._internal_url, self._public_url, 1)
         return url
 
     async def object_exists(self, bucket: str, key: str) -> bool:

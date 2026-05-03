@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from datetime import timedelta
 
 from temporalio import workflow
+from temporalio.common import RetryPolicy
 
 with workflow.unsafe.imports_passed_through():
     from activities.analysis import (
@@ -43,21 +44,21 @@ class AnalysisExecutionWorkflow:
             execute_and_store_query,
             activity_input,
             start_to_close_timeout=timedelta(minutes=10),
-            retry_policy=workflow.RetryPolicy(maximum_attempts=1),
+            retry_policy=RetryPolicy(maximum_attempts=1),
         )
 
         await workflow.execute_activity(
             compute_and_store_stats,
             input.execution_id,
             start_to_close_timeout=timedelta(minutes=5),
-            retry_policy=workflow.RetryPolicy(maximum_attempts=2),
+            retry_policy=RetryPolicy(maximum_attempts=2),
         )
 
         await workflow.execute_activity(
             generate_and_store_insights,
             input.execution_id,
             start_to_close_timeout=timedelta(minutes=5),
-            retry_policy=workflow.RetryPolicy(maximum_attempts=2),
+            retry_policy=RetryPolicy(maximum_attempts=2),
         )
 
         return AnalysisWorkflowResult(

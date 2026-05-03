@@ -39,7 +39,7 @@ class TrinoAdapter(BaseAdapter):
         password = config.get("password")
         auth = (username, password or "") if password else None
 
-        limited_sql = f"SELECT * FROM ({sql}) AS _q LIMIT {int(limit)}"
+        limited_sql = f"SELECT * FROM ({sql.rstrip().rstrip(';')}) AS _q LIMIT {int(limit)}"
         headers = {
             "X-Trino-User": username,
             "X-Trino-Catalog": config.get("catalog", ""),

@@ -24,6 +24,7 @@ class Settings(BaseSettings):
     # External services (wired in later features)
     temporal_address: str = "localhost:7233"
     minio_endpoint: str = "localhost:9000"
+    minio_public_endpoint: str = ""  # browser-accessible host; falls back to minio_endpoint
     minio_access_key: str = "sqlhelper"
     minio_secret_key: str = "sqlhelper"
     openai_api_key: str = ""

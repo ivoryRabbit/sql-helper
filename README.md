@@ -14,30 +14,45 @@ Data Source → Data Catalog (Browse + Search) → Text-to-SQL → Data Analysis
 | Vector search | pgvector (`all-MiniLM-L6-v2`, 384-dim) |
 | Async workflows | Temporal |
 | Object storage | MinIO (S3-compatible) |
-| LLM | OpenAI (pluggable) |
+| LLM | OpenAI · Gemini (pluggable via `LLM_PROVIDER`) |
 | Frontend | Svelte 4 · Vite 5 |
 | Database | PostgreSQL 17 + pgvector 0.8.1 |
 
 ## Quick Start
 
-**Prerequisites:** Docker, Python 3.11+, Node.js 18+
+**Prerequisites:** Docker, Python 3.11+, Node.js 20+
+
+### Option A — Full Docker stack
 
 ```bash
 # 1. Copy env config
 cp .env.example .env
-# fill in OPENAI_API_KEY and other values
+# fill in OPENAI_API_KEY (or GOOGLE_API_KEY) and other values
 
-# 2. Start infrastructure (Postgres + pgvector, Temporal, MinIO)
+# 2. Start everything
 docker compose up -d
+```
 
-# 3. Backend (http://localhost:8000)
+### Option B — Local dev (hot-reload)
+
+```bash
+# 1. Copy env config
+cp .env.example .env
+
+# 2. Start infrastructure
+docker compose up -d postgres temporal minio
+
+# 3. Backend  (http://localhost:8000)
 ./bin/run-backend.sh
 
-# 4. Frontend (http://localhost:3000)
+# 4. Temporal worker (separate terminal)
+cd backend && python src/worker.py
+
+# 5. Frontend  (http://localhost:3000)
 ./bin/run-frontend.sh
 ```
 
-API docs available at `http://localhost:8000/docs`.
+API docs: `http://localhost:8000/docs`
 
 ## Services
 
@@ -48,6 +63,15 @@ API docs available at `http://localhost:8000/docs`.
 | Temporal UI | http://localhost:8088 |
 | MinIO Console | http://localhost:9001 |
 
+## LLM Provider
+
+Set `LLM_PROVIDER` in `.env` to switch between providers:
+
+| Provider | `LLM_PROVIDER` | Required key |
+|---|---|---|
+| OpenAI (default) | `openai` | `OPENAI_API_KEY` |
+| Google Gemini | `gemini` | `GOOGLE_API_KEY` |
+
 ## Project Structure
 
 ```
@@ -56,6 +80,7 @@ frontend/     Svelte 4 SPA
 docker/       DB init scripts
 bin/          Dev run scripts
 prd/          Feature specs (DB schema + API contracts)
+legacy/       Original Streamlit prototype (reference only)
 ```
 
 ## Features
@@ -65,5 +90,5 @@ prd/          Feature specs (DB schema + API contracts)
 | 1 | Data Source — register PostgreSQL / Redshift / Trino connections | ✅ Done |
 | 2 | Data Catalog — browse schemas and semantic vector search | ✅ Done |
 | 3 | SQL Assistant — LLM-powered text-to-SQL with streaming SSE | ✅ Done |
-| 4 | Data Analysis — execute SQL and auto-generate insights | 🚧 In progress |
-| 5 | Dashboard — save and share HTML dashboards via MinIO | 📋 Planned |
+| 4 | Data Analysis — execute SQL, auto-generate stats and insights | ✅ Done |
+| 5 | Dashboard — save and share HTML dashboards via MinIO | ✅ Done |

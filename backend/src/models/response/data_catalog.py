@@ -124,6 +124,7 @@ class CatalogStatsResponse(BaseModel):
 class CatalogRefreshResponse(BaseModel):
     data_source_id: UUID
     message: str
-    schemas_synced: int
-    tables_synced: int
-    columns_synced: int
+    schemas_synced: int = 0
+    tables_synced: int = 0
+    columns_synced: int = 0
+    workflow_id: Optional[str] = None

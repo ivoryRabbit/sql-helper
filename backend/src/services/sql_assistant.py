@@ -9,7 +9,7 @@ import sqlparse
 from fastapi import HTTPException
 
 from clients.embedding import EmbeddingClient
-from clients.llm import LLMClient, LLMMessage
+from clients.llm import BaseLLMClient, LLMMessage
 from models.entities import ConversationMessage, ConversationSession, SqlGeneration, TableDocument
 from models.request.sql_assistant import (
     CreateSessionRequest,
@@ -58,7 +58,7 @@ class SqlAssistantService:
         message_repo: ConversationMessageRepository,
         doc_repo: TableDocumentRepository,
         embedding_client: EmbeddingClient,
-        llm_client: LLMClient,
+        llm_client: BaseLLMClient,
     ) -> None:
         self._generation_repo = generation_repo
         self._session_repo = session_repo
@@ -97,7 +97,7 @@ class SqlAssistantService:
             user_query=request.query,
             data_source_id=request.data_source_id,
             selected_tables=request.selected_tables,
-            llm_model=self._llm_client._model,
+            llm_model=self._llm_client.model,
             validation_status="pending",
         )
 

@@ -6,6 +6,7 @@ import psycopg
 from fastapi import HTTPException
 
 from clients.embedding import EmbeddingClient
+from clients.temporal import TemporalClient
 from models.entities import Column, Schema, Table, TableDocument
 from models.request.data_catalog import CatalogRefreshRequest, SemanticSearchRequest, SimilarTableRequest
 from models.response.data_catalog import (
@@ -32,6 +33,8 @@ from utils.crypto import EncryptionService
 
 logger = logging.getLogger(__name__)
 
+_TASK_QUEUE = "sql-helper"
+
 
 class DataCatalogService:
     def __init__(
@@ -42,6 +45,7 @@ class DataCatalogService:
         embedding_client: Optional[EmbeddingClient] = None,
         doc_repo: Optional[TableDocumentRepository] = None,
         history_repo: Optional[SearchHistoryRepository] = None,
+        temporal_client: Optional[TemporalClient] = None,
     ) -> None:
         self._repo = repo
         self._ds_repo = data_source_repo
@@ -49,6 +53,7 @@ class DataCatalogService:
         self._embedding_client = embedding_client
         self._doc_repo = doc_repo
         self._history_repo = history_repo
+        self._temporal = temporal_client
 
     async def get_by_source(self, data_source_id: UUID) -> CatalogSourceResponse:
         schemas = await self._repo.get_schemas_by_source(data_source_id)
@@ -145,12 +150,32 @@ class DataCatalogService:
             except Exception:
                 pass
 
-        if data_source.type == "postgresql":
-            return await self._refresh_postgres(data_source.id, config)
+        if data_source.type not in ("postgresql",):
+            raise HTTPException(
+                status_code=422,
+                detail=f"Catalog refresh not yet supported for type '{data_source.type}'.",
+            )
 
-        raise HTTPException(
-            status_code=422,
-            detail=f"Catalog refresh not yet supported for type '{data_source.type}'.",
+        if self._temporal and self._temporal.is_connected:
+            return await self._dispatch_catalog_sync(data_source.id, config)
+
+        return await self._refresh_postgres(data_source.id, config)
+
+    async def _dispatch_catalog_sync(self, data_source_id: UUID, config: dict) -> CatalogRefreshResponse:
+        from workflows.catalog_sync import CatalogSyncInput, CatalogSyncWorkflow
+
+        workflow_id = f"catalog-sync-{data_source_id}"
+        await self._temporal.start_workflow(
+            CatalogSyncWorkflow.run,
+            CatalogSyncInput(data_source_id=str(data_source_id), config=config),
+            id=workflow_id,
+            task_queue=_TASK_QUEUE,
+        )
+        logger.info("Dispatched CatalogSyncWorkflow: workflow_id=%s", workflow_id)
+        return CatalogRefreshResponse(
+            data_source_id=data_source_id,
+            message="Catalog sync dispatched to Temporal. Check workflow status for progress.",
+            workflow_id=workflow_id,
         )
 
     async def update_table_description(

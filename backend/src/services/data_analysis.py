@@ -4,7 +4,7 @@ import json
 import logging
 import statistics
 import time
-from typing import Any
+from typing import Any, Optional
 from uuid import UUID
 
 from fastapi import HTTPException
@@ -13,6 +13,7 @@ from adapters.postgres import PostgresAdapter
 from adapters.redshift import RedshiftAdapter
 from adapters.trino import TrinoAdapter
 from clients.storage import StorageClient
+from clients.temporal import TemporalClient
 from models.request.data_analysis import AnalysisExecuteRequest, DataExportRequest
 from models.response.data_analysis import (
     AnalysisExecutionResponse,
@@ -54,6 +55,9 @@ _EXPORT_CONTENT_TYPES = {
 }
 
 
+_TASK_QUEUE = "sql-helper"
+
+
 class DataAnalysisService:
     def __init__(
         self,
@@ -63,6 +67,7 @@ class DataAnalysisService:
         data_source_repo: DataSourceRepository,
         encryption: EncryptionService,
         storage: StorageClient,
+        temporal_client: Optional[TemporalClient] = None,
     ) -> None:
         self._exec_repo = execution_repo
         self._result_repo = result_repo
@@ -70,6 +75,7 @@ class DataAnalysisService:
         self._ds_repo = data_source_repo
         self._enc = encryption
         self._storage = storage
+        self._temporal = temporal_client
 
     # ── Public API ────────────────────────────────────────────────────────────
 
@@ -78,9 +84,7 @@ class DataAnalysisService:
         if source is None:
             raise HTTPException(status_code=404, detail="Data source not found")
 
-        config = self._decrypt_config(dict(source.config))
-        adapter = _ADAPTERS.get(source.type)
-        if adapter is None:
+        if _ADAPTERS.get(source.type) is None:
             raise HTTPException(status_code=400, detail=f"Unsupported data source type: {source.type}")
 
         execution = await self._exec_repo.create(
@@ -90,6 +94,11 @@ class DataAnalysisService:
             status="running",
         )
 
+        if self._temporal and self._temporal.is_connected:
+            return await self._dispatch_analysis_workflow(execution, request)
+
+        config = self._decrypt_config(dict(source.config))
+        adapter = _ADAPTERS[source.type]
         logger.info(
             "Executing query: execution_id=%s data_source=%s sql=%r",
             execution.id, source.name, request.sql[:120],
@@ -170,6 +179,40 @@ class DataAnalysisService:
             statistics=stats,
             insights=insights,
             visualizations=visualizations,
+            created_at=execution.created_at,
+        )
+
+    async def _dispatch_analysis_workflow(self, execution, request: AnalysisExecuteRequest) -> AnalysisExecutionResponse:
+        from workflows.analysis_execution import AnalysisExecutionWorkflow, AnalysisWorkflowInput
+
+        workflow_id = f"analysis-{execution.id}"
+        await self._temporal.start_workflow(
+            AnalysisExecutionWorkflow.run,
+            AnalysisWorkflowInput(
+                execution_id=str(execution.id),
+                data_source_id=str(request.data_source_id),
+                sql=request.sql,
+                limit_rows=request.options.limit_rows if request.options else 1000,
+            ),
+            id=workflow_id,
+            task_queue=_TASK_QUEUE,
+        )
+        logger.info("Dispatched AnalysisExecutionWorkflow: workflow_id=%s", workflow_id)
+        return AnalysisExecutionResponse(
+            id=execution.id,
+            sql_generation_id=execution.sql_generation_id,
+            data_source_id=execution.data_source_id,
+            executed_sql=execution.executed_sql,
+            execution_time_ms=None,
+            row_count=None,
+            status="running",
+            error_message=None,
+            columns=[],
+            data=[],
+            statistics=[],
+            insights=[],
+            visualizations=[],
+            workflow_id=workflow_id,
             created_at=execution.created_at,
         )
 

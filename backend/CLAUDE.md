@@ -2,7 +2,7 @@
 
 FastAPI + SQLAlchemy async + pgvector. See [../CLAUDE.md](../CLAUDE.md) for the project-wide picture and [../prd/](../prd/) for authoritative feature specs (DB schema, endpoints, request/response models).
 
-> **Current state** (2026-05-02): `src/` exists with Features 1–3 backend complete. Infrastructure clients (MinIO, Temporal) wired. Next: Feature 4 Text-to-SQL.
+> **Current state** (2026-05-03): `src/` exists with Features 1–5 backend complete. Temporal workflows implemented (`CatalogSyncWorkflow`, `AnalysisExecutionWorkflow`, `worker.py`). Next: Frontend API integration.
 
 ---
 

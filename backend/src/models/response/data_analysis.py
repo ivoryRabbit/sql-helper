@@ -48,6 +48,7 @@ class AnalysisExecutionResponse(BaseModel):
     statistics: list[ColumnStats]
     insights: list[InsightItem]
     visualizations: list[VisualizationConfig]
+    workflow_id: Optional[str] = None
     created_at: datetime
 
     model_config = {"from_attributes": True}

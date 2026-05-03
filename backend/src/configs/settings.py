@@ -27,6 +27,18 @@ class Settings(BaseSettings):
     minio_access_key: str = "sqlhelper"
     minio_secret_key: str = "sqlhelper"
     openai_api_key: str = ""
+    openai_model: str = "gpt-4o-mini"
+
+    # LLM provider: "openai" | "gemini"
+    llm_provider: str = "openai"
+    google_api_key: str = ""
+    gemini_model: str = "gemini-2.5-flash-lite"
+
+    @property
+    def llm_model(self) -> str:
+        if self.llm_provider == "gemini":
+            return self.gemini_model
+        return self.openai_model
 
     @property
     def database_url(self) -> str:

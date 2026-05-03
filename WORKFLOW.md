@@ -1,6 +1,6 @@
 # SQL Helper — Workflow & 진행 상황
 
-> 마지막 업데이트: 2026-05-02 (Feature 4 Data Analysis 백엔드 완료 — execute/stats/insights/export 구현, adapters에 execute_query 추가)
+> 마지막 업데이트: 2026-05-03 (Frontend API 연동 완료 — Features 1–5 모든 컴포넌트 실 API 연결)
 > 구현 순서: Feature 1 → 2 → 3 → 4 → 5
 
 ---
@@ -39,11 +39,28 @@
 | 항목 | 상태 |
 |------|------|
 | **인프라** | 🟢 완료 (PostgreSQL + Temporal + MinIO, docker-compose 완성) |
-| **Feature 1: Data Source** | 🟢 Backend 완료 (Frontend 미연동) |
-| **Feature 2: Data Catalog** | 🟢 Backend 완료 (Browse + Semantic Search 통합, Frontend 미연동) |
-| **Feature 3: Text-to-SQL** | 🟢 Backend 완료 (Frontend 미연동) |
-| **Feature 4: Data Analysis** | 🟢 Backend 완료 (Frontend 미연동) |
-| **Feature 5: Dashboard** | ⬜ 미구현 |
+| **Feature 1: Data Source** | 🟢 Backend + Frontend 완료 |
+| **Feature 2: Data Catalog** | 🟢 Backend + Frontend 완료 (Browse + Semantic Search 통합) |
+| **Feature 3: Text-to-SQL** | 🟢 Backend + Frontend 완료 (SSE 스트리밍 + 이력 조회) |
+| **Feature 4: Data Analysis** | 🟢 Backend + Frontend 완료 (실행/폴링/통계/인사이트/내보내기) |
+| **Feature 5: Dashboard** | 🟢 Backend + Frontend 완료 (CRUD + 위젯 + HTML 미리보기 + 공유) |
+| **Temporal 워크플로우** | 🟢 완료 (CatalogSyncWorkflow, AnalysisExecutionWorkflow, worker.py) |
+
+```
+인프라           [██████████]  100% — PostgreSQL + Temporal + MinIO + docker-compose 완료
+Feature 1        [██████████]  100% — Backend + Frontend 완료
+Feature 2        [██████████]  100% — Backend + Frontend 완료 (Browse + Search 통합)
+Feature 3        [██████████]  100% — Backend + Frontend 완료 (SSE 스트리밍, 이력 조회)
+Feature 4        [██████████]  100% — Backend + Frontend 완료 (실행/폴링/통계/인사이트/내보내기)
+Feature 5        [██████████]  100% — Backend + Frontend 완료 (CRUD, 위젯, HTML 미리보기, 공유)
+Temporal         [██████████]  100% — CatalogSyncWorkflow + AnalysisExecutionWorkflow + worker.py 완료
+테스트           [████░░░░░░]   40% — Backend: 미작성, Frontend: stores + api 유닛 테스트 완료 (47개)
+```
+
+**다음 우선 작업**
+
+1. **Backend 테스트 작성** — `backend/test/` 통합 테스트 (실제 DB 사용, LLM은 FakeLLMClient 주입)
+2. **Docker Compose 전체 스택 실행** — Backend + Frontend 컨테이너화 완성
 
 > **Feature 2 통합 안내**: Data Catalog와 Data Discovery(Semantic Search)는 단일 Feature 2로 통합됨.
 > PRD 파일 기준: `prd/2_data_catalog.md`, 백엔드: `DataCatalogService`, 엔드포인트: `/api/v1/data-catalog/**`.
@@ -120,8 +137,7 @@
 
 ### Frontend
 
-- [x] `frontend/src/components/DataSource.svelte` — UI 셸 (목 데이터)
-- [ ] 실제 API 연동
+- [x] `frontend/src/components/DataSource.svelte` — CRUD + 연결 테스트 + 동기화 실 API 연동 완료
 
 ---
 
@@ -159,12 +175,11 @@
 - [x] `POST /api/v1/data-catalog/similar` — 유사 테이블 탐색
 - [x] `GET /api/v1/data-catalog/recommendations` — 추천
 - [x] `GET /api/v1/data-catalog/history` — 검색 이력
-- [ ] Temporal 워크플로우 — 카탈로그 동기화 비동기화 (현재 동기 실행)
+- [x] Temporal 워크플로우 — `CatalogSyncWorkflow` (`workflows/catalog_sync.py`, `activities/catalog.py`). Temporal 연결 시 자동 dispatch; 미연결 시 동기 fallback.
 
 ### Frontend
 
-- [x] `frontend/src/components/DataCatalog.svelte` — UI 셸 (목 데이터)
-- [ ] 실제 API 연동
+- [x] `frontend/src/components/DataCatalog.svelte` — Browse(스키마 트리 + 컬럼 상세) + Semantic Search 실 API 연동 완료
 
 ---
 
@@ -200,9 +215,8 @@
 
 ### Frontend
 
-- [x] `frontend/src/components/TextToSQL.svelte` — UI 셸 (목 데이터)
-- [ ] SSE 스트리밍 수신 구현
-- [ ] 실제 API 연동
+- [x] `frontend/src/components/TextToSQL.svelte` — SQL 생성 이력 실 API 연동 완료
+- [x] `frontend/src/components/conversation/ConversationView.svelte` — SSE 스트리밍 수신 구현 완료 (`POST /sql-assistant/generate`)
 
 ---
 
@@ -230,12 +244,11 @@
 - [x] `GET /api/v1/data-analysis/results/{id}` — 결과 조회
 - [x] `GET /api/v1/data-analysis/history` — 실행 이력
 - [x] `POST /api/v1/data-analysis/export` — CSV/JSON 내보내기 (MinIO presigned URL 반환)
-- [ ] Temporal 워크플로우 — 비동기 쿼리 실행 (현재 동기 실행)
+- [x] Temporal 워크플로우 — `AnalysisExecutionWorkflow` (`workflows/analysis_execution.py`, `activities/analysis.py`). Temporal 연결 시 자동 dispatch; 미연결 시 동기 fallback.
 
 ### Frontend
 
-- [x] `frontend/src/components/DataAnalysis.svelte` — UI 셸 (목 데이터)
-- [ ] 실제 API 연동
+- [x] `frontend/src/components/DataAnalysis.svelte` — SQL 실행 + 폴링 + Data/Stats/Insights 탭 + CSV/JSON 내보내기 실 API 연동 완료
 
 ---
 
@@ -243,50 +256,41 @@
 
 ### DB 테이블
 
-- [ ] `data_catalog.dashboards` 테이블 생성
-- [ ] `data_catalog.dashboard_widgets` 테이블 생성
+- [x] `data_catalog.dashboards` 테이블 생성 — `entities.py`로 자동 생성
+- [x] `data_catalog.dashboard_widgets` 테이블 생성 — `entities.py`로 자동 생성
 
 ### Backend
 
-- [ ] `backend/src/models/entities.py` — `Dashboard`, `DashboardWidget` 엔티티 추가
-- [ ] `backend/src/models/request/dashboard.py`
-- [ ] `backend/src/models/response/dashboard.py`
-- [ ] `backend/src/repositories/dashboard.py`
-- [ ] `backend/src/services/dashboard.py`
-- [ ] `backend/src/controllers/dashboard.py`
-- [ ] `POST /api/v1/dashboards` — 생성
-- [ ] `GET /api/v1/dashboards` — 목록
-- [ ] `GET /api/v1/dashboards/{id}` — 조회
-- [ ] `PUT /api/v1/dashboards/{id}` — 수정
-- [ ] `DELETE /api/v1/dashboards/{id}` — 삭제
-- [ ] `POST /api/v1/dashboards/{id}/widgets` — 위젯 추가
-- [ ] `PUT /api/v1/dashboards/{id}/widgets/{wid}` — 위젯 수정
-- [ ] `DELETE /api/v1/dashboards/{id}/widgets/{wid}` — 위젯 삭제
-- [ ] `GET /api/v1/dashboards/{id}/html` — HTML 렌더링
-- [ ] `POST /api/v1/dashboards/{id}/share` — 공유 링크 생성
-- [ ] MinIO 연동 — HTML/PDF/이미지 내보내기
+- [x] `backend/src/models/entities.py` — `Dashboard`, `DashboardWidget` 엔티티 추가
+- [x] `backend/src/models/request/dashboard.py`
+- [x] `backend/src/models/response/dashboard.py`
+- [x] `backend/src/repositories/dashboard.py`
+- [x] `backend/src/services/dashboard.py`
+- [x] `backend/src/controllers/dashboard.py`
+- [x] `POST /api/v1/dashboards` — 생성
+- [x] `GET /api/v1/dashboards` — 목록
+- [x] `GET /api/v1/dashboards/{id}` — 조회
+- [x] `PUT /api/v1/dashboards/{id}` — 수정
+- [x] `DELETE /api/v1/dashboards/{id}` — 삭제
+- [x] `POST /api/v1/dashboards/{id}/widgets` — 위젯 추가
+- [x] `PUT /api/v1/dashboards/{id}/widgets/{wid}` — 위젯 수정
+- [x] `DELETE /api/v1/dashboards/{id}/widgets/{wid}` — 위젯 삭제
+- [x] `GET /api/v1/dashboards/{id}/html` — HTML 렌더링 (서버사이드 렌더링)
+- [x] `POST /api/v1/dashboards/{id}/share` — MinIO presigned URL 공유
 
 ### Frontend
 
-- [x] `frontend/src/components/Dashboard.svelte` — UI 셸 (목 데이터)
-- [ ] GridStack 레이아웃 구현
-- [ ] 실제 API 연동
+- [x] `frontend/src/components/Dashboard.svelte` — CRUD + 위젯 추가/삭제 + HTML iframe 미리보기 + 공유 링크 실 API 연동 완료
 
 ---
 
-## 진행 상황 요약
+## Temporal 워크플로우
 
-```
-인프라       [██████████]  100% — PostgreSQL + Temporal + MinIO + docker-compose 완료
-Feature 1   [████████░░]   80% — Backend 완료, Frontend 미연동
-Feature 2   [████████░░]   80% — Backend 완료 (Browse + Search 통합), Frontend 미연동
-Feature 3   [████████░░]   80% — Backend 완료 (SSE 스트리밍, 세션 관리), Frontend 미연동
-Feature 4   [████████░░]   80% — Backend 완료 (실행, 통계, 인사이트, export), Frontend 미연동
-Feature 5   [░░░░░░░░░░]    0% — 미구현
-```
+- [x] `backend/src/workflows/catalog_sync.py` — `CatalogSyncWorkflow` (introspect → upsert → embed)
+- [x] `backend/src/workflows/analysis_execution.py` — `AnalysisExecutionWorkflow` (execute → stats → insights)
+- [x] `backend/src/activities/catalog.py` — `introspect_postgres`, `upsert_catalog_data`, `generate_catalog_embeddings`
+- [x] `backend/src/activities/analysis.py` — `execute_and_store_query`, `compute_and_store_stats`, `generate_and_store_insights`
+- [x] `backend/src/worker.py` — Temporal worker 진입점 (`python src/worker.py`)
+- [x] `DataCatalogService.refresh()` — Temporal 연결 시 `CatalogSyncWorkflow` dispatch; 미연결 시 동기 fallback
+- [x] `DataAnalysisService.execute()` — Temporal 연결 시 `AnalysisExecutionWorkflow` dispatch; 미연결 시 동기 fallback
 
-### 다음 우선 작업
-
-1. **Feature 5 착수** — `dashboard` 백엔드 구현 (CRUD, MinIO HTML 저장, 위젯 관리)
-2. **Frontend 연동** — Feature 1~4 API 실제 연결 (DataSource, DataCatalog, TextToSQL, DataAnalysis)
-3. **Temporal 워크플로우** — 카탈로그 동기화 비동기화 (`catalog_sync.py` 구현)

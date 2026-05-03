@@ -1,7 +1,7 @@
 from dependency_injector import containers, providers
 
 from clients.embedding import EmbeddingClient
-from clients.llm import LLMClient
+from clients.llm import create_llm_client
 from clients.storage import StorageClient
 from clients.temporal import TemporalClient
 from components.database_manager import DatabaseManager
@@ -35,8 +35,11 @@ class AppContainer(containers.DeclarativeContainer):
     )
 
     llm_client = providers.Singleton(
-        LLMClient,
-        api_key=settings.provided.openai_api_key,
+        create_llm_client,
+        provider=settings.provided.llm_provider,
+        openai_api_key=settings.provided.openai_api_key,
+        google_api_key=settings.provided.google_api_key,
+        model=settings.provided.llm_model,
     )
 
     storage_client = providers.Singleton(
@@ -65,6 +68,7 @@ class AppContainer(containers.DeclarativeContainer):
         DataCatalogService,
         encryption=encryption,
         embedding_client=embedding_client,
+        temporal_client=temporal_client,
     )
 
     sql_assistant_service = providers.Factory(
@@ -77,6 +81,7 @@ class AppContainer(containers.DeclarativeContainer):
         DataAnalysisService,
         encryption=encryption,
         storage=storage_client,
+        temporal_client=temporal_client,
     )
 
     dashboard_service = providers.Factory(

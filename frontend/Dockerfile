@@ -8,9 +8,11 @@ RUN npm i --silent --no-progress || true
 
 COPY . .
 
-# Default to preview (built) for smaller runtime; switch to `npm run dev` if you prefer HMR.
+ARG VITE_BACKEND_URL=http://localhost:8000/api/v1
+ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
+
 RUN npm run build
 
-EXPOSE 5173
+EXPOSE 3000
 
 CMD ["npm", "run", "preview"]

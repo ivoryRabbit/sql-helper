@@ -1,15 +1,28 @@
 <script lang="ts">
-  import { mockSqlGenerations } from '../lib/mock';
-  import type { SqlGeneration } from '../lib/types';
+  import { onMount } from 'svelte';
+  import type { SqlGenerationHistoryItem } from '../lib/types';
+  import { sqlAssistantApi, ApiError } from '../lib/api';
   import { dataSources, selectedDataSource } from '../lib/stores';
   import EmptyDataSource from './shared/EmptyDataSource.svelte';
 
-  let generations: SqlGeneration[] = mockSqlGenerations;
-  let selected: SqlGeneration | null = null;
+  let generations: SqlGenerationHistoryItem[] = [];
+  let loading = false;
+  let loadError: string | null = null;
+  let selected: SqlGenerationHistoryItem | null = null;
   let copiedId: string | null = null;
 
-  function selectGen(g: SqlGeneration) {
-    selected = g;
+  onMount(loadHistory);
+
+  async function loadHistory() {
+    loading = true;
+    loadError = null;
+    try {
+      generations = await sqlAssistantApi.getHistory();
+    } catch (e) {
+      loadError = e instanceof ApiError ? e.message : String(e);
+    } finally {
+      loading = false;
+    }
   }
 
   function fmtDate(iso: string) {
@@ -19,10 +32,17 @@
     });
   }
 
-  function confColor(score: number) {
+  function confColor(score: number | null) {
+    if (score == null) return '#9ca3af';
     if (score >= 0.9) return '#16a34a';
     if (score >= 0.7) return '#ca8a04';
     return '#dc2626';
+  }
+
+  function validationBadgeStyle(status: string) {
+    if (status === 'valid') return 'background:#dcfce7;color:#15803d';
+    if (status === 'invalid') return 'background:#fee2e2;color:#dc2626';
+    return 'background:#f3f4f6;color:#6b7280';
   }
 
   async function copy(sql: string, id: string) {
@@ -43,30 +63,45 @@
       <h1>SQL 생성</h1>
       <p class="subtitle">자연어 질문에서 생성된 SQL 이력을 확인합니다.</p>
     </div>
-    <div class="hint-box">
-      💬 오른쪽 채팅에서 새 SQL을 생성해보세요.
+    <div class="header-right">
+      <button class="refresh-btn" on:click={loadHistory} disabled={loading}>
+        {loading ? '로딩 중...' : '새로고침'}
+      </button>
+      <div class="hint-box">💬 오른쪽 채팅에서 새 SQL을 생성해보세요.</div>
     </div>
   </div>
+
+  {#if loadError}
+    <div class="error-banner">{loadError}</div>
+  {/if}
 
   <div class="gen-layout">
     <!-- History list -->
     <div class="history-list">
-      <div class="list-header">최근 생성 이력</div>
-      {#each generations as gen}
-        <button
-          class="history-item"
-          class:active={selected?.id === gen.id}
-          on:click={() => selectGen(gen)}
-        >
-          <p class="history-query">{gen.user_query}</p>
-          <div class="history-meta">
-            <span class="conf-badge" style="color:{confColor(gen.confidence_score)}">
-              {Math.round(gen.confidence_score * 100)}%
-            </span>
-            <span class="history-date">{fmtDate(gen.created_at)}</span>
-          </div>
-        </button>
-      {/each}
+      <div class="list-header">최근 생성 이력 ({generations.length})</div>
+      {#if loading}
+        <div class="list-loading">로딩 중...</div>
+      {:else if generations.length === 0}
+        <div class="list-empty">생성 이력이 없습니다.<br/>오른쪽 채팅에서 질문을 입력해보세요.</div>
+      {:else}
+        {#each generations as gen}
+          <button
+            class="history-item"
+            class:active={selected?.id === gen.id}
+            on:click={() => selected = gen}
+          >
+            <p class="history-query">{gen.user_query}</p>
+            <div class="history-meta">
+              {#if gen.confidence_score != null}
+                <span class="conf-badge" style="color:{confColor(gen.confidence_score)}">
+                  {Math.round(gen.confidence_score * 100)}%
+                </span>
+              {/if}
+              <span class="history-date">{fmtDate(gen.created_at)}</span>
+            </div>
+          </button>
+        {/each}
+      {/if}
     </div>
 
     <!-- Detail -->
@@ -77,28 +112,41 @@
           <p class="query-text">{selected.user_query}</p>
         </div>
 
-        <div class="detail-section">
-          <div class="section-label-row">
-            <span class="section-label">생성된 SQL</span>
-            <button class="copy-btn" on:click={() => copy(selected.generated_sql, selected.id)}>
-              {copiedId === selected.id ? '복사됨 ✓' : '복사'}
-            </button>
+        {#if selected.generated_sql}
+          <div class="detail-section">
+            <div class="section-label-row">
+              <span class="section-label">생성된 SQL</span>
+              <button class="copy-btn" on:click={() => selected && selected.generated_sql && copy(selected.generated_sql, selected.id)}>
+                {copiedId === selected.id ? '복사됨 ✓' : '복사'}
+              </button>
+            </div>
+            <pre class="sql-code">{selected.generated_sql}</pre>
           </div>
-          <pre class="sql-code">{selected.generated_sql}</pre>
-        </div>
-
-        <div class="detail-section">
-          <div class="section-label">설명</div>
-          <p class="explanation">{selected.explanation}</p>
-        </div>
+        {:else}
+          <div class="detail-section">
+            <div class="section-label">생성된 SQL</div>
+            <p class="no-sql">SQL이 생성되지 않았습니다.</p>
+          </div>
+        {/if}
 
         <div class="detail-meta-row">
+          {#if selected.confidence_score != null}
+            <span>
+              신뢰도:
+              <strong style="color:{confColor(selected.confidence_score)}">
+                {Math.round(selected.confidence_score * 100)}%
+              </strong>
+            </span>
+          {/if}
           <span>
-            신뢰도:
-            <strong style="color:{confColor(selected.confidence_score)}">
-              {Math.round(selected.confidence_score * 100)}%
-            </strong>
+            검증:
+            <span class="validation-badge" style={validationBadgeStyle(selected.validation_status)}>
+              {selected.validation_status}
+            </span>
           </span>
+          {#if selected.llm_model}
+            <span>모델: <strong>{selected.llm_model}</strong></span>
+          {/if}
           <span>생성일시: {fmtDate(selected.created_at)}</span>
         </div>
       {:else}
@@ -124,13 +172,37 @@
   h1 { margin: 0 0 4px; font-size: 22px; }
   .subtitle { margin: 0; color: #6b7280; font-size: 14px; }
 
+  .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .refresh-btn {
+    padding: 6px 14px;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #374151;
+  }
+  .refresh-btn:hover:not(:disabled) { background: #e5e7eb; }
+  .refresh-btn:disabled { opacity: 0.5; cursor: default; }
+
   .hint-box {
     background: #eff6ff;
     border: 1px solid #bfdbfe;
     border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 13px;
+    padding: 8px 12px;
+    font-size: 12px;
     color: #1d4ed8;
+  }
+
+  .error-banner {
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    background: #fee2e2;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #dc2626;
+    flex-shrink: 0;
   }
 
   .gen-layout {
@@ -158,6 +230,13 @@
     border-bottom: 1px solid #f3f4f6;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+  .list-loading, .list-empty {
+    padding: 20px 14px;
+    font-size: 13px;
+    color: #9ca3af;
+    text-align: center;
+    line-height: 1.6;
   }
   .history-item {
     display: flex;
@@ -220,6 +299,7 @@
     overflow-x: auto;
     white-space: pre;
   }
+  .no-sql { margin: 0; font-size: 13px; color: #9ca3af; font-style: italic; }
   .copy-btn {
     background: transparent;
     border: 1px solid #d1d5db;
@@ -230,19 +310,22 @@
     cursor: pointer;
   }
   .copy-btn:hover { background: #f3f4f6; }
-  .explanation {
-    margin: 0;
-    font-size: 13px;
-    color: #4b5563;
-    line-height: 1.6;
-  }
   .detail-meta-row {
     display: flex;
-    gap: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
     font-size: 12px;
     color: #6b7280;
     border-top: 1px solid #f3f4f6;
     padding-top: 12px;
+    margin-top: auto;
+  }
+  .validation-badge {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
   }
 
   .empty-detail {

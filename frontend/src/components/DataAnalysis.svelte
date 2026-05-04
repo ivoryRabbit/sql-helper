@@ -92,12 +92,12 @@
     }
   }
 
-  async function doExport(format: 'csv' | 'json') {
+  async function doExport() {
     if (!result) return;
     exporting = true;
     exportError = null;
     try {
-      const res = await dataAnalysisApi.exportResults({ analysis_id: result.id, format });
+      const res = await dataAnalysisApi.exportResults({ analysis_id: result.id, format: 'csv' });
       window.open(res.download_url, '_blank');
     } catch (e) {
       exportError = e instanceof ApiError ? e.message : String(e);
@@ -217,11 +217,8 @@
 
           {#if result.status === 'completed'}
             <div class="export-row">
-              <button class="export-btn" on:click={() => doExport('csv')} disabled={exporting}>
-                CSV 내보내기
-              </button>
-              <button class="export-btn" on:click={() => doExport('json')} disabled={exporting}>
-                JSON 내보내기
+              <button class="export-btn" on:click={doExport} disabled={exporting}>
+                {exporting ? '생성 중...' : 'CSV 내보내기'}
               </button>
             </div>
           {/if}

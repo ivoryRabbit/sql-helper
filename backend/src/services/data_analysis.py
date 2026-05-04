@@ -51,7 +51,6 @@ _DATE_TYPE_HINTS = frozenset({"date", "time", "timestamp", "timestamptz"})
 _EXPORT_BUCKET = "exports"
 _EXPORT_CONTENT_TYPES = {
     "csv": "text/csv",
-    "json": "application/json",
 }
 
 
@@ -284,11 +283,7 @@ class DataAnalysisService:
         raw_columns: list[dict] = preview.get("columns", [])
         rows: list[dict] = preview.get("rows", [])
 
-        content: bytes
-        if request.format == "csv":
-            content = self._to_csv(rows, raw_columns, execution, request.include_metadata)
-        else:
-            content = self._to_json(rows, raw_columns, execution, request.include_metadata)
+        content = self._to_csv(rows, raw_columns, execution, request.include_metadata)
 
         await self._storage.create_bucket_if_not_exists(_EXPORT_BUCKET)
         key = f"{execution.id}.{request.format}"

@@ -19,5 +19,5 @@ class AnalysisExecuteRequest(BaseModel):
 
 class DataExportRequest(BaseModel):
     analysis_id: UUID
-    format: Literal["csv", "json"] = "csv"
-    include_metadata: bool = True
+    format: Literal["csv"] = "csv"
+    include_metadata: bool = False

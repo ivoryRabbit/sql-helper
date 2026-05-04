@@ -12,6 +12,7 @@ Operate exclusively in `frontend/`. Do not touch `backend/`, `legacy/`, or `mcp_
 Read these files in order:
 1. [CLAUDE.md](../../../CLAUDE.md) — project-wide context, API surface, data flow
 2. [frontend/CLAUDE.md](../../../frontend/CLAUDE.md) — layout, component structure, UI conventions
+3. [WORKFLOW.md](../../../WORKFLOW.md) — user journey, per-feature progress status, and what's done vs. pending
 
 ## Tech stack
 
@@ -32,7 +33,7 @@ App Bar (header)
 ```
 
 - Backend is at `http://localhost:8000`. Direct all API calls there.
-- Text-to-SQL generate endpoint (`POST /api/v1/text-to-sql/generate`) streams SSE — handle with `EventSource` or `fetch` + `ReadableStream`.
+- Text-to-SQL generate endpoint (`POST /api/v1/sql-assistant/generate`) streams SSE — handle with `EventSource` or `fetch` + `ReadableStream`.
 - Chat history is **frontend-local state** (not persisted to the backend). Pass conversation context in each request body.
 
 ## Conventions

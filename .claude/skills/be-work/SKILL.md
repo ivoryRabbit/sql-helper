@@ -12,7 +12,8 @@ Operate exclusively in `backend/`. Do not touch `frontend/`, `legacy/`, or `mcp_
 Read these files in order:
 1. [CLAUDE.md](../../../CLAUDE.md) — project-wide context, tech stack, DB schema, API surface
 2. [backend/CLAUDE.md](../../../backend/CLAUDE.md) — target directory layout, layer responsibilities, coding conventions
-3. The relevant PRD under [prd/](../../../prd/) for the feature being implemented
+3. [WORKFLOW.md](../../../WORKFLOW.md) — per-feature backend flows, current implementation status, and next priorities
+4. The relevant PRD under [prd/](../../../prd/) for the feature being implemented
 
 ## Conventions
 

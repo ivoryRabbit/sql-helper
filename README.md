@@ -2,9 +2,11 @@
 
 # SQL Helper
 
-**Ask questions in plain English. Get SQL back instantly.**
+**Ask questions in any language. Get SQL back instantly.**
 
-A production-style text-to-SQL service — register your databases, explore schemas with semantic search, and let an LLM agent write and analyze SQL for you.
+A production-style text-to-SQL service — register your databases, explore schemas with semantic search, and let an LLM agent write and analyze SQL for you. Supports **English, Korean**, and more.
+
+[한국어 README](README.ko.md)
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.128-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![Svelte](https://img.shields.io/badge/Svelte-4-FF3E00?logo=svelte&logoColor=white)](https://svelte.dev)

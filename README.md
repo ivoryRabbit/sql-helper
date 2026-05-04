@@ -62,7 +62,7 @@ Type a question like *"Show me the top 10 customers by revenue last quarter"* �
 
 ## Quick Start
 
-**Prerequisites:** Docker, Python 3.11+, Node.js 20+
+**Prerequisites:** Docker, [uv](https://docs.astral.sh/uv/getting-started/installation/), Node.js 20+
 
 ### Option A — Full Docker stack
 
@@ -79,11 +79,13 @@ cp .env.example .env
 # Infrastructure only
 docker compose up -d postgres temporal minio
 
-# Backend  →  http://localhost:8000
+# Backend — install deps and start (http://localhost:8000)
+cd backend && uv sync --dev    # creates .venv and installs all dependencies
+cd ..
 ./bin/run-backend.sh
 
 # Temporal worker (separate terminal)
-cd backend && python src/worker.py
+cd backend && uv run python src/worker.py
 
 # Frontend  →  http://localhost:3000
 ./bin/run-frontend.sh

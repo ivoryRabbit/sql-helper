@@ -62,7 +62,7 @@
 
 ## 빠른 시작
 
-**사전 준비:** Docker, Python 3.11+, Node.js 20+
+**사전 준비:** Docker, [uv](https://docs.astral.sh/uv/getting-started/installation/), Node.js 20+
 
 ### Option A — 전체 Docker 스택
 
@@ -79,11 +79,13 @@ cp .env.example .env
 # 인프라만 실행
 docker compose up -d postgres temporal minio
 
-# 백엔드  →  http://localhost:8000
+# 백엔드 — 의존성 설치 후 실행 (http://localhost:8000)
+cd backend && uv sync --dev    # .venv 생성 및 전체 의존성 설치
+cd ..
 ./bin/run-backend.sh
 
 # Temporal 워커 (별도 터미널)
-cd backend && python src/worker.py
+cd backend && uv run python src/worker.py
 
 # 프론트엔드  →  http://localhost:3000
 ./bin/run-frontend.sh

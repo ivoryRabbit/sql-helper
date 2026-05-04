@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { sessions, openTabIds, activeSessionId, activeMenu, dataSources, selectedDataSource } from './lib/stores';
   import { dataSourceApi } from './lib/api';
+  import { t } from './lib/i18n';
   import AppBar from './components/layout/AppBar.svelte';
   import NavSidebar from './components/layout/NavSidebar.svelte';
   import SessionPanel from './components/layout/SessionPanel.svelte';
@@ -37,10 +38,10 @@
         {#if $dataSources.length === 0}
           <div class="no-tabs-landing">
             <div class="landing-icon">🗄️</div>
-            <p class="landing-title">등록된 데이터 소스가 없습니다</p>
-            <p class="landing-hint">SQL 어시스턴트를 사용하려면 먼저 데이터베이스 연결을 등록해야 합니다.</p>
+            <p class="landing-title">{$t('app.noSources.title')}</p>
+            <p class="landing-hint">{$t('app.noSources.hint')}</p>
             <button class="landing-cta" on:click={() => activeMenu.set('data-source')}>
-              데이터 소스 등록하기 →
+              {$t('app.noSources.cta')}
             </button>
           </div>
         {:else}
@@ -49,8 +50,8 @@
             {#if openTabSessions.length === 0}
               <div class="no-tabs-landing">
                 <div class="landing-icon">✨</div>
-                <p class="landing-title">커넥션을 선택하면 대화가 시작됩니다</p>
-                <p class="landing-hint">좌측 SQL Assistant에서 데이터베이스 커넥션을 선택하세요.</p>
+                <p class="landing-title">{$t('app.noTabs.title')}</p>
+                <p class="landing-hint">{$t('app.noTabs.hint')}</p>
               </div>
             {:else}
               <!-- key resets async state (isLoading) on session switch -->

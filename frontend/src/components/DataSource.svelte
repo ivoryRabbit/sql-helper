@@ -4,9 +4,9 @@
   import type { DataSource, DataSourceType } from '../lib/types';
   import { dataSources, selectedDataSource } from '../lib/stores';
   import { MOCK_DATA_SOURCE } from '../lib/mock';
+  import { language, t } from '../lib/i18n';
 
   // ── State ─────────────────────────────────────────────────────────────────
-  // Initialize from store so mockup sources (frontend-only) persist across page navigations
   let sources: DataSource[] = $dataSources;
   let loading = false;
   let error = '';
@@ -40,6 +40,13 @@
   let syncingId: string | null = null;
   let rowMessages: Record<string, { ok: boolean; text: string }> = {};
 
+  $: dateLocale = $language === 'ko' ? 'ko-KR' : 'en-US';
+  $: statusLabel = {
+    connected: $t('ds.status.connected'),
+    disconnected: $t('ds.status.disconnected'),
+    error: $t('ds.status.error'),
+  } as Record<string, string>;
+
   onMount(load);
 
   async function load() {
@@ -47,7 +54,6 @@
     error = '';
     try {
       const apiSources = await dataSourceApi.list();
-      // Preserve mockup sources from the store — they're frontend-only and survive page re-mounts
       const existingMocks = $dataSources.filter(
         s => s.type === 'mockup' && !apiSources.find(a => a.id === s.id),
       );
@@ -59,7 +65,6 @@
       });
     } catch (e) {
       error = e instanceof ApiError ? e.message : String(e);
-      // Keep any already-loaded sources (including mocks) on reload failure
     } finally {
       loading = false;
     }
@@ -84,7 +89,6 @@
     };
   }
 
-  // Only clears config fields, not name/desc/type
   function resetConfigFields() {
     pgHost = ''; pgPort = 5432; pgDatabase = ''; pgUsername = ''; pgPassword = '';
     trinoUrl = ''; trinoCatalog = ''; trinoUsername = ''; trinoPassword = '';
@@ -115,11 +119,10 @@
 
   async function create() {
     formError = '';
-    if (!formName.trim()) { formError = '이름을 입력하세요'; return; }
+    if (!formName.trim()) { formError = $t('ds.error.name'); return; }
     formLoading = true;
     try {
       if (formType === 'mockup') {
-        // Frontend-only: skip API call
         const newMock: DataSource = {
           ...MOCK_DATA_SOURCE,
           id: `__mockup__${crypto.randomUUID()}`,
@@ -150,7 +153,7 @@
   }
 
   async function remove(id: string, name: string, isMock: boolean) {
-    if (!confirm(`'${name}' 데이터 소스를 삭제하시겠습니까?`)) return;
+    if (!confirm($t('ds.confirm.delete', { name }))) return;
     try {
       if (isMock) {
         sources = sources.filter(s => s.id !== id);
@@ -198,57 +201,52 @@
     disconnected: '#6b7280',
     error: '#dc2626',
   };
-  const STATUS_LABEL: Record<string, string> = {
-    connected: '연결됨',
-    disconnected: '미연결',
-    error: '오류',
-  };
 
   function fmtDate(iso: string | null) {
     if (!iso) return '—';
-    return new Date(iso).toLocaleString('ko-KR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    return new Date(iso).toLocaleString(dateLocale, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
   }
 </script>
 
 <div class="page">
   <div class="page-header">
     <div>
-      <h1>데이터 소스</h1>
-      <p class="subtitle">데이터베이스 연결을 등록하고 관리합니다.</p>
+      <h1>{$t('ds.title')}</h1>
+      <p class="subtitle">{$t('ds.subtitle')}</p>
     </div>
     <button class="btn-primary" on:click={() => { showForm = !showForm; if (!showForm) resetForm(); }}>
-      {showForm ? '취소' : '+ 새 데이터 소스'}
+      {showForm ? $t('common.cancel') : $t('ds.btn.new')}
     </button>
   </div>
 
   <!-- ── Create form ─────────────────────────────────── -->
   {#if showForm}
     <div class="card form-card">
-      <h3>데이터 소스 등록</h3>
+      <h3>{$t('ds.form.title')}</h3>
 
       <div class="field-row">
         <div class="field">
-          <label>이름 *</label>
+          <label>{$t('ds.field.name')}</label>
           <input bind:value={formName} placeholder="my-postgres" />
         </div>
         <div class="field">
-          <label>타입 *</label>
+          <label>{$t('ds.field.type')}</label>
           <select bind:value={formType} on:change={resetConfigFields}>
             <option value="postgresql">PostgreSQL</option>
             <option value="redshift">Redshift</option>
             <option value="trino">Trino</option>
-            <option value="mockup">Mockup (테스트용)</option>
+            <option value="mockup">{$t('ds.mockup.option')}</option>
           </select>
         </div>
         <div class="field flex2">
-          <label>설명</label>
-          <input bind:value={formDesc} placeholder="선택 사항" />
+          <label>{$t('ds.field.desc')}</label>
+          <input bind:value={formDesc} placeholder={$t('common.optional')} />
         </div>
       </div>
 
       {#if formType === 'mockup'}
         <div class="mock-notice">
-          🧪 Mockup 소스는 백엔드 없이 프론트엔드 UI를 테스트할 수 있는 가상 데이터 소스입니다.
+          {$t('ds.mockup.notice')}
         </div>
       {:else if formType === 'trino'}
         <div class="field-row">
@@ -306,14 +304,14 @@
       {/if}
 
       <div class="form-actions">
-        <button class="btn-secondary" on:click={() => { showForm = false; resetForm(); }}>취소</button>
+        <button class="btn-secondary" on:click={() => { showForm = false; resetForm(); }}>{$t('common.cancel')}</button>
         {#if formType !== 'mockup'}
           <button class="btn-outline-blue" on:click={testFormConn} disabled={formTestLoading || formLoading}>
-            {formTestLoading ? '테스트 중…' : '연결 테스트'}
+            {formTestLoading ? $t('ds.btn.testing') : $t('ds.btn.test')}
           </button>
         {/if}
         <button class="btn-primary" on:click={create} disabled={formLoading || formTestLoading}>
-          {formLoading ? '저장 중…' : '저장'}
+          {formLoading ? $t('common.saving') : $t('common.save')}
         </button>
       </div>
     </div>
@@ -321,16 +319,16 @@
 
   <!-- ── Error / Loading ─────────────────────────────── -->
   {#if error}
-    <div class="banner error">{error} <button on:click={load}>재시도</button></div>
+    <div class="banner error">{error} <button on:click={load}>{$t('common.retry')}</button></div>
   {/if}
 
   <!-- ── Source list ─────────────────────────────────── -->
   {#if loading}
-    <div class="loading">불러오는 중…</div>
+    <div class="loading">{$t('ds.loading')}</div>
   {:else if sources.length === 0}
     <div class="empty">
-      <p>등록된 데이터 소스가 없습니다.</p>
-      <button class="btn-primary" on:click={() => showForm = true}>첫 데이터 소스 등록</button>
+      <p>{$t('ds.empty.text')}</p>
+      <button class="btn-primary" on:click={() => showForm = true}>{$t('ds.empty.cta')}</button>
     </div>
   {:else}
     <div class="source-grid">
@@ -345,7 +343,7 @@
               {/if}
             </div>
             <span class="status-badge" style="background:{STATUS_COLOR[src.status]}20; color:{STATUS_COLOR[src.status]}">
-              {STATUS_LABEL[src.status] ?? src.status}
+              {statusLabel[src.status] ?? src.status}
             </span>
           </div>
 
@@ -354,7 +352,7 @@
           {/if}
 
           <div class="card-info">
-            <span>마지막 동기화: {fmtDate(src.last_synced)}</span>
+            <span>{$t('ds.card.lastSynced')} {fmtDate(src.last_synced)}</span>
           </div>
 
           {#if rowMessages[src.id]}
@@ -365,24 +363,24 @@
 
           <div class="card-actions">
             {#if src.type === 'mockup'}
-              <span class="mock-info">테스트용 소스 — 연결 불필요</span>
+              <span class="mock-info">{$t('ds.card.mockInfo')}</span>
             {:else}
               <button
                 class="btn-outline"
                 on:click={() => testConn(src.id)}
                 disabled={testingId === src.id || syncingId === src.id}
               >
-                {testingId === src.id ? '테스트 중…' : '연결 테스트'}
+                {testingId === src.id ? $t('ds.card.testing') : $t('ds.btn.test')}
               </button>
               <button
                 class="btn-outline"
                 on:click={() => syncSource(src.id)}
                 disabled={testingId === src.id || syncingId === src.id}
               >
-                {syncingId === src.id ? '동기화 중…' : '카탈로그 동기화'}
+                {syncingId === src.id ? $t('ds.card.syncing') : $t('ds.card.syncCatalog')}
               </button>
             {/if}
-            <button class="btn-danger" on:click={() => remove(src.id, src.name, src.type === 'mockup')}>삭제</button>
+            <button class="btn-danger" on:click={() => remove(src.id, src.name, src.type === 'mockup')}>{$t('ds.card.delete')}</button>
           </div>
         </div>
       {/each}

@@ -4,6 +4,7 @@
   import PromptInputBar from './PromptInputBar.svelte';
   import { sessions, activeSessionId, addMessage, activeMenu, pendingSql, selectedDataSource } from '../../lib/stores';
   import { textToSqlApi, ApiError } from '../../lib/api';
+  import { t } from '../../lib/i18n';
 
   let messagesEl: HTMLDivElement;
   let isLoading = false;
@@ -63,7 +64,7 @@
           addMessage(sid, {
             id: crypto.randomUUID(),
             role: 'assistant',
-            content: `오류가 발생했습니다: ${event.message}`,
+            content: $t('conv.error.sse', { message: event.message }),
             createdAt: new Date(),
           });
         }
@@ -75,7 +76,7 @@
       addMessage(sid, {
         id: crypto.randomUUID(),
         role: 'assistant',
-        content: `요청 처리 중 오류가 발생했습니다: ${msg}`,
+        content: $t('conv.error.request', { message: msg }),
         createdAt: new Date(),
       });
     } finally {

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { activeMenu, sidebarCollapsed, dataSources, sessions, activeSessionId, openOrCreateSession } from '../../lib/stores';
+  import { t } from '../../lib/i18n';
   import type { DataSource } from '../../lib/types';
 
   let sqlExpanded = true;
@@ -29,8 +30,8 @@
     <button
       class="toggle-btn"
       on:click={() => sidebarCollapsed.update(v => !v)}
-      title={$sidebarCollapsed ? '사이드바 펼치기' : '사이드바 접기'}
-      aria-label={$sidebarCollapsed ? '사이드바 펼치기' : '사이드바 접기'}
+      title={$sidebarCollapsed ? $t('nav.expand') : $t('nav.collapse')}
+      aria-label={$sidebarCollapsed ? $t('nav.expand') : $t('nav.collapse')}
     >
       {$sidebarCollapsed ? '▶' : '◀'}
     </button>
@@ -67,7 +68,7 @@
             </button>
           {/each}
           {#if $dataSources.length === 0}
-            <div class="conn-empty">등록된 커넥션 없음</div>
+            <div class="conn-empty">{$t('nav.noConnections')}</div>
           {/if}
         </div>
       {/if}

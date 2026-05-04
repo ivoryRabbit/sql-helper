@@ -3,6 +3,7 @@
   import type { SqlGenerationHistoryItem } from '../lib/types';
   import { sqlAssistantApi, ApiError } from '../lib/api';
   import { dataSources, selectedDataSource } from '../lib/stores';
+  import { language, t } from '../lib/i18n';
   import EmptyDataSource from './shared/EmptyDataSource.svelte';
 
   let generations: SqlGenerationHistoryItem[] = [];
@@ -10,6 +11,13 @@
   let loadError: string | null = null;
   let selected: SqlGenerationHistoryItem | null = null;
   let copiedId: string | null = null;
+
+  $: dateLocale = $language === 'ko' ? 'ko-KR' : 'en-US';
+  $: fmtDate = (iso: string) =>
+    new Date(iso).toLocaleString(dateLocale, {
+      month: 'short', day: 'numeric',
+      hour: '2-digit', minute: '2-digit',
+    });
 
   onMount(loadHistory);
 
@@ -23,13 +31,6 @@
     } finally {
       loading = false;
     }
-  }
-
-  function fmtDate(iso: string) {
-    return new Date(iso).toLocaleString('ko-KR', {
-      month: 'short', day: 'numeric',
-      hour: '2-digit', minute: '2-digit',
-    });
   }
 
   function confColor(score: number | null) {
@@ -60,14 +61,14 @@
 <div class="page">
   <div class="page-header">
     <div>
-      <h1>SQL 생성</h1>
-      <p class="subtitle">자연어 질문에서 생성된 SQL 이력을 확인합니다.</p>
+      <h1>{$t('sql.title')}</h1>
+      <p class="subtitle">{$t('sql.subtitle')}</p>
     </div>
     <div class="header-right">
       <button class="refresh-btn" on:click={loadHistory} disabled={loading}>
-        {loading ? '로딩 중...' : '새로고침'}
+        {loading ? $t('common.loading') : $t('common.refresh')}
       </button>
-      <div class="hint-box">💬 오른쪽 채팅에서 새 SQL을 생성해보세요.</div>
+      <div class="hint-box">{$t('sql.hint')}</div>
     </div>
   </div>
 
@@ -78,11 +79,11 @@
   <div class="gen-layout">
     <!-- History list -->
     <div class="history-list">
-      <div class="list-header">최근 생성 이력 ({generations.length})</div>
+      <div class="list-header">{$t('sql.history.header', { count: generations.length })}</div>
       {#if loading}
-        <div class="list-loading">로딩 중...</div>
+        <div class="list-loading">{$t('sql.history.loading')}</div>
       {:else if generations.length === 0}
-        <div class="list-empty">생성 이력이 없습니다.<br/>오른쪽 채팅에서 질문을 입력해보세요.</div>
+        <div class="list-empty">{$t('sql.history.empty')}</div>
       {:else}
         {#each generations as gen}
           <button
@@ -108,50 +109,50 @@
     <div class="gen-detail">
       {#if selected}
         <div class="detail-section">
-          <div class="section-label">질문</div>
+          <div class="section-label">{$t('sql.detail.question')}</div>
           <p class="query-text">{selected.user_query}</p>
         </div>
 
         {#if selected.generated_sql}
           <div class="detail-section">
             <div class="section-label-row">
-              <span class="section-label">생성된 SQL</span>
+              <span class="section-label">{$t('sql.detail.generatedSql')}</span>
               <button class="copy-btn" on:click={() => selected && selected.generated_sql && copy(selected.generated_sql, selected.id)}>
-                {copiedId === selected.id ? '복사됨 ✓' : '복사'}
+                {copiedId === selected.id ? $t('sql.detail.copied') : $t('sql.detail.copy')}
               </button>
             </div>
             <pre class="sql-code">{selected.generated_sql}</pre>
           </div>
         {:else}
           <div class="detail-section">
-            <div class="section-label">생성된 SQL</div>
-            <p class="no-sql">SQL이 생성되지 않았습니다.</p>
+            <div class="section-label">{$t('sql.detail.generatedSql')}</div>
+            <p class="no-sql">{$t('sql.detail.noSql')}</p>
           </div>
         {/if}
 
         <div class="detail-meta-row">
           {#if selected.confidence_score != null}
             <span>
-              신뢰도:
+              {$t('sql.detail.confidence')}
               <strong style="color:{confColor(selected.confidence_score)}">
                 {Math.round(selected.confidence_score * 100)}%
               </strong>
             </span>
           {/if}
           <span>
-            검증:
+            {$t('sql.detail.validation')}
             <span class="validation-badge" style={validationBadgeStyle(selected.validation_status)}>
               {selected.validation_status}
             </span>
           </span>
           {#if selected.llm_model}
-            <span>모델: <strong>{selected.llm_model}</strong></span>
+            <span>{$t('sql.detail.model')} <strong>{selected.llm_model}</strong></span>
           {/if}
-          <span>생성일시: {fmtDate(selected.created_at)}</span>
+          <span>{$t('sql.detail.createdAt')} {fmtDate(selected.created_at)}</span>
         </div>
       {:else}
         <div class="empty-detail">
-          <p>왼쪽에서 이력을 선택하거나 오른쪽 채팅에서 질문을 입력하세요.</p>
+          <p>{$t('sql.empty')}</p>
         </div>
       {/if}
     </div>
@@ -237,6 +238,7 @@
     color: #9ca3af;
     text-align: center;
     line-height: 1.6;
+    white-space: pre-line;
   }
   .history-item {
     display: flex;

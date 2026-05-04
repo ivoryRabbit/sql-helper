@@ -1,8 +1,9 @@
 <script lang="ts">
   import { activeMenu } from '../../lib/stores';
+  import { t } from '../../lib/i18n';
 
-  // 'none'   — 등록된 데이터 소스가 아예 없음
-  // 'select' — 소스는 있지만 선택하지 않은 상태
+  // 'none'   — no data sources registered at all
+  // 'select' — sources exist but none selected
   export let reason: 'none' | 'select' = 'none';
 </script>
 
@@ -10,14 +11,14 @@
   <div class="icon">{reason === 'none' ? '🗄️' : '📂'}</div>
 
   {#if reason === 'none'}
-    <p class="title">등록된 데이터 소스가 없습니다</p>
-    <p class="desc">이 기능을 사용하려면 먼저 데이터베이스 연결을 등록해야 합니다.</p>
+    <p class="title">{$t('empty.noSources.title')}</p>
+    <p class="desc">{$t('empty.noSources.desc')}</p>
     <button class="cta" on:click={() => activeMenu.set('data-source')}>
-      데이터 소스 등록하기 →
+      {$t('empty.noSources.cta')}
     </button>
   {:else}
-    <p class="title">데이터 소스를 선택하세요</p>
-    <p class="desc">상단 셀렉터에서 작업할 데이터 소스를 선택해 주세요.</p>
+    <p class="title">{$t('empty.noSelect.title')}</p>
+    <p class="desc">{$t('empty.noSelect.desc')}</p>
   {/if}
 </div>
 

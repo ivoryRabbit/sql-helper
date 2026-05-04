@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import { t } from '../../lib/i18n';
 
   export let hasPendingSql = false;
 
@@ -40,7 +41,7 @@
     bind:value={text}
     on:input={resize}
     on:keydown={handleKeydown}
-    placeholder="데이터에 대해 질문하세요...  (Enter 전송, Shift+Enter 줄바꿈)"
+    placeholder={$t('prompt.placeholder')}
     rows="1"
   ></textarea>
 

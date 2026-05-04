@@ -6,6 +6,7 @@
   } from '../lib/types';
   import { dashboardApi, dataAnalysisApi, ApiError } from '../lib/api';
   import { dataSources, selectedDataSource } from '../lib/stores';
+  import { language, t } from '../lib/i18n';
   import EmptyDataSource from './shared/EmptyDataSource.svelte';
 
   // ── List view ──────────────────────────────────────────────────────────
@@ -24,7 +25,6 @@
 
   // ── Analysis data (for widget visualization) ──────────────────────────
   let analysisHistory: AnalysisHistoryItem[] = [];
-  // Cache: analysis_id → full result
   const analysisCache = new Map<string, AnalysisExecutionResponse>();
   let widgetData: Record<string, AnalysisExecutionResponse> = {};
 
@@ -47,6 +47,18 @@
 
   // ── Delete ────────────────────────────────────────────────────────────
   let deleting = false;
+
+  $: dateLocale = $language === 'ko' ? 'ko-KR' : 'en-US';
+  $: fmtDate = (iso: string) =>
+    new Date(iso).toLocaleDateString(dateLocale, {
+      year: 'numeric', month: 'short', day: 'numeric',
+    });
+  $: fmtVal = (v: unknown): string => {
+    if (v == null) return '—';
+    if (typeof v === 'number') return v.toLocaleString(dateLocale);
+    return String(v);
+  };
+  $: numFmt = (n: number) => n.toLocaleString(dateLocale);
 
   onMount(async () => {
     await Promise.all([loadDashboards(), loadAnalysisHistory()]);
@@ -139,7 +151,7 @@
 
   async function deleteDashboard() {
     if (!detail) return;
-    if (!confirm(`"${detail.title}" 대시보드를 삭제하시겠습니까?`)) return;
+    if (!confirm($t('dash.confirm.delete', { title: detail.title }))) return;
     deleting = true;
     try {
       await dashboardApi.delete(detail.id);
@@ -200,7 +212,6 @@
         analysis_id: widgetAnalysisId || null,
       });
       detail = { ...detail, widgets: [...detail.widgets, widget] };
-      // Preload the analysis data for the new widget
       if (widgetAnalysisId) {
         await loadWidgetData(detail.widgets);
       }
@@ -231,21 +242,9 @@
     if (shareUrl) await navigator.clipboard.writeText(shareUrl).catch(() => {});
   }
 
-  function fmtDate(iso: string) {
-    return new Date(iso).toLocaleDateString('ko-KR', {
-      year: 'numeric', month: 'short', day: 'numeric',
-    });
-  }
-
   function sqlSnippet(sql: string, maxLen = 60) {
     const s = sql.replace(/\s+/g, ' ').trim();
     return s.length > maxLen ? s.slice(0, maxLen) + '…' : s;
-  }
-
-  function fmtVal(v: unknown): string {
-    if (v == null) return '—';
-    if (typeof v === 'number') return v.toLocaleString('ko-KR');
-    return String(v);
   }
 
   // SVG bar chart from first two columns (label, value)
@@ -281,39 +280,39 @@
     <!-- ── List view ───────────────────────────────────────────────────── -->
     <div class="page-header">
       <div>
-        <h1>대시보드</h1>
-        <p class="subtitle">데이터 분석 결과로 대시보드를 만들고 관리합니다.</p>
+        <h1>{$t('dash.title')}</h1>
+        <p class="subtitle">{$t('dash.subtitle')}</p>
       </div>
       <button class="btn-primary" on:click={() => showCreateForm = !showCreateForm}>
-        {showCreateForm ? '취소' : '+ 새 대시보드'}
+        {showCreateForm ? $t('common.cancel') : $t('dash.btn.new')}
       </button>
     </div>
 
     {#if showCreateForm}
       <div class="create-form">
-        <h3 class="form-title">새 대시보드 만들기</h3>
+        <h3 class="form-title">{$t('dash.form.title')}</h3>
         <div class="form-row">
-          <label class="form-label">제목 <span class="required">*</span></label>
-          <input class="form-input" bind:value={createTitle} placeholder="대시보드 제목" />
+          <label class="form-label">{$t('dash.form.field.title')}</label>
+          <input class="form-input" bind:value={createTitle} placeholder={$t('dash.form.placeholder.title')} />
         </div>
         <div class="form-row">
-          <label class="form-label">설명</label>
-          <input class="form-input" bind:value={createDescription} placeholder="선택 사항" />
+          <label class="form-label">{$t('dash.form.field.desc')}</label>
+          <input class="form-input" bind:value={createDescription} placeholder={$t('common.optional')} />
         </div>
         <div class="form-row">
-          <label class="form-label">태그 (쉼표 구분)</label>
-          <input class="form-input" bind:value={createTags} placeholder="예: 매출, 고객, 분석" />
+          <label class="form-label">{$t('dash.form.field.tags')}</label>
+          <input class="form-input" bind:value={createTags} placeholder={$t('dash.form.placeholder.tags')} />
         </div>
         <div class="form-row form-row-inline">
-          <label class="form-label">공개 여부</label>
+          <label class="form-label">{$t('dash.form.field.visibility')}</label>
           <input type="checkbox" bind:checked={createPublic} />
-          <span class="checkbox-label">{createPublic ? '공개' : '비공개'}</span>
+          <span class="checkbox-label">{createPublic ? $t('dash.form.public') : $t('dash.form.private')}</span>
         </div>
         {#if createError}
           <div class="error-banner">{createError}</div>
         {/if}
         <button class="btn-primary" on:click={createDashboard} disabled={creating || !createTitle.trim()}>
-          {creating ? '생성 중...' : '대시보드 만들기'}
+          {creating ? $t('dash.btn.creating') : $t('dash.btn.create')}
         </button>
       </div>
     {/if}
@@ -323,11 +322,11 @@
     {/if}
 
     {#if listLoading}
-      <div class="center-msg">로딩 중...</div>
+      <div class="center-msg">{$t('dash.loading')}</div>
     {:else if dashboards.length === 0}
       <div class="center-msg empty-msg">
-        <p>대시보드가 없습니다.</p>
-        <p>'새 대시보드' 버튼으로 첫 대시보드를 만들어보세요.</p>
+        <p>{$t('dash.empty.text')}</p>
+        <p>{$t('dash.empty.hint')}</p>
       </div>
     {:else}
       <div class="dashboard-grid">
@@ -342,9 +341,9 @@
             <div class="db-card-top">
               <h3 class="db-title">{db.title}</h3>
               {#if db.is_public}
-                <span class="public-badge">공개</span>
+                <span class="public-badge">{$t('dash.badge.public')}</span>
               {:else}
-                <span class="private-badge">비공개</span>
+                <span class="private-badge">{$t('dash.badge.private')}</span>
               {/if}
             </div>
             {#if db.description}
@@ -367,24 +366,24 @@
     {/if}
 
   {:else if detailLoading}
-    <div class="center-msg">로딩 중...</div>
+    <div class="center-msg">{$t('dash.loading')}</div>
 
   {:else if detail}
     <!-- ── Detail view ─────────────────────────────────────────────────── -->
     <div class="detail-header">
-      <button class="back-btn" on:click={backToList}>← 목록으로</button>
+      <button class="back-btn" on:click={backToList}>{$t('dash.back')}</button>
       <div class="detail-title-row">
         <h2>{detail.title}</h2>
         <div class="detail-actions">
           <button class="action-btn" on:click={togglePublic}>
-            {detail.is_public ? '🔓 공개' : '🔒 비공개'}
+            {detail.is_public ? $t('dash.btn.togglePublic') : $t('dash.btn.togglePrivate')}
           </button>
-          <button class="action-btn" on:click={loadHtml}>HTML 미리보기</button>
+          <button class="action-btn" on:click={loadHtml}>{$t('dash.btn.htmlPreview')}</button>
           <button class="action-btn" on:click={shareDashboard} disabled={sharing}>
-            {sharing ? '처리 중...' : '공유 링크'}
+            {sharing ? $t('dash.btn.processing') : $t('dash.btn.share')}
           </button>
           <button class="action-btn danger" on:click={deleteDashboard} disabled={deleting}>
-            {deleting ? '삭제 중...' : '삭제'}
+            {deleting ? $t('dash.btn.deleting') : $t('dash.btn.delete')}
           </button>
         </div>
       </div>
@@ -404,17 +403,17 @@
 
     {#if shareUrl}
       <div class="share-box">
-        <span class="share-label">공유 URL:</span>
+        <span class="share-label">{$t('dash.share.label')}</span>
         <code class="share-url">{shareUrl}</code>
-        <button class="copy-btn" on:click={copyShareUrl}>복사</button>
+        <button class="copy-btn" on:click={copyShareUrl}>{$t('dash.share.copy')}</button>
       </div>
     {/if}
 
     {#if showHtml && htmlContent}
       <div class="html-preview-wrap">
         <div class="html-preview-header">
-          <span>HTML 미리보기</span>
-          <button class="close-btn" on:click={() => showHtml = false}>✕ 닫기</button>
+          <span>{$t('dash.html.header')}</span>
+          <button class="close-btn" on:click={() => showHtml = false}>{$t('dash.html.close')}</button>
         </div>
         <iframe
           srcdoc={htmlContent}
@@ -428,31 +427,31 @@
     <!-- Widgets section -->
     <div class="widgets-section">
       <div class="widgets-header">
-        <span class="widgets-title">위젯 ({detail.widgets.length})</span>
+        <span class="widgets-title">{$t('dash.widgets.header', { count: detail.widgets.length })}</span>
         <button class="btn-secondary" on:click={() => showWidgetForm = !showWidgetForm}>
-          {showWidgetForm ? '취소' : '+ 위젯 추가'}
+          {showWidgetForm ? $t('common.cancel') : $t('dash.widgets.add')}
         </button>
       </div>
 
       {#if showWidgetForm}
         <div class="widget-form">
           <div class="form-row">
-            <label class="form-label">위젯 유형</label>
+            <label class="form-label">{$t('dash.widget.type')}</label>
             <select class="form-select" bind:value={widgetType}>
-              <option value="chart">📈 차트</option>
-              <option value="table">📋 테이블</option>
-              <option value="metric">🔢 지표</option>
-              <option value="text">📝 텍스트</option>
+              <option value="chart">{$t('dash.widget.chart')}</option>
+              <option value="table">{$t('dash.widget.table')}</option>
+              <option value="metric">{$t('dash.widget.metric')}</option>
+              <option value="text">{$t('dash.widget.text')}</option>
             </select>
           </div>
           <div class="form-row">
-            <label class="form-label">위젯 제목</label>
-            <input class="form-input" bind:value={widgetTitle} placeholder="위젯 제목" />
+            <label class="form-label">{$t('dash.widget.titleLabel')}</label>
+            <input class="form-input" bind:value={widgetTitle} placeholder={$t('dash.widget.titleLabel')} />
           </div>
           <div class="form-row">
-            <label class="form-label">연결할 분석 결과</label>
+            <label class="form-label">{$t('dash.widget.analysis')}</label>
             <select class="form-select full" bind:value={widgetAnalysisId}>
-              <option value="">— 선택 안 함 —</option>
+              <option value="">{$t('dash.widget.none')}</option>
               {#each analysisHistory as h}
                 <option value={h.id}>{sqlSnippet(h.executed_sql)} ({(h.row_count ?? 0).toLocaleString()} rows)</option>
               {/each}
@@ -463,13 +462,13 @@
           {/if}
           <button class="btn-primary small" on:click={addWidget}
             disabled={addingWidget || !widgetTitle.trim()}>
-            {addingWidget ? '추가 중...' : '추가'}
+            {addingWidget ? $t('dash.widget.adding') : $t('dash.widget.add')}
           </button>
         </div>
       {/if}
 
       {#if detail.widgets.length === 0}
-        <div class="empty-widgets">위젯이 없습니다. 위의 버튼으로 추가하세요.</div>
+        <div class="empty-widgets">{$t('dash.widgets.empty')}</div>
       {:else}
         <div class="widget-grid">
           {#each detail.widgets as widget}
@@ -479,14 +478,13 @@
                 <span class="widget-icon">{WIDGET_ICONS[widget.widget_type] ?? '📦'}</span>
                 <span class="widget-title">{widget.title}</span>
                 <span class="widget-type">{widget.widget_type}</span>
-                <button class="widget-delete" on:click={() => deleteWidget(widget.id)} title="삭제">✕</button>
+                <button class="widget-delete" on:click={() => deleteWidget(widget.id)} title={$t('common.delete')}>✕</button>
               </div>
 
               {#if wdata}
                 <div class="widget-source">{sqlSnippet(wdata.executed_sql)}</div>
 
                 {#if widget.widget_type === 'table'}
-                  <!-- Table widget: first 5 rows -->
                   <div class="widget-table-wrap">
                     <table class="widget-table">
                       <thead>
@@ -512,14 +510,13 @@
                   </div>
 
                 {:else if widget.widget_type === 'metric'}
-                  <!-- Metric widget: key stats -->
                   <div class="metric-grid">
                     <div class="metric-item">
-                      <span class="metric-label">행 수</span>
+                      <span class="metric-label">{$t('dash.metric.rows')}</span>
                       <span class="metric-value">{(wdata.row_count ?? wdata.data.length).toLocaleString()}</span>
                     </div>
                     <div class="metric-item">
-                      <span class="metric-label">컬럼 수</span>
+                      <span class="metric-label">{$t('dash.metric.columns')}</span>
                       <span class="metric-value">{wdata.columns.length}</span>
                     </div>
                     {#each wdata.statistics.filter(s => s.avg_value != null).slice(0, 3) as stat}
@@ -531,7 +528,6 @@
                   </div>
 
                 {:else if widget.widget_type === 'chart'}
-                  <!-- Chart widget: simple SVG bar chart -->
                   {@const bars = buildBarChart(wdata)}
                   {#if bars}
                     <div class="bar-chart">
@@ -541,17 +537,17 @@
                           <div class="bar-track">
                             <div class="bar-fill" style="width:{bar.pct}%"></div>
                           </div>
-                          <span class="bar-val">{bar.value.toLocaleString('ko-KR')}</span>
+                          <span class="bar-val">{numFmt(bar.value)}</span>
                         </div>
                       {/each}
                     </div>
                   {:else}
-                    <div class="no-chart">차트를 그리기에 데이터가 부족합니다.</div>
+                    <div class="no-chart">{$t('dash.chart.noData')}</div>
                   {/if}
                 {/if}
 
               {:else}
-                <div class="no-data">분석 결과가 연결되지 않았습니다.</div>
+                <div class="no-data">{$t('dash.widget.noData')}</div>
               {/if}
             </div>
           {/each}
@@ -561,7 +557,7 @@
 
   {:else if detailError}
     <div class="page-header">
-      <button class="back-btn" on:click={backToList}>← 목록으로</button>
+      <button class="back-btn" on:click={backToList}>{$t('dash.back')}</button>
     </div>
     <div class="error-banner">{detailError}</div>
   {/if}

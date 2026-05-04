@@ -1,14 +1,17 @@
 <script lang="ts">
   import type { Session } from '../../lib/types';
   import { activeSessionId, openSessionInTab, removeSession, dataSources } from '../../lib/stores';
+  import { language, t } from '../../lib/i18n';
 
   export let sessions: Session[];
 
   // Most recent 10, displayed newest-first
   $: recentSessions = [...sessions].reverse().slice(0, 10);
 
+  $: dateLocale = $language === 'ko' ? 'ko-KR' : 'en-US';
+
   function formatDate(d: Date): string {
-    return new Intl.DateTimeFormat('ko-KR', {
+    return new Intl.DateTimeFormat(dateLocale, {
       month: 'short',
       day: 'numeric',
     }).format(d);
@@ -45,8 +48,8 @@
         </div>
         <button
           class="delete-btn"
-          aria-label="세션 삭제"
-          title="세션 삭제"
+          aria-label={$t('session.delete.label')}
+          title={$t('session.delete.label')}
           on:click|stopPropagation={() => removeSession(session.id)}
         >🗑</button>
       </div>

@@ -3,6 +3,7 @@
   import type { AnalysisExecutionResponse, AnalysisHistoryItem } from '../lib/types';
   import { dataAnalysisApi, ApiError } from '../lib/api';
   import { dataSources, selectedDataSource, pendingSql } from '../lib/stores';
+  import { language, t } from '../lib/i18n';
   import EmptyDataSource from './shared/EmptyDataSource.svelte';
 
   let sql = '';
@@ -17,6 +18,17 @@
   let pollTimer: ReturnType<typeof setInterval> | null = null;
   let exporting = false;
   let exportError: string | null = null;
+
+  $: dateLocale = $language === 'ko' ? 'ko-KR' : 'en-US';
+  $: fmtVal = (v: unknown): string => {
+    if (v == null) return '—';
+    if (typeof v === 'number') return v.toLocaleString(dateLocale);
+    return String(v);
+  };
+  $: fmtTime = (iso: string): string =>
+    new Date(iso).toLocaleString(dateLocale, {
+      month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
+    });
 
   onMount(async () => {
     if ($pendingSql) {
@@ -113,18 +125,6 @@
     }
   }
 
-  function fmtVal(v: unknown): string {
-    if (v == null) return '—';
-    if (typeof v === 'number') return v.toLocaleString('ko-KR');
-    return String(v);
-  }
-
-  function fmtTime(iso: string): string {
-    return new Date(iso).toLocaleString('ko-KR', {
-      month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
-    });
-  }
-
   function statusColor(status: string): string {
     if (status === 'completed') return '#16a34a';
     if (status === 'failed') return '#dc2626';
@@ -142,19 +142,19 @@
 <div class="page">
   <div class="page-header">
     <div>
-      <h1>데이터 분석</h1>
-      <p class="subtitle">SQL을 실행하고 결과를 통계와 함께 분석합니다.</p>
+      <h1>{$t('analysis.title')}</h1>
+      <p class="subtitle">{$t('analysis.subtitle')}</p>
     </div>
   </div>
 
   <div class="analysis-layout">
     <!-- Left: execution history -->
     <div class="history-panel">
-      <div class="panel-header">실행 이력 ({history.length})</div>
+      <div class="panel-header">{$t('analysis.history.header', { count: history.length })}</div>
       {#if historyLoading}
-        <div class="panel-empty">로딩 중...</div>
+        <div class="panel-empty">{$t('analysis.history.loading')}</div>
       {:else if history.length === 0}
-        <div class="panel-empty">아직 실행 이력이 없습니다.</div>
+        <div class="panel-empty">{$t('analysis.history.empty')}</div>
       {:else}
         {#each history as item}
           <button
@@ -181,7 +181,7 @@
       <div class="editor-section">
         <textarea
           bind:value={sql}
-          placeholder="SELECT * FROM schema.table LIMIT 100&#10;&#10;⌘+Enter 또는 Ctrl+Enter로 실행"
+          placeholder={$t('analysis.editor.placeholder')}
           class="sql-input"
           on:keydown={handleKeyDown}
           spellcheck="false"
@@ -191,7 +191,7 @@
           on:click={execute}
           disabled={executing || !sql.trim() || isRunning}
         >
-          {executing ? '실행 중...' : '▶ 실행'}
+          {executing ? $t('analysis.btn.running') : $t('analysis.btn.run')}
         </button>
       </div>
 
@@ -218,7 +218,7 @@
           {#if result.status === 'completed'}
             <div class="export-row">
               <button class="export-btn" on:click={doExport} disabled={exporting}>
-                {exporting ? '생성 중...' : 'CSV 내보내기'}
+                {exporting ? $t('analysis.export.generating') : $t('analysis.export.csv')}
               </button>
             </div>
           {/if}
@@ -231,27 +231,27 @@
         {#if isRunning}
           <div class="running-notice">
             <span class="spinner"></span>
-            분석 실행 중입니다. 완료되면 자동으로 결과가 표시됩니다...
+            {$t('analysis.running.msg')}
           </div>
         {:else if result.status === 'failed'}
-          <div class="error-banner">{result.error_message ?? '실행 중 오류가 발생했습니다.'}</div>
+          <div class="error-banner">{result.error_message ?? $t('analysis.error.default')}</div>
         {:else if result.status === 'completed'}
           <!-- Tabs -->
           <div class="tabs">
             <button class="tab" class:active={activeTab === 'data'} on:click={() => activeTab = 'data'}>
-              데이터 테이블
+              {$t('analysis.tab.data')}
             </button>
             <button class="tab" class:active={activeTab === 'stats'} on:click={() => activeTab = 'stats'}>
-              컬럼 통계 ({result.statistics.length})
+              {$t('analysis.tab.stats', { count: result.statistics.length })}
             </button>
             <button class="tab" class:active={activeTab === 'insights'} on:click={() => activeTab = 'insights'}>
-              인사이트 ({result.insights.length})
+              {$t('analysis.tab.insights', { count: result.insights.length })}
             </button>
           </div>
 
           {#if activeTab === 'data'}
             {#if result.data.length === 0}
-              <div class="empty-result">결과가 없습니다.</div>
+              <div class="empty-result">{$t('analysis.data.empty')}</div>
             {:else}
               <div class="table-wrap">
                 <table class="data-table">
@@ -277,7 +277,7 @@
 
           {:else if activeTab === 'stats'}
             {#if result.statistics.length === 0}
-              <div class="empty-result">통계 데이터가 없습니다.</div>
+              <div class="empty-result">{$t('analysis.stats.empty')}</div>
             {:else}
               <div class="stats-grid">
                 {#each result.statistics as stat}
@@ -285,17 +285,17 @@
                     <div class="stat-name">{stat.column_name}</div>
                     <div class="stat-type">{stat.data_type}</div>
                     <div class="stat-rows">
-                      <div class="stat-row"><span>전체</span><strong>{stat.total_count.toLocaleString()}</strong></div>
-                      <div class="stat-row"><span>고유값</span><strong>{stat.unique_count.toLocaleString()}</strong></div>
+                      <div class="stat-row"><span>{$t('analysis.stats.total')}</span><strong>{stat.total_count.toLocaleString()}</strong></div>
+                      <div class="stat-row"><span>{$t('analysis.stats.unique')}</span><strong>{stat.unique_count.toLocaleString()}</strong></div>
                       <div class="stat-row"><span>Null</span><strong>{stat.null_count}</strong></div>
                       {#if stat.min_value != null}
-                        <div class="stat-row"><span>최솟값</span><strong>{stat.min_value}</strong></div>
+                        <div class="stat-row"><span>{$t('analysis.stats.min')}</span><strong>{stat.min_value}</strong></div>
                       {/if}
                       {#if stat.max_value != null}
-                        <div class="stat-row"><span>최댓값</span><strong>{stat.max_value}</strong></div>
+                        <div class="stat-row"><span>{$t('analysis.stats.max')}</span><strong>{stat.max_value}</strong></div>
                       {/if}
                       {#if stat.avg_value != null}
-                        <div class="stat-row"><span>평균</span><strong>{stat.avg_value.toFixed(2)}</strong></div>
+                        <div class="stat-row"><span>{$t('analysis.stats.avg')}</span><strong>{stat.avg_value.toFixed(2)}</strong></div>
                       {/if}
                     </div>
                   </div>
@@ -305,7 +305,7 @@
 
           {:else if activeTab === 'insights'}
             {#if result.insights.length === 0}
-              <div class="empty-result">인사이트가 없습니다.</div>
+              <div class="empty-result">{$t('analysis.insights.empty')}</div>
             {:else}
               <div class="insights-list">
                 {#each result.insights as insight}
@@ -325,7 +325,7 @@
         {/if}
       {:else if !executing}
         <div class="empty-result">
-          SQL을 입력하고 실행 버튼을 클릭하거나 <kbd>⌘ Enter</kbd>를 눌러 분석을 시작하세요.
+          {$t('analysis.placeholder')}
         </div>
       {/if}
     </div>
@@ -605,15 +605,5 @@
     border: 1px dashed #e5e7eb;
     border-radius: 10px;
     padding: 32px;
-  }
-  kbd {
-    display: inline-block;
-    padding: 1px 6px;
-    background: #f3f4f6;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    font-family: monospace;
-    font-size: 12px;
-    color: #374151;
   }
 </style>

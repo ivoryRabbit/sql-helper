@@ -1,5 +1,6 @@
 import { writable, get } from 'svelte/store';
 import type { Session, Message, DataSource } from './types';
+import { t } from './i18n';
 
 const makeId = () => crypto.randomUUID();
 
@@ -40,8 +41,8 @@ export function addSession(dataSourceId: string | null = null): void {
           id: makeId(),
           role: 'assistant',
           content: source
-            ? `안녕하세요! ${source.name}에 대해 궁금한 것을 질문해 주세요.`
-            : '안녕하세요! 새 대화를 시작합니다.',
+            ? get(t)('session.greeting.source', { name: source.name })
+            : get(t)('session.greeting.default'),
           createdAt: new Date(),
         },
       ],

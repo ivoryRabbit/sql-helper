@@ -3,6 +3,7 @@
   import { dataCatalogApi, ApiError } from '../lib/api';
   import type { ApiTable, ApiTableDetail, ApiSchema, SemanticSearchResultItem } from '../lib/types';
   import { dataSources, selectedDataSource } from '../lib/stores';
+  import { t } from '../lib/i18n';
   import EmptyDataSource from './shared/EmptyDataSource.svelte';
 
   // ── Shared ────────────────────────────────────────────────────────────────
@@ -23,6 +24,16 @@
   let refreshing = false;
   let refreshMsg = '';
   let refreshOk = false;
+
+  $: typeLabel = {
+    table: $t('catalog.type.table'),
+    column: $t('catalog.type.column'),
+  } as Record<string, string>;
+
+  const DOC_TYPE_COLOR: Record<string, string> = {
+    table: '#2563eb',
+    column: '#9333ea',
+  };
 
   // Group tables by schema for tree display
   $: schemaGroups = schemas.map(s => ({
@@ -85,7 +96,12 @@
     try {
       const res = await dataCatalogApi.refresh($selectedDataSource.id);
       refreshOk = true;
-      refreshMsg = `${res.message} (스키마 ${res.schemas_synced}, 테이블 ${res.tables_synced}, 컬럼 ${res.columns_synced})`;
+      refreshMsg = $t('catalog.refresh.msg', {
+        message: res.message,
+        schemas: res.schemas_synced,
+        tables: res.tables_synced,
+        columns: res.columns_synced,
+      });
       await loadCatalog($selectedDataSource.id);
     } catch (e) {
       refreshOk = false;
@@ -107,15 +123,6 @@
   let searched = false;
   let searchError = '';
   let searchTimeMs = 0;
-
-  const DOC_TYPE_COLOR: Record<string, string> = {
-    table: '#2563eb',
-    column: '#9333ea',
-  };
-  const TYPE_LABEL: Record<string, string> = {
-    table: '테이블',
-    column: '컬럼',
-  };
 
   async function runSearch() {
     if (!query.trim() || !$selectedDataSource) return;
@@ -158,8 +165,8 @@
 <div class="page">
   <div class="page-header">
     <div>
-      <h1>데이터 카탈로그</h1>
-      <p class="subtitle">스키마를 탐색하거나 자연어로 관련 테이블을 검색합니다.</p>
+      <h1>{$t('catalog.title')}</h1>
+      <p class="subtitle">{$t('catalog.subtitle')}</p>
     </div>
     <div class="header-right">
       <div class="mode-tabs" role="tablist">
@@ -184,7 +191,7 @@
       </div>
       {#if mode === 'browse'}
         <button class="btn-refresh" on:click={triggerRefresh} disabled={refreshing}>
-          {refreshing ? '동기화 중…' : '카탈로그 동기화'}
+          {refreshing ? $t('catalog.btn.syncing') : $t('catalog.btn.sync')}
         </button>
       {/if}
     </div>
@@ -199,21 +206,21 @@
   <!-- ── Browse mode ── -->
   {#if mode === 'browse'}
     <div class="browse-toolbar">
-      <input class="browse-search" bind:value={browseSearch} placeholder="테이블·설명·태그 필터…" />
+      <input class="browse-search" bind:value={browseSearch} placeholder={$t('catalog.browse.placeholder')} />
     </div>
 
     {#if browseLoading}
-      <div class="loading">카탈로그 로딩 중…</div>
+      <div class="loading">{$t('catalog.loading')}</div>
     {:else if browseError}
       <div class="banner fail">✗ {browseError}
-        <button on:click={() => $selectedDataSource && loadCatalog($selectedDataSource.id)}>재시도</button>
+        <button on:click={() => $selectedDataSource && loadCatalog($selectedDataSource.id)}>{$t('common.retry')}</button>
       </div>
     {:else if schemas.length === 0}
       <div class="empty-catalog">
-        <p>카탈로그 데이터가 없습니다.</p>
-        <p class="hint">"카탈로그 동기화" 버튼을 눌러 스키마를 가져오세요.</p>
+        <p>{$t('catalog.empty.text')}</p>
+        <p class="hint">{$t('catalog.empty.hint')}</p>
         <button class="btn-primary" on:click={triggerRefresh} disabled={refreshing}>
-          {refreshing ? '동기화 중…' : '카탈로그 동기화'}
+          {refreshing ? $t('catalog.btn.syncing') : $t('catalog.btn.sync')}
         </button>
       </div>
     {:else}
@@ -238,13 +245,13 @@
             </div>
           {/each}
           {#if schemaGroups.length === 0 && browseSearch}
-            <div class="no-results">검색 결과가 없습니다.</div>
+            <div class="no-results">{$t('catalog.noResults')}</div>
           {/if}
         </div>
 
         <div class="table-detail">
           {#if detailLoading}
-            <div class="detail-loading">컬럼 정보 로딩 중…</div>
+            <div class="detail-loading">{$t('catalog.detail.loading')}</div>
           {:else if detailError}
             <div class="banner fail">✗ {detailError}</div>
           {:else if selectedTable}
@@ -295,7 +302,7 @@
             </table>
           {:else}
             <div class="empty-detail">
-              <p>왼쪽에서 테이블을 선택하세요.</p>
+              <p>{$t('catalog.detail.empty')}</p>
             </div>
           {/if}
         </div>
@@ -309,28 +316,28 @@
         <input
           bind:value={query}
           on:keydown={onSearchKeydown}
-          placeholder="예: 월별 매출 집계, 고객 등급, 이벤트 로그…"
+          placeholder={$t('catalog.search.placeholder')}
           disabled={searching}
           autofocus
         />
         <button class="btn-search" on:click={runSearch} disabled={searching || !query.trim()}>
-          {searching ? '검색 중…' : '검색'}
+          {searching ? $t('catalog.search.btn.searching') : $t('catalog.search.btn')}
         </button>
       </div>
 
       {#if searching}
-        <div class="loading">벡터 유사도 검색 중…</div>
+        <div class="loading">{$t('catalog.search.loading')}</div>
       {:else if searched && searchError}
         <div class="banner fail">✗ {searchError}</div>
       {:else if searched}
         <div class="results-header">
-          <span class="results-count">{searchResults.length}개 결과</span>
-          <span class="results-hint">관련도 순 · {searchTimeMs}ms</span>
+          <span class="results-count">{$t('catalog.search.count', { count: searchResults.length })}</span>
+          <span class="results-hint">{$t('catalog.search.hint', { ms: searchTimeMs })}</span>
         </div>
         {#if searchResults.length === 0}
           <div class="search-empty">
             <div class="search-empty-icon">🔍</div>
-            <p>관련 테이블/컬럼을 찾지 못했습니다.</p>
+            <p>{$t('catalog.search.noResults')}</p>
           </div>
         {:else}
           <div class="results-list">
@@ -342,7 +349,7 @@
                       class="doc-type-badge"
                       style="background:{DOC_TYPE_COLOR[result.type]}18; color:{DOC_TYPE_COLOR[result.type]}"
                     >
-                      {TYPE_LABEL[result.type]}
+                      {typeLabel[result.type] ?? result.type}
                     </span>
                     <span class="result-title">
                       {result.table_name}{result.column_name ? '.' + result.column_name : ''}
@@ -366,7 +373,7 @@
       {:else}
         <div class="search-empty">
           <div class="search-empty-icon">🔍</div>
-          <p>검색어를 입력하면 벡터 유사도 기반으로 관련 테이블·컬럼을 찾아드립니다.</p>
+          <p>{$t('catalog.search.empty')}</p>
         </div>
       {/if}
     </div>

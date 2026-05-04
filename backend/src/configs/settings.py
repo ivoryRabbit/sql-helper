@@ -30,15 +30,19 @@ class Settings(BaseSettings):
     openai_api_key: str = ""
     openai_model: str = "gpt-4o-mini"
 
-    # LLM provider: "openai" | "gemini"
+    # LLM provider: "openai" | "gemini" | "anthropic"
     llm_provider: str = "openai"
     google_api_key: str = ""
     gemini_model: str = "gemini-2.5-flash-lite"
+    anthropic_api_key: str = ""
+    anthropic_model: str = "claude-haiku-4-5-20251001"
 
     @property
     def llm_model(self) -> str:
         if self.llm_provider == "gemini":
             return self.gemini_model
+        if self.llm_provider == "anthropic":
+            return self.anthropic_model
         return self.openai_model
 
     @property

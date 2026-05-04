@@ -53,7 +53,7 @@
 | 벡터 검색 | pgvector · `all-MiniLM-L6-v2` (384차원 임베딩) |
 | 비동기 워크플로우 | Temporal (카탈로그 동기화, 분석 파이프라인) |
 | 오브젝트 스토리지 | MinIO — S3 호환 (대시보드 HTML + CSV 내보내기) |
-| LLM | OpenAI · Google Gemini (`LLM_PROVIDER`로 전환 가능) |
+| LLM | OpenAI · Google Gemini · Anthropic Claude (`LLM_PROVIDER`로 전환 가능) |
 | 프론트엔드 | Svelte 4 · Vite 5 |
 | 데이터베이스 | PostgreSQL 17 + pgvector 0.8.1 |
 | DI | dependency-injector · Pydantic settings |
@@ -67,7 +67,7 @@
 ### Option A — 전체 Docker 스택
 
 ```bash
-cp .env.example .env          # OPENAI_API_KEY 또는 GOOGLE_API_KEY 입력
+cp .env.example .env          # OPENAI_API_KEY, GOOGLE_API_KEY 또는 ANTHROPIC_API_KEY 입력
 docker compose up -d
 ```
 
@@ -112,6 +112,7 @@ API 문서: [http://localhost:8000/docs](http://localhost:8000/docs)
 |---|---|---|
 | OpenAI (기본값) | `openai` | `OPENAI_API_KEY` |
 | Google Gemini | `gemini` | `GOOGLE_API_KEY` |
+| Anthropic Claude | `anthropic` | `ANTHROPIC_API_KEY` |
 
 ---
 
@@ -139,7 +140,7 @@ SvelteKit ──HTTP/SSE──▶ FastAPI
                            │
                    Temporal ──▶ MinIO
                            │
-                      LLM API (OpenAI / Gemini)
+                      LLM API (OpenAI / Gemini / Claude)
 ```
 
 백엔드 코드는 전체가 async로 구성되어 있습니다. 카탈로그 생성, 분석 등 장기 실행 작업은 Temporal 워크플로우로 처리하며, 대시보드 HTML과 CSV 내보내기는 MinIO에 저장됩니다.

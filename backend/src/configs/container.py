@@ -39,6 +39,7 @@ class AppContainer(containers.DeclarativeContainer):
         provider=settings.provided.llm_provider,
         openai_api_key=settings.provided.openai_api_key,
         google_api_key=settings.provided.google_api_key,
+        anthropic_api_key=settings.provided.anthropic_api_key,
         model=settings.provided.llm_model,
     )
 

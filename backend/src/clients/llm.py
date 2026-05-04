@@ -3,6 +3,7 @@ import logging
 from collections.abc import AsyncIterator
 
 import google.generativeai as genai
+from anthropic import AsyncAnthropic
 from openai import AsyncOpenAI
 
 logger = logging.getLogger(__name__)
@@ -150,11 +151,83 @@ class GeminiLLMClient(BaseLLMClient):
         logger.debug("Gemini stream_generate finished")
 
 
+class AnthropicLLMClient(BaseLLMClient):
+    DEFAULT_MODEL = "claude-haiku-4-5-20251001"
+
+    def __init__(self, api_key: str, model: str = DEFAULT_MODEL) -> None:
+        self._client = AsyncAnthropic(api_key=api_key)
+        self._model = model
+
+    @property
+    def model(self) -> str:
+        return self._model
+
+    @staticmethod
+    def _split_messages(messages: list[LLMMessage]) -> tuple[str, list[dict]]:
+        """Extract system prompt and convert to Anthropic message format."""
+        system_parts: list[str] = []
+        contents: list[dict] = []
+        for msg in messages:
+            role, content = msg["role"], msg["content"]
+            if role == "system":
+                system_parts.append(content)
+            else:
+                contents.append({"role": role, "content": content})
+        return "\n\n".join(system_parts), contents
+
+    def _build_kwargs(self, messages: list[LLMMessage], temperature: float) -> dict:
+        system, contents = self._split_messages(messages)
+        kwargs: dict = {
+            "model": self._model,
+            "messages": contents,
+            "temperature": temperature,
+            "max_tokens": 4096,
+        }
+        if system:
+            kwargs["system"] = system
+        return kwargs
+
+    async def generate(
+        self,
+        messages: list[LLMMessage],
+        temperature: float = 0.1,
+    ) -> tuple[str, int]:
+        logger.info("Anthropic generate: model=%s messages=%d", self._model, len(messages))
+        resp = await self._client.messages.create(**self._build_kwargs(messages, temperature))
+        content = resp.content[0].text if resp.content else ""
+        tokens = resp.usage.input_tokens + resp.usage.output_tokens
+        logger.info("Anthropic generate done: tokens=%d", tokens)
+        return content, tokens
+
+    async def stream_generate(
+        self,
+        messages: list[LLMMessage],
+        temperature: float = 0.1,
+    ) -> AsyncIterator[str]:
+        logger.info("Anthropic stream_generate: model=%s messages=%d", self._model, len(messages))
+        try:
+            async with self._client.messages.stream(**self._build_kwargs(messages, temperature)) as stream:
+                async for text in stream.text_stream:
+                    yield text
+        except Exception as exc:
+            logger.error("Anthropic stream_generate failed: %s", exc, exc_info=True)
+            raise
+        logger.debug("Anthropic stream_generate finished")
+
+
 # Keep backward-compatible alias
 LLMClient = BaseLLMClient
 
 
-def create_llm_client(provider: str, openai_api_key: str, google_api_key: str, model: str) -> BaseLLMClient:
+def create_llm_client(
+    provider: str,
+    openai_api_key: str,
+    google_api_key: str,
+    anthropic_api_key: str,
+    model: str,
+) -> BaseLLMClient:
     if provider == "gemini":
         return GeminiLLMClient(api_key=google_api_key, model=model)
+    if provider == "anthropic":
+        return AnthropicLLMClient(api_key=anthropic_api_key, model=model)
     return OpenAILLMClient(api_key=openai_api_key, model=model)

@@ -53,7 +53,7 @@ Type a question like *"Show me the top 10 customers by revenue last quarter"* �
 | Vector search | pgvector · `all-MiniLM-L6-v2` (384-dim embeddings) |
 | Async workflows | Temporal (catalog sync, analysis pipelines) |
 | Object storage | MinIO — S3-compatible (dashboard HTML + CSV exports) |
-| LLM | OpenAI · Google Gemini (pluggable via `LLM_PROVIDER`) |
+| LLM | OpenAI · Google Gemini · Anthropic Claude (pluggable via `LLM_PROVIDER`) |
 | Frontend | Svelte 4 · Vite 5 |
 | Database | PostgreSQL 17 + pgvector 0.8.1 |
 | DI | dependency-injector · Pydantic settings |
@@ -67,7 +67,7 @@ Type a question like *"Show me the top 10 customers by revenue last quarter"* �
 ### Option A — Full Docker stack
 
 ```bash
-cp .env.example .env          # fill in OPENAI_API_KEY or GOOGLE_API_KEY
+cp .env.example .env          # fill in OPENAI_API_KEY, GOOGLE_API_KEY, or ANTHROPIC_API_KEY
 docker compose up -d
 ```
 
@@ -112,6 +112,7 @@ Set `LLM_PROVIDER` in `.env` to switch:
 |---|---|---|
 | OpenAI (default) | `openai` | `OPENAI_API_KEY` |
 | Google Gemini | `gemini` | `GOOGLE_API_KEY` |
+| Anthropic Claude | `anthropic` | `ANTHROPIC_API_KEY` |
 
 ---
 
@@ -139,7 +140,7 @@ SvelteKit ──HTTP/SSE──▶ FastAPI
                            │
                    Temporal ──▶ MinIO
                            │
-                      LLM API (OpenAI / Gemini)
+                      LLM API (OpenAI / Gemini / Claude)
 ```
 
 All backend code is async end-to-end. Long-running jobs (catalog generation, analysis) run as Temporal workflows. Dashboard HTML and CSV exports are stored in MinIO.
